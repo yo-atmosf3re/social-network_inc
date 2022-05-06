@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/yo-atmosf3re/MyFirstSocialNetwork/static/css/main.e6c13ad2.css",
+    "main.js": "/yo-atmosf3re/MyFirstSocialNetwork/static/js/main.d1a69898.js",
+    "static/js/787.28cb0dcd.chunk.js": "/yo-atmosf3re/MyFirstSocialNetwork/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/yo-atmosf3re/MyFirstSocialNetwork/index.html",
+    "main.e6c13ad2.css.map": "/yo-atmosf3re/MyFirstSocialNetwork/static/css/main.e6c13ad2.css.map",
+    "main.d1a69898.js.map": "/yo-atmosf3re/MyFirstSocialNetwork/static/js/main.d1a69898.js.map",
+    "787.28cb0dcd.chunk.js.map": "/yo-atmosf3re/MyFirstSocialNetwork/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.d1a69898.js"
+  ]
+}
