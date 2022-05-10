@@ -1,0 +1,13 @@
+.header{
+   grid-area: h;
+   background-color: rgba(36, 182, 240, 0.74);
+   border-radius: 15px;
+   margin: 5px 0 0 0;
+   }
+   
+   .header img{
+   width: 60px;
+      /* background-color: rgb(8, 80, 173); */
+   border-radius: 15px;
+   text-align: center;
+   }
