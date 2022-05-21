@@ -11,8 +11,16 @@
    grid-gap: 10px;
 }
 
+
+
 .app-wrapper-content {
       grid-area: c;
       background-color: rgba(231, 73, 0, 0.5);
       border-radius: 15px;
 }
+
+.app-wrapper-content img{
+      width: 600px;
+      padding: 10px;
+      border-radius: 15px;
+   }
