@@ -1,4 +1,4 @@
-const Header = () => {
+const Header: React.FunctionComponent = () => {
    return (
       <div>
          ahahahahha

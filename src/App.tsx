@@ -1,12 +1,20 @@
 import React from 'react';
 import './App.css';
-import './Header.tsx';
-import Header from './Header';
+import Navbar from './components/Navbar/Navbar';
+import Profile from './components/Profile/Profile';
+import Header from './components/Header/Header';
+import Dialogs from './components/Dialogs/Dialogs';
 
-function App() {
+
+const App = () => {
   return (
-    <div>
+    <div className='app-wrapper'>
       <Header />
+      <Navbar />
+      <div className='app-wrapper-content'>
+        <Dialogs />
+      </div>
+      {/* <Profile/> */}
     </div>
   );
 }
