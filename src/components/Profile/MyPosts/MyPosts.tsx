@@ -13,6 +13,8 @@ const MyPosts = (props: any) => {
       { id: "1", message: 'Hi, how are you?', likecount: '♥ 20' },
       { id: "2", message: "It's my first post", likecount: '♥ 14' },
       { id: "3", message: "It's my second post", likecount: '♥ 0' },
+      { id: "3", message: "It's my second post", likecount: '♥ 0' },
+      { id: "3", message: "It's my second post", likecount: '♥ 0' },
    ]
 
    let postsElements = posts.map(p => <Post id={p.id} message={p.message} likecount={p.likecount} />)
