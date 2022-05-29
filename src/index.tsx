@@ -7,14 +7,24 @@ import { DialogItemType } from './components/Dialogs/DialogItem/DialogItem';
 import { MessageType } from './components/Dialogs/Message/Message';
 import { PostPropsType } from './components/Profile/MyPosts/Post/Post';
 
+export let posts: Array<PostPropsType> = [
+  { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
+  { id: 2, message: "It's my first post", likecount: '♥ 14' },
+  { id: 3, message: "It's my second post", likecount: '♥ 0' },
+]
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <App posts={posts} />
   </React.StrictMode>
 );
+
+export type PostsPropsType = {
+  posts: Array<PostPropsType>
+}
 
 export let dialogData: Array<DialogItemType> = [
   { id: "1", name: 'Alex' },
@@ -33,11 +43,7 @@ export let messages: Array<MessageType> = [
   { id: '5', message: "Hello!!" },
 ]
 
-export let posts: Array<PostPropsType> = [
-  { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
-  { id: 2, message: "It's my first post", likecount: '♥ 14' },
-  { id: 3, message: "It's my second post", likecount: '♥ 0' },
-]
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
