@@ -1,7 +1,6 @@
-import React from "react";
-import Post, { PostPropsType } from "./Post/Post";
+import Post from "./Post/Post";
 import s from './MyPost.module.css';
-import { posts, PostsPropsType } from "../../..";
+import { PostsPropsType } from "../../..";
 
 
 const MyPosts = (props: PostsPropsType) => {

@@ -13,19 +13,6 @@ export let posts: Array<PostPropsType> = [
   { id: 3, message: "It's my second post", likecount: '♥ 0' },
 ]
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App posts={posts} />
-  </React.StrictMode>
-);
-
-export type PostsPropsType = {
-  posts: Array<PostPropsType>
-}
-
 export let dialogData: Array<DialogItemType> = [
   { id: "1", name: 'Alex' },
   { id: "2", name: 'Ivan' },
@@ -42,6 +29,34 @@ export let messages: Array<MessageType> = [
   { id: '4', message: "Salam!" },
   { id: '5', message: "Hello!!" },
 ]
+
+export type PostsPropsType = {
+  posts: Array<PostPropsType>
+}
+
+export type AllPropsType = {
+  posts: Array<PostPropsType>
+  dialogData: Array<DialogItemType>
+  messages: Array<MessageType>
+}
+
+export type AllDialogsPropsType = {
+  dialogData: Array<DialogItemType>
+  messages: Array<MessageType>
+}
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <App posts={posts} dialogData={dialogData} messages={messages} />
+  </React.StrictMode>
+);
+
+
+
+
 
 
 
