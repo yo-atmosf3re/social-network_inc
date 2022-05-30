@@ -25,5 +25,5 @@ const MyPosts = (props: PostsPropsType) => {
       </div>
    );
 }
-
+fdsa
 export default MyPosts;

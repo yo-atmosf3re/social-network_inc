@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Dialogs from './components/Dialogs/Dialogs';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AllPropsType } from '.';
+import { StateType } from './redux/state';
 
 
 
@@ -17,8 +18,8 @@ const App = (props: AllPropsType) => {
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile' element={<Profile posts={props.posts} />} />
-            <Route path='/dialogs/*' element={<Dialogs dialogData={props.dialogData} messages={props.messages} />} />
+            <Route path='/profile' element={<Profile state={props.state.profilePage} />} />
+            <Route path='/dialogs/*' element={<Dialogs dialogData={props.state.dialogsPage.dialogData} messages={props.state.dialogsPage.messages} />} />
           </Routes>
         </div>
       </div>
