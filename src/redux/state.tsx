@@ -1,23 +1,38 @@
-import { DialogItemType } from "../components/Dialogs/DialogItem/DialogItem"
-import { MessageType } from "../components/Dialogs/Message/Message"
-import { PostPropsType } from "../components/Profile/MyPosts/Post/Post"
+export type MessageType = {
+   id: string
+   message: string
+}
 
-export type StateType = {
-   profilePage: ProfilePageType
-   dialogsPage: DialogsPageType
+export type DialogType = {
+   id: string
+   name: string
+}
+
+export type PostType = {
+   id: number
+   message: string
+   likecount: string
 }
 
 export type ProfilePageType = {
-   posts: Array<PostPropsType>
-
+   posts: Array<PostType>
 }
 
-export type DialogsPageType = {
+export type DialogPageType = {
+   dialogData: Array<DialogType>
    messages: Array<MessageType>
-   dialogData: Array<DialogItemType>
 }
 
-export let state: StateType = {
+export type RootStateType = {
+   profilePage: ProfilePageType
+   dialogsPage: DialogPageType
+}
+
+export type RootStatePropsType = {
+   state: RootStateType
+}
+
+export let state: RootStateType = {
    profilePage: {
       posts: [
          { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
