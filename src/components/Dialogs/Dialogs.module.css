@@ -13,14 +13,23 @@
    color: yellow;
 }
 
-.dialog {
-
-}
-
 .messages {
    padding: 10px;
+   border: 1px solid white;
+   border-radius: 10px;
+   background-color: #fff;
 }
 
 .messages .message {
    color: rgb(255, 81, 0);
+}
+
+.message img {
+   width: 50px;
+   border-radius: 15px;
+   margin: 3px;
+} 
+
+.message:nth-child(odd){
+   text-align: right;
 }

@@ -1,12 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { idText } from "typescript";
+import { DialogItemType } from "../../../redux/state";
 import s from './../Dialogs.module.css'
 
-export type DialogItemType = {
-   name: string,
-   id: string
-}
 
 export const DialogItem = (props: DialogItemType) => {
    return (
