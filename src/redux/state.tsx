@@ -32,6 +32,14 @@ export type RootStatePropsType = {
    state: RootStateType
 }
 
+export type ProfileLocalStateType = {
+   state: ProfilePageType
+}
+
+export type DialogsLocalStateType = {
+   state: DialogPageType
+}
+
 export let state: RootStateType = {
    profilePage: {
       posts: [

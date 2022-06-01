@@ -10,9 +10,10 @@ import { state } from './redux/state';
 
 
 
-const App = (props: RootStateType) => {
-  let dialogsState = state.dialogsPage
-  let profileState = state.profilePage
+const App = (props: RootStatePropsType) => {
+
+  // let dialogsState = state.dialogsPage
+  // let profileState = state.profilePage
 
   return (
     <BrowserRouter>
@@ -21,8 +22,8 @@ const App = (props: RootStateType) => {
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile' element={<Profile state={profileState} />} />
-            <Route path='/dialogs/*' element={<Dialogs state={dialogsState} />} />
+            <Route path='/profile' element={<Profile state={props.state.profilePage} />} />
+            <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} />} />
           </Routes>
         </div>
       </div>
