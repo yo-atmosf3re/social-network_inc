@@ -33,9 +33,14 @@ export type SidebarItemType = {
    name: string
 }
 
+export type SidebarType = {
+   sidebar: Array<SidebarItemType>
+}
+
 export type RootStateType = {
    profilePage: ProfilePageType
    dialogsPage: DialogPageType
+   sidebar: Array<SidebarItemType>
 }
 
 export type RootStatePropsType = {
