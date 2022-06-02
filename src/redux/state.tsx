@@ -28,6 +28,11 @@ export type DialogPageType = {
    messages: Array<MessageType>
 }
 
+export type SidebarItemType = {
+   id: number
+   name: string
+}
+
 export type RootStateType = {
    profilePage: ProfilePageType
    dialogsPage: DialogPageType
@@ -70,5 +75,10 @@ export let state: RootStateType = {
          { id: "6", name: 'Elvis' },
       ],
    },
-
+   sidebar: [
+      { id: 1, name: 'Alex' },
+      { id: 2, name: 'Steve' },
+      { id: 3, name: 'Jon' },
+      { id: 4, name: 'Oleg' },
+   ]
 }
