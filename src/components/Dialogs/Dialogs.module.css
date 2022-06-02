@@ -1,27 +1,36 @@
 .dialogs {
    display: grid;
    grid-template-columns: 2fr 10fr;
-
+   text-decoration: none;
 }
 
 .dialogsItems{
    padding: 10px;
-
 }
 
 .dialogsItems .active {
-   color: yellow;
+   color: rgb(248, 248, 248);
+   text-transform: uppercase;
+
+}
+
+.dialogsItems {
+   border: 1px solid white;
+   border-radius: 10px;
+   margin: 0 5px 0 0;
+   background-color: rgba(5, 37, 128, 0.342);
+   color: rgb(255, 255, 255);
 }
 
 .messages {
    padding: 10px;
    border: 1px solid white;
    border-radius: 10px;
-   background-color: #fff;
+   background-color: rgba(5, 37, 128, 0.342);
 }
 
 .messages .message {
-   color: rgb(255, 81, 0);
+   color: rgb(255, 255, 255);
 }
 
 .message img {
@@ -32,4 +41,20 @@
 
 .message:nth-child(odd){
    text-align: right;
+}
+
+.dialog {
+   padding: 0 0 15px 0;
+}
+
+.dialog img {
+   width: 50px;
+   border-radius: 15px;
+   text-align: center;
+} 
+
+.dialog a {
+   text-decoration: none;
+   color: white;
+   text-transform: uppercase;
 }
