@@ -21,9 +21,10 @@ const App = (props: RootStatePropsType) => {
       <div className='app-wrapper-content'>
         <Routes>
           <Route path='/profile' element={<Profile state={props.state.profilePage} />} />
-          <Route path='/profile' element={<Profile state={props.state.profilePage} />} />
-          <Route path='/profile' element={<Profile state={props.state.profilePage} />} />
-          <Route path='/profile' element={<Profile state={props.state.profilePage} />} />
+          <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} />} />
+          <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} />} />
+          <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} />} />
+          <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} />} />
           <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} />} />
         </Routes>
       </div>
