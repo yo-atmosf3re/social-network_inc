@@ -7,6 +7,9 @@ import { PostType, ProfilePageType } from "../../../redux/state";
 const MyPosts = (props: ProfilePageType) => {
 
    let postsElements = props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} />)
+   let addPost = () => {
+      alert('Post added')
+   }
 
    return (
       <div className={s.postsBlock}>
@@ -16,7 +19,7 @@ const MyPosts = (props: ProfilePageType) => {
                <textarea></textarea>
             </div>
             <div>
-               <button>Add post</button>
+               <button onClick={() => { addPost() }}>Add post</button>
                <button>Remove</button>
             </div>
          </div>
