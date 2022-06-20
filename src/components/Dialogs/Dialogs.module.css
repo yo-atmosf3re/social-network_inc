@@ -58,3 +58,18 @@
    color: white;
    text-transform: uppercase;
 }
+
+.textarea {
+   width: 99%;
+   height: 25%;
+   margin: 5px 0 0 0;
+   border-radius: 3px;
+   background-color: rgba(5, 38, 128, 0.452);
+   color: rgb(234, 0, 255);
+   text-decoration: dashed;
+   font-size: 30px;
+}
+
+button {
+   margin: 3px 0 0 0;
+}
