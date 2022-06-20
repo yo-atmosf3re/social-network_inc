@@ -1,16 +1,17 @@
-import React, { RefObject } from "react";
+import React, { LegacyRef, MutableRefObject, RefObject, useRef } from "react";
 import Post from "./Post/Post";
 import s from './MyPost.module.css';
 import { PostType, ProfilePageType } from "../../../redux/state";
 
+// RefObject<HTMLTextAreaElement>
 
 const MyPosts = (props: ProfilePageType) => {
 
    let postsElements = props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} />)
-   let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
+   let newPostElement = React.createRef<HTMLTextAreaElement>()
    let addPost = () => {
-      let text = newPostElement
-      alert('Post added')
+      let text = newPostElement.current?.value
+      alert(text)
    }
 
    return (
