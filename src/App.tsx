@@ -11,9 +11,6 @@ import { RootStatePropsType } from './redux/state';
 
 const App = (props: RootStatePropsType) => {
 
-  // let dialogsState = state.dialogsPage
-  // let profileState = state.profilePage
-
   return (
     <div className='app-wrapper'>
       <Header />
@@ -28,8 +25,4 @@ const App = (props: RootStatePropsType) => {
   );
 }
 
-
-
 export default App;
-
-// element={<Dialogs dialogData={props.state.dialogsPage.dialogData} messages={props.state.dialogsPage.messages}

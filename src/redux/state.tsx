@@ -44,6 +44,7 @@ export type RootStateType = {
 }
 
 export type RootStatePropsType = {
+   addPost: (postMessage: string) => void
    state: RootStateType
 }
 
@@ -86,4 +87,13 @@ export let state: RootStateType = {
       { id: 3, name: 'Jon' },
       { id: 4, name: 'Oleg' },
    ]
+}
+
+export let addPost = (postMessage: string) => {
+   let newPost: PostType = {
+      id: 5,
+      message: postMessage,
+      likecount: '0',
+   };
+   state.profilePage.posts.push(newPost);
 }
