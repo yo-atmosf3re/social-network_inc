@@ -20,6 +20,7 @@ export type PostType = {
 }
 
 export type ProfilePageType = {
+   addPost: (postMessage: string) => void;
    posts: Array<PostType>
 }
 
@@ -41,6 +42,7 @@ export type RootStateType = {
    profilePage: ProfilePageType
    dialogsPage: DialogPageType
    sidebar: Array<SidebarItemType>
+   // addPost: (postMessage: string) => void
 }
 
 export type RootStatePropsType = {
@@ -49,6 +51,7 @@ export type RootStatePropsType = {
 }
 
 export type ProfileLocalStateType = {
+   addPost: (postMessage: string) => void
    state: ProfilePageType
 }
 
@@ -89,11 +92,13 @@ export let state: RootStateType = {
    ]
 }
 
-export let addPost = (postMessage: string) => {
-   let newPost: PostType = {
-      id: 5,
+export const addPost = (postMessage: string) => {
+   const newPost: PostType = {
+      id: new Date().getTime(),
       message: postMessage,
       likecount: '0',
    };
    state.profilePage.posts.push(newPost);
 }
+
+export default state;
