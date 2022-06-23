@@ -59,6 +59,15 @@ export type DialogsLocalStateType = {
    state: DialogPageType
 }
 
+export const addPost = (postMessage: string) => {
+   const newPost: PostType = {
+      id: new Date().getTime(),
+      message: postMessage,
+      likecount: '0',
+   };
+   state.profilePage.posts.push(newPost);
+}
+
 export let state: RootStateType = {
    profilePage: {
       posts: [
@@ -66,6 +75,7 @@ export let state: RootStateType = {
          { id: 2, message: "It's my first post", likecount: '♥ 14' },
          { id: 3, message: "It's my second post", likecount: '♥ 0' },
       ],
+      addPost
    },
    dialogsPage: {
       messages: [
@@ -92,13 +102,6 @@ export let state: RootStateType = {
    ]
 }
 
-export const addPost = (postMessage: string) => {
-   const newPost: PostType = {
-      id: new Date().getTime(),
-      message: postMessage,
-      likecount: '0',
-   };
-   state.profilePage.posts.push(newPost);
-}
+
 
 export default state;

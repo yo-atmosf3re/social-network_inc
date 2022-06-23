@@ -7,8 +7,11 @@ import { PostType, ProfilePageType } from "../../../redux/state";
 
 const MyPosts = (props: ProfilePageType) => {
 
-   let postsElements = props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} />)
+   let postsElements =
+      props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} />)
+
    let newPostElement = React.createRef<HTMLTextAreaElement>()
+
    let addNewPost = () => {
       if (newPostElement.current) {
          props.addPost(newPostElement.current.value)
