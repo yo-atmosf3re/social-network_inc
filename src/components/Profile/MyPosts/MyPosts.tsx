@@ -15,6 +15,7 @@ const MyPosts = (props: ProfilePageType) => {
    let addNewPost = () => {
       if (newPostElement.current) {
          props.addPost(newPostElement.current.value)
+         newPostElement.current.value = '';
       }
    }
 
