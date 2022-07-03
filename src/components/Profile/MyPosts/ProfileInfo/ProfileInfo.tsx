@@ -6,6 +6,7 @@ export const ProfileInfo = () => {
       <div>
          <div className="profileinfo">
             <img src='https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg' />
+            <img src='https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg' />
          </div>
          <div className={s.descriptionBlock}>
             ava + description
