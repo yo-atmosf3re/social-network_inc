@@ -22,8 +22,10 @@ export type PostType = {
 }
 
 export type ProfilePageType = {
+   newPostText: string
    addPost: (postMessage: string) => void;
    posts: Array<PostType>
+
 }
 
 export type DialogPageType = {
@@ -53,6 +55,7 @@ export type RootStatePropsType = {
 }
 
 export type ProfileLocalStateType = {
+   newPostText: string
    addPost: (postMessage: string) => void
    state: ProfilePageType
 }
@@ -73,6 +76,7 @@ export const addPost = (postMessage: string) => {
 
 export let state: RootStateType = {
    profilePage: {
+      newPostText: '',
       posts: [
          { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
          { id: 2, message: "It's my first post", likecount: '♥ 14' },

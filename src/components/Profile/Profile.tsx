@@ -8,7 +8,7 @@ const Profile = (props: ProfileLocalStateType) => {
    return (
       <div>
          <ProfileInfo />
-         <MyPosts posts={props.state.posts} addPost={props.addPost} />
+         <MyPosts newPostText={props.newPostText} posts={props.state.posts} addPost={props.addPost} />
       </div>
    );
 }

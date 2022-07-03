@@ -19,12 +19,19 @@ const MyPosts = (props: ProfilePageType) => {
       }
    }
 
+   let onPostChange = () => {
+
+   }
+
    return (
       <div className={s.postsBlock}>
          My posts
          <div>
             <div>
-               <textarea ref={newPostElement}></textarea>
+               <textarea
+                  onChange={onPostChange}
+                  ref={newPostElement}
+                  value={props.newPostText} />
             </div>
             <div>
                <button onClick={addNewPost}>Add post</button>
