@@ -25,7 +25,7 @@ export type ProfilePageType = {
    newPostText: string
    addPost: (postMessage: string) => void;
    posts: Array<PostType>
-
+   updateNewPostText: (newText: string) => void
 }
 
 export type DialogPageType = {
@@ -46,18 +46,19 @@ export type RootStateType = {
    profilePage: ProfilePageType
    dialogsPage: DialogPageType
    sidebar: Array<SidebarItemType>
-   // addPost: (postMessage: string) => void
 }
 
 export type RootStatePropsType = {
    addPost: (postMessage: string) => void
    state: RootStateType
+   updateNewPostText: (newText: string) => void
 }
 
 export type ProfileLocalStateType = {
    newPostText: string
    addPost: (postMessage: string) => void
    state: ProfilePageType
+   updateNewPostText: (newText: string) => void
 }
 
 export type DialogsLocalStateType = {
@@ -74,6 +75,11 @@ export const addPost = (postMessage: string) => {
    renderEntireTree(state);
 }
 
+export const updateNewPostText = (newText: string) => {
+   state.profilePage.newPostText = newText;
+   renderEntireTree(state);
+}
+
 export let state: RootStateType = {
    profilePage: {
       newPostText: '',
@@ -82,7 +88,8 @@ export let state: RootStateType = {
          { id: 2, message: "It's my first post", likecount: '♥ 14' },
          { id: 3, message: "It's my second post", likecount: '♥ 0' },
       ],
-      addPost
+      addPost,
+      updateNewPostText,
    },
    dialogsPage: {
       messages: [

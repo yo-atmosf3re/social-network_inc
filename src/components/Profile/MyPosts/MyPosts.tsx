@@ -1,7 +1,7 @@
-import React, { LegacyRef, MutableRefObject, RefObject, useRef } from "react";
+import React, { ChangeEvent, MouseEventHandler } from "react";
 import Post from "./Post/Post";
 import s from './MyPost.module.css';
-import { PostType, ProfilePageType } from "../../../redux/state";
+import { addPost, PostType, ProfilePageType } from "../../../redux/state";
 
 // RefObject<HTMLTextAreaElement>
 
@@ -10,16 +10,12 @@ const MyPosts = (props: ProfilePageType) => {
    let postsElements =
       props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} />)
 
-   let newPostElement = React.createRef<HTMLTextAreaElement>()
-
-   let addNewPost = () => {
-      if (newPostElement.current) {
-         props.addPost(newPostElement.current.value)
-         newPostElement.current.value = '';
-      }
+   const addNewPost = () => {
+      props.addPost(props.newPostText)
+      props.addPost('')
    }
-
-   let onPostChange = () => {
+   const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+      props.updateNewPostText(e.currentTarget.value)
 
    }
 
@@ -29,8 +25,7 @@ const MyPosts = (props: ProfilePageType) => {
          <div>
             <div>
                <textarea
-                  onChange={onPostChange}
-                  ref={newPostElement}
+                  onChange={newTextChangeHandler}
                   value={props.newPostText} />
             </div>
             <div>

@@ -5,7 +5,7 @@ import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
 import Dialogs from './components/Dialogs/Dialogs';
 import { Route, Routes } from 'react-router-dom';
-import { RootStatePropsType } from './redux/state';
+import state, { RootStatePropsType } from './redux/state';
 
 
 
@@ -17,8 +17,13 @@ const App = (props: RootStatePropsType) => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Routes>
-          <Route path='/profile' element={<Profile state={props.state.profilePage} addPost={props.addPost} newPostText={''} />} />
-          <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} />} />
+          <Route path='/profile' element={<Profile
+            state={props.state.profilePage}
+            addPost={props.addPost}
+            newPostText={state.profilePage.newPostText}
+            updateNewPostText={props.updateNewPostText} />} />
+          <Route path='/dialogs/*' element={<Dialogs
+            state={props.state.dialogsPage} />} />
         </Routes>
       </div>
     </div>
