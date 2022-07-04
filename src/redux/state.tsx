@@ -65,13 +65,14 @@ export type DialogsLocalStateType = {
    state: DialogPageType
 }
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
    const newPost: PostType = {
       id: new Date().getTime(),
-      message: postMessage,
+      message: state.profilePage.newPostText,
       likecount: '0',
    };
    state.profilePage.posts.push(newPost);
+   state.profilePage.newPostText = '';
    renderEntireTree(state);
 }
 

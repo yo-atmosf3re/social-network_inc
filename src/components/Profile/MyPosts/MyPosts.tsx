@@ -12,11 +12,12 @@ const MyPosts = (props: ProfilePageType) => {
 
    const addNewPost = () => {
       props.addPost(props.newPostText)
-      props.addPost('')
    }
    const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
       props.updateNewPostText(e.currentTarget.value)
-
+   }
+   const clearTextarea = () => {
+      props.updateNewPostText('')
    }
 
    return (
@@ -30,7 +31,7 @@ const MyPosts = (props: ProfilePageType) => {
             </div>
             <div>
                <button onClick={addNewPost}>Add post</button>
-               <button>Remove</button>
+               <button onClick={clearTextarea}>Remove</button>
             </div>
          </div>
          <div className={s.posts}>
