@@ -18,6 +18,7 @@ const MyPosts = (props: ProfilePageType) => {
    }
    const clearTextarea = () => {
       props.updateNewPostText('')
+      props.updateNewPostText('')
    }
 
    return (
