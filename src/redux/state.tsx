@@ -1,4 +1,8 @@
-import { renderEntireTree } from "../render"
+import { rerenderEntireTree } from ".."
+
+let renderEntireTree = () => {
+   console.log('State changed')
+}
 
 export type MessageType = {
    id: string
@@ -78,7 +82,7 @@ export const addPost = () => {
 
 export const updateNewPostText = (newText: string) => {
    state.profilePage.newPostText = newText;
-   renderEntireTree(state);
+   rerenderEntireTree(state);
 }
 
 export let state: RootStateType = {
