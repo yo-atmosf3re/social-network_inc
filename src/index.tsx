@@ -13,7 +13,6 @@ let renderEntireTree = (state: RootStateType) => {
       <React.StrictMode>
          <BrowserRouter>
             <App state={state} addPost={addPost} updateNewPostText={updateNewPostText} />
-            <App state={state} addPost={addPost} updateNewPostText={updateNewPostText} />☻
          </BrowserRouter>
       </React.StrictMode>
    );

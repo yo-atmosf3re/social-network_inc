@@ -1,5 +1,3 @@
-import { rerenderEntireTree } from ".."
-
 let renderEntireTree = () => {
    console.log('State changed')
 }
