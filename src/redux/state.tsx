@@ -1,4 +1,4 @@
-let renderEntireTree = () => {
+let rerenderEntireTree: (state: RootStateType) => void = () => {
    console.log('State changed')
 }
 
@@ -75,12 +75,16 @@ export const addPost = () => {
    };
    state.profilePage.posts.push(newPost);
    state.profilePage.newPostText = '';
-   renderEntireTree(state);
+   rerenderEntireTree(state);
 }
 
 export const updateNewPostText = (newText: string) => {
    state.profilePage.newPostText = newText;
    rerenderEntireTree(state);
+}
+
+export const subscribe = (observer: (state: RootStateType) => void) => {
+   rerenderEntireTree = observer;
 }
 
 export let state: RootStateType = {
