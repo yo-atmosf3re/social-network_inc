@@ -1,7 +1,3 @@
-let rerenderEntireTree: (state: RootStateType) => void = () => {
-   console.log('State changed')
-}
-
 export type MessageType = {
    id: string
    message: string
@@ -67,62 +63,125 @@ export type DialogsLocalStateType = {
    state: DialogPageType
 }
 
-export const addPost = () => {
-   const newPost: PostType = {
-      id: new Date().getTime(),
-      message: state.profilePage.newPostText,
-      likecount: '0',
-   };
-   state.profilePage.posts.push(newPost);
-   state.profilePage.newPostText = '';
-   rerenderEntireTree(state);
-}
+// let rerenderEntireTree: (state: RootStateType) => void = () => {
+//    console.log('State changed')
+// }
 
-export const updateNewPostText = (newText: string) => {
-   state.profilePage.newPostText = newText;
-   rerenderEntireTree(state);
-}
+// export const addPost = () => {
+//    const newPost: PostType = {
+//       id: new Date().getTime(),
+//       message: state.profilePage.newPostText,
+//       likecount: '0',
+//    };
+//    state.profilePage.posts.push(newPost);
+//    state.profilePage.newPostText = '';
+//    rerenderEntireTree(state);
+// }
 
-export const subscribe = (observer: (state: RootStateType) => void) => {
-   rerenderEntireTree = observer;
-}
+// export const updateNewPostText = (newText: string) => {
+//    state.profilePage.newPostText = newText;
+//    rerenderEntireTree(state);
+// }
 
-export let state: RootStateType = {
-   profilePage: {
-      newPostText: '',
-      posts: [
-         { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
-         { id: 2, message: "It's my first post", likecount: '♥ 14' },
-         { id: 3, message: "It's my second post", likecount: '♥ 0' },
-      ],
-      addPost,
-      updateNewPostText,
+// export const subscribe = (observer: (state: RootStateType) => void) => {
+//    rerenderEntireTree = observer;
+// }
+
+// export let state: RootStateType = {
+//    profilePage: {
+//       newPostText: '',
+//       posts: [
+//          { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
+//          { id: 2, message: "It's my first post", likecount: '♥ 14' },
+//          { id: 3, message: "It's my second post", likecount: '♥ 0' },
+//       ],
+//       addPost,
+//       updateNewPostText,
+//    },
+//    dialogsPage: {
+//       messages: [
+//          { id: '1', message: "Hi!" },
+//          { id: '2', message: "How are you?" },
+//          { id: '3', message: "Yo!" },
+//          { id: '4', message: "Salam!" },
+//          { id: '5', message: "Hello!!" },
+//       ],
+//       dialogData: [
+//          { id: "1", name: 'Alex' },
+//          { id: "2", name: 'Ivan' },
+//          { id: "3", name: 'Jon' },
+//          { id: "4", name: 'Andrey' },
+//          { id: "5", name: 'Mark' },
+//          { id: "6", name: 'Elvis' },
+//       ],
+//    },
+//    sidebar: [
+//       { id: 1, name: 'Alex' },
+//       { id: 2, name: 'Steve' },
+//       { id: 3, name: 'Jon' },
+//       { id: 4, name: 'Oleg' },
+//    ]
+// }
+
+
+
+// export default state;
+
+let store = {
+   _rerenderEntireTree(state: RootStateType) {
+      console.log('State changed')
    },
-   dialogsPage: {
-      messages: [
-         { id: '1', message: "Hi!" },
-         { id: '2', message: "How are you?" },
-         { id: '3', message: "Yo!" },
-         { id: '4', message: "Salam!" },
-         { id: '5', message: "Hello!!" },
-      ],
-      dialogData: [
-         { id: "1", name: 'Alex' },
-         { id: "2", name: 'Ivan' },
-         { id: "3", name: 'Jon' },
-         { id: "4", name: 'Andrey' },
-         { id: "5", name: 'Mark' },
-         { id: "6", name: 'Elvis' },
-      ],
+
+   addPost() {
+      const newPost: PostType = {
+         id: new Date().getTime(),
+         message: this.state.profilePage.newPostText,
+         likecount: '0',
+      };
+      this.state.profilePage.posts.push(newPost);
+      this.state.profilePage.newPostText = '';
+      this._rerenderEntireTree(this.state);
    },
-   sidebar: [
-      { id: 1, name: 'Alex' },
-      { id: 2, name: 'Steve' },
-      { id: 3, name: 'Jon' },
-      { id: 4, name: 'Oleg' },
-   ]
+   updateNewPostText(newText: string) {
+      this.state.profilePage.newPostText = newText;
+      this._rerenderEntireTree(this.state);
+   },
+   subscribe(observer: (state: RootStateType) => void) {
+      this._rerenderEntireTree = observer;
+   },
+   state: {
+      profilePage: {
+         newPostText: '',
+         posts: [
+            { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
+            { id: 2, message: "It's my first post", likecount: '♥ 14' },
+            { id: 3, message: "It's my second post", likecount: '♥ 0' },
+         ],
+         store.addPost(),
+         updateNewPostText(),
+      },
+      dialogsPage: {
+         messages: [
+            { id: '1', message: "Hi!" },
+            { id: '2', message: "How are you?" },
+            { id: '3', message: "Yo!" },
+            { id: '4', message: "Salam!" },
+            { id: '5', message: "Hello!!" },
+         ],
+         dialogData: [
+            { id: "1", name: 'Alex' },
+            { id: "2", name: 'Ivan' },
+            { id: "3", name: 'Jon' },
+            { id: "4", name: 'Andrey' },
+            { id: "5", name: 'Mark' },
+            { id: "6", name: 'Elvis' },
+         ],
+      },
+      sidebar: [
+         { id: 1, name: 'Alex' },
+         { id: 2, name: 'Steve' },
+         { id: 3, name: 'Jon' },
+         { id: 4, name: 'Oleg' },
+      ]
+   }
 }
-
-
-
-export default state;
