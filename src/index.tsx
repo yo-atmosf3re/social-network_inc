@@ -16,7 +16,6 @@ let rerenderEntireTree = (state: RootStateType) => {
 }
 
 rerenderEntireTree(state);
-rerenderEntireTree(state);
 subscribe(rerenderEntireTree);
 
 // If you want to start measuring performance in your app, pass a function
