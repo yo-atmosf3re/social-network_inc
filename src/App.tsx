@@ -15,6 +15,7 @@ const App = (props: RootStatePropsType) => {
     <div className='app-wrapper'>
       <Header />
       <Header />
+      <Header />
       <Navbar />
       <div className='app-wrapper-content'>
         <Routes>
