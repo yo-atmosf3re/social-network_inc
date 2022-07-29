@@ -13,10 +13,21 @@ export type DialogItemType = {
    id: string
 }
 
+export type NavbarPropsType = {
+   state: SidebarItemType[]
+}
+
 export type PostType = {
    id: number
    message: string
    likecount: string
+}
+
+export type MyPostPropsType = {
+   newPostText: string
+   posts: Array<PostType>
+   addPost: (postMessage: string) => void
+   updateNewPostText: (newText: string) => void
 }
 
 export type ProfilePageType = {
@@ -42,12 +53,6 @@ export type RootStateType = {
    profilePage: ProfilePageType
    dialogsPage: DialogPageType
    sidebar: Array<SidebarItemType>
-   // _state: RootStateType
-   // addPost: () => void
-   // updateNewPostText: (newText: string) => void
-   // _callSubscriber: (_state: RootStateType) => void
-   // subscriber: (observer: (_state: RootStateType) => void) => void
-   // getState: () => RootStateType
 }
 
 export type RootStatePropsType = {
@@ -78,11 +83,6 @@ export type StoreType = {
 
 export type PropsType = {
    store: StoreType
-   // addPost: () => void
-   // updateNewPostText: (newText: string) => void
-   // _callSubscriber: (_state: RootStateType) => void
-   // subscriber: (observer: (_state: RootStateType) => void) => void
-   // getState: () => RootStateType
 }
 
 export let store: StoreType = {

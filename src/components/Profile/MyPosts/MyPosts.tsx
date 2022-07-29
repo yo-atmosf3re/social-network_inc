@@ -1,11 +1,9 @@
-import React, { ChangeEvent, MouseEventHandler } from "react";
+import React, { ChangeEvent } from "react";
 import Post from "./Post/Post";
 import s from './MyPost.module.css';
-import { addPost, PostType, ProfilePageType } from "../../../redux/state";
+import { MyPostPropsType, PostType } from "../../../redux/state";
 
-// RefObject<HTMLTextAreaElement>
-
-const MyPosts = (props: ProfilePageType) => {
+const MyPosts = (props: MyPostPropsType) => {
 
    let postsElements =
       props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} />)

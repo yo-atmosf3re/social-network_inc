@@ -1,5 +1,5 @@
 import React from "react";
-import { addPost, PostType, ProfileLocalStateType, ProfilePageType, RootStatePropsType, RootStateType } from "../../redux/state";
+import { ProfileLocalStateType } from "../../redux/state";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 import s from './Profile.module.css';
