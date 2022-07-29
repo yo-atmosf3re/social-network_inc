@@ -21,9 +21,7 @@ export type PostType = {
 
 export type ProfilePageType = {
    newPostText: string
-   addPost: (postMessage: string) => void;
    posts: Array<PostType>
-   updateNewPostText: (newText: string) => void
 }
 
 export type DialogPageType = {
@@ -44,6 +42,12 @@ export type RootStateType = {
    profilePage: ProfilePageType
    dialogsPage: DialogPageType
    sidebar: Array<SidebarItemType>
+   // _state: RootStateType
+   // addPost: () => void
+   // updateNewPostText: (newText: string) => void
+   // _callSubscriber: (_state: RootStateType) => void
+   // subscriber: (observer: (_state: RootStateType) => void) => void
+   // getState: () => RootStateType
 }
 
 export type RootStatePropsType = {
@@ -63,9 +67,26 @@ export type DialogsLocalStateType = {
    state: DialogPageType
 }
 
-let store = {
-   _state:
-   {
+export type StoreType = {
+   _state: RootStateType
+   addPost: () => void
+   updateNewPostText: (newText: string) => void
+   _callSubscriber: (_state: RootStateType) => void
+   subscriber: (observer: (_state: RootStateType) => void) => void
+   getState: () => RootStateType
+}
+
+export type PropsType = {
+   store: StoreType
+   // addPost: () => void
+   // updateNewPostText: (newText: string) => void
+   // _callSubscriber: (_state: RootStateType) => void
+   // subscriber: (observer: (_state: RootStateType) => void) => void
+   // getState: () => RootStateType
+}
+
+export let store: StoreType = {
+   _state: {
       profilePage: {
          newPostText: '',
          posts: [
@@ -73,8 +94,6 @@ let store = {
             { id: 2, message: "It's my first post", likecount: '♥ 14' },
             { id: 3, message: "It's my second post", likecount: '♥ 0' },
          ],
-         addPost,
-         updateNewPostText,
       },
       dialogsPage: {
          messages: [
@@ -100,27 +119,31 @@ let store = {
          { id: 4, name: 'Oleg' },
       ],
    },
-   rerenderEntireTree() {
-      console.log('State changed')
-   },
    addPost() {
       const newPost: PostType = {
          id: new Date().getTime(),
-         message: state.profilePage.newPostText,
+         message: this._state.profilePage.newPostText,
          likecount: '0',
       };
-      state.profilePage.posts.push(newPost);
-      state.profilePage.newPostText = '';
-      rerenderEntireTree(state);
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber(this._state);
    },
    updateNewPostText(newText: string) {
-      state.profilePage.newPostText = newText;
-      rerenderEntireTree(state);
+      this._state.profilePage.newPostText = newText;
+      this._callSubscriber(this._state);
    },
-   subscribe(observer: (state: RootStateType) => void) {
-      rerenderEntireTree = observer;
+   _callSubscriber(_state: RootStateType) {
+      console.log('State changed');
+   },
+   subscriber(observer) {
+      observer = this._callSubscriber;
+   },
+   getState() {
+      return this._state
    }
 }
+
 
 // let rerenderEntireTree: (state: RootStateType) => void = () => {
 //    console.log('State changed')
@@ -142,9 +165,9 @@ let store = {
 //    rerenderEntireTree(state);
 // }
 
-export const subscribe = (observer: (state: RootStateType) => void) => {
-   rerenderEntireTree = observer;
-}
+// export const subscribe = (observer: (state: RootStateType) => void) => {
+//    rerenderEntireTree = observer;
+// }
 
 // export let state: RootStateType = {
 //    profilePage: {
@@ -182,6 +205,6 @@ export const subscribe = (observer: (state: RootStateType) => void) => {
 //    ]
 // }
 
-window.state = state;
-export default state;
+export default store;
+// window.store = store;
 
