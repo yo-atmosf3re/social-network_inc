@@ -41,8 +41,12 @@
    margin: 0px 0px 0px 0px;
    font-size: 18px;
    text-transform: uppercase;
+   display:flex; flex-direction:column; align-items: center;
 }
 
+.sidebar_item{
+   
+}
 
 .sidebar img{
    width: 50px;

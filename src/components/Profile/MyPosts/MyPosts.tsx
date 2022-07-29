@@ -6,7 +6,7 @@ import { MyPostPropsType, PostType } from "../../../redux/state";
 const MyPosts = (props: MyPostPropsType) => {
 
    let postsElements =
-      props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} />)
+      props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} key={p.id} />)
 
    const addNewPost = () => {
       props.addPost(props.newPostText)
