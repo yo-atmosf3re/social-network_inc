@@ -9,7 +9,7 @@ import state, { PropsType } from './redux/state';
 
 const App: React.FC<PropsType> = (props) => {
   const state = props.store.getState();
-  debugger
+
   return (
     <div className='app-wrapper'>
       <Header />
