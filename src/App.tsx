@@ -5,12 +5,10 @@ import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
 import Dialogs from './components/Dialogs/Dialogs';
 import { Route, Routes } from 'react-router-dom';
-import state, { RootStatePropsType } from './redux/state';
+import state, { PropsType, RootStatePropsType } from './redux/state';
 
-
-
-const App = (props: RootStatePropsType) => {
-
+const App = (props: PropsType) => {
+  const state = props.store.getState();
   return (
     <div className='app-wrapper'>
       <Header />
@@ -18,12 +16,12 @@ const App = (props: RootStatePropsType) => {
       <div className='app-wrapper-content'>
         <Routes>
           <Route path='/profile' element={<Profile
-            state={props.state.profilePage}
-            addPost={props.addPost}
+            state={state.profilePage}
+            addPost={props.store.addPost.bind(props.store)}
             newPostText={state.profilePage.newPostText}
-            updateNewPostText={props.updateNewPostText} />} />
+            updateNewPostText={props.store.updateNewPostText.bind(props.store)} />} />
           <Route path='/dialogs/*' element={<Dialogs
-            state={props.state.dialogsPage} />} />
+            state={state.dialogsPage} />} />
         </Routes>
       </div>
     </div>
