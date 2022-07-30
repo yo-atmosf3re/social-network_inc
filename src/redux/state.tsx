@@ -137,7 +137,7 @@ export let store: StoreType = {
       console.log('State changed');
    },
    subscriber(observer) {
-      observer = this._callSubscriber;
+      this._callSubscriber = observer;
    },
    getState() {
       return this._state
