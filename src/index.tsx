@@ -15,6 +15,11 @@ let rerenderEntireTree = () => {
    );
 }
 
+//
+// 14:24 38 lesson
+// 26:51 3 TS lesson
+//
+
 store.subscriber(rerenderEntireTree);
 rerenderEntireTree();
 

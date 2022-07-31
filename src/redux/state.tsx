@@ -26,8 +26,7 @@ export type PostType = {
 export type MyPostPropsType = {
    newPostText: string
    posts: Array<PostType>
-   addPost: (postMessage: string) => void
-   updateNewPostText: (newText: string) => void
+   dispatch: (action: ActionsTypes) => void
 }
 
 export type ProfilePageType = {
@@ -63,9 +62,8 @@ export type RootStatePropsType = {
 
 export type ProfileLocalStateType = {
    newPostText: string
-   addPost: (postMessage: string) => void
    state: ProfilePageType
-   updateNewPostText: (newText: string) => void
+   dispatch: (action: ActionsTypes) => void
 }
 
 export type DialogsLocalStateType = {
@@ -169,8 +167,10 @@ export let store: StoreType = {
          this._state.profilePage.newPostText = action.newText;
          this._callSubscriber(this._state);
       }
-   }
+<<<<<<< HEAD
+   },
 }
+
 
 export default store;
 

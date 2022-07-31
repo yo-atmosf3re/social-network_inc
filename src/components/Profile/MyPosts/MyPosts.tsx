@@ -9,13 +9,16 @@ const MyPosts = (props: MyPostPropsType) => {
       props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} key={p.id} />)
 
    const addNewPost = () => {
-      props.addPost(props.newPostText)
+      props.dispatch({ type: 'ADD-POST' })
    }
    const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.updateNewPostText(e.currentTarget.value)
+      const text = e.currentTarget.value;
+      props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text })
+
    }
    const clearTextarea = () => {
-      props.updateNewPostText('')
+      const emptyLine = '';
+      props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: emptyLine })
    }
 
    return (
