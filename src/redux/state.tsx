@@ -167,8 +167,10 @@ export let store: StoreType = {
          this._state.profilePage.newPostText = action.newText;
          this._callSubscriber(this._state);
       }
+<<<<<<< HEAD
    },
 }
+
 
 export default store;
 
