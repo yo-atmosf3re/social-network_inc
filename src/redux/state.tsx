@@ -1,3 +1,5 @@
+import profilePageReducer from "./profilePage-reducer"
+
 export type MessageType = {
    id: number
    message: string
@@ -133,6 +135,7 @@ export let store: StoreType = {
       return this._state
    },
    dispatch(action) {
+      profilePageReducer(this._state.profilePage, action)
       if (action.type === 'ADD-POST') {
          const newPost: PostType = {
             id: new Date().getTime(),
@@ -160,10 +163,10 @@ export let store: StoreType = {
    },
 }
 
-export const addNewMessageActionCreator = () => ({ type: 'SEND-MESSAGE', } as const)
-export const updateNewMessageBodyActionCreator = (body: string) => ({ type: 'UPDATE-NEW-MESSAGE-BODY', body: body, } as const)
-export const addPostActionCreator = () => ({ type: 'ADD-POST', } as const)
-export const updateNewTextActionCreator = (newText: string) => ({ type: 'UPDATE-NEW-POST-TEXT', newText: newText, } as const)
+export const addNewMessageActionCreator = () => ({ type: 'SEND-MESSAGE', } as const);
+export const updateNewMessageBodyActionCreator = (body: string) => ({ type: 'UPDATE-NEW-MESSAGE-BODY', body: body, } as const);
+export const addPostActionCreator = () => ({ type: 'ADD-POST', } as const);
+export const updateNewTextActionCreator = (newText: string) => ({ type: 'UPDATE-NEW-POST-TEXT', newText: newText, } as const);
 
 
 
