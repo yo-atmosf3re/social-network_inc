@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import { addNewMessageActionCreator, DialogItemType, DialogsLocalStateType, MessageType, updateNewMessageTextActionCreator } from "../../redux/state";
+import { addNewMessageActionCreator, DialogItemType, DialogsLocalStateType, MessageType, updateNewMessageBodyActionCreator } from "../../redux/state";
 import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
@@ -14,10 +14,14 @@ export const Dialogs = (props: DialogsLocalStateType) => {
       props.dispatch(addNewMessageActionCreator())
    }
 
-   let newAddMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+   let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       let text = e.currentTarget.value;
-      let action = updateNewMessageTextActionCreator(text)
+      let action = updateNewMessageBodyActionCreator(text)
       props.dispatch(action)
+   }
+
+   let emptyField = () => {
+      return props.newMessageBody === '' ? true : false
    }
 
    return (
@@ -27,8 +31,8 @@ export const Dialogs = (props: DialogsLocalStateType) => {
          </div>
          <div className={s.messages}>
             {messagesElements}
-            {<textarea value={props.newMessageText} onChange={newAddMessageHandler} className={s.textarea}></textarea>}
-            {<button onClick={addNewMessage}>Send</button>}
+            {<textarea placeholder="Enter your message" value={props.newMessageBody} onChange={onNewMessageChange} className={s.textarea}></textarea>}
+            {<button disabled={emptyField()} onClick={addNewMessage}>Send</button>}
          </div>
       </div >
    )

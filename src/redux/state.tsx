@@ -37,7 +37,7 @@ export type ProfilePageType = {
 export type DialogPageType = {
    dialogData: Array<DialogType>
    messages: Array<MessageType>
-   newMessageText: string
+   newMessageBody: string
 }
 
 export type SidebarItemType = {
@@ -70,10 +70,10 @@ export type ProfileLocalStateType = {
 export type DialogsLocalStateType = {
    state: DialogPageType
    dispatch: (action: ActionsTypes) => void
-   newMessageText: string
+   newMessageBody: string
 }
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator>
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator>
 
 export type StoreType = {
    _state: RootStateType
@@ -99,7 +99,7 @@ export let store: StoreType = {
          ],
       },
       dialogsPage: {
-         newMessageText: '',
+         newMessageBody: '',
          messages: [
             { id: 1, message: "Hi!" },
             { id: 2, message: "How are you?" },
@@ -145,23 +145,23 @@ export let store: StoreType = {
       } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
          this._state.profilePage.newPostText = action.newText;
          this._callSubscriber(this._state);
-      } else if (action.type === 'ADD-NEW-MESSAGE') {
+      } else if (action.type === 'SEND-MESSAGE') {
          const newAddMessage: MessageType = {
             id: new Date().getTime(),
-            message: this._state.dialogsPage.newMessageText,
+            message: this._state.dialogsPage.newMessageBody,
          };
          this._state.dialogsPage.messages.push(newAddMessage)
-         this._state.dialogsPage.newMessageText = '';
+         this._state.dialogsPage.newMessageBody = '';
          this._callSubscriber(this._state)
-      } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-         this._state.dialogsPage.newMessageText = action.newText;
+      } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+         this._state.dialogsPage.newMessageBody = action.body;
          this._callSubscriber(this._state)
       }
    },
 }
 
-export const addNewMessageActionCreator = () => ({ type: 'ADD-NEW-MESSAGE' } as const)
-export const updateNewMessageTextActionCreator = (newText: string) => ({ type: 'UPDATE-NEW-MESSAGE-TEXT', newText: newText, } as const)
+export const addNewMessageActionCreator = () => ({ type: 'SEND-MESSAGE', } as const)
+export const updateNewMessageBodyActionCreator = (body: string) => ({ type: 'UPDATE-NEW-MESSAGE-BODY', body: body, } as const)
 export const addPostActionCreator = () => ({ type: 'ADD-POST', } as const)
 export const updateNewTextActionCreator = (newText: string) => ({ type: 'UPDATE-NEW-POST-TEXT', newText: newText, } as const)
 

@@ -43,6 +43,10 @@
    text-align: right;
 }
 
+.message img:nth-child(even){
+   direction: ltr;
+}
+
 .dialog {
    padding: 0 0 15px 0;
 }
@@ -60,14 +64,16 @@
 }
 
 .textarea {
+   max-width: 1000px;
    width: 99%;
-   height: 25%;
+   max-height: 100px;
    margin: 5px 0 0 0;
    border-radius: 3px;
    background-color: rgba(5, 38, 128, 0.452);
-   color: rgb(234, 0, 255);
+   color: rgb(253, 249, 253);
    text-decoration: dashed;
-   font-size: 30px;
+   font-size: 20px;
+   resize: none;
 }
 
 button {

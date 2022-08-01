@@ -21,7 +21,7 @@ const App: React.FC<PropsType> = (props) => {
             newPostText={state.profilePage.newPostText}
             dispatch={props.dispatch.bind(props.store)} />} />
           <Route path='/dialogs/*' element={<Dialogs
-            state={state.dialogsPage} newMessageText={state.dialogsPage.newMessageText} dispatch={props.dispatch.bind(props.store)} />} />
+            state={state.dialogsPage} newMessageBody={state.dialogsPage.newMessageBody} dispatch={props.dispatch.bind(props.store)} />} />
         </Routes>
       </div>
     </div>

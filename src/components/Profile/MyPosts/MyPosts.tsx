@@ -24,6 +24,10 @@ const MyPosts = (props: MyPostPropsType) => {
       props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: emptyLine })
    }
 
+   let emptyField = () => {
+      return props.newPostText === '' ? true : false
+   }
+
    return (
       <div className={s.postsBlock}>
          My posts
@@ -34,7 +38,7 @@ const MyPosts = (props: MyPostPropsType) => {
                   value={props.newPostText} />
             </div>
             <div>
-               <button onClick={addNewPost}>Add post</button>
+               <button disabled={emptyField()} onClick={addNewPost}>Add post</button>
                <button onClick={clearTextarea}>Remove</button>
             </div>
          </div>
