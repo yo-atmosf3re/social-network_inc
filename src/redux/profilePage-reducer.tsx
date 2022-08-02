@@ -1,36 +1,28 @@
-import { ActionsTypes, PostType, ProfilePageType, RootStateType, StoreType } from "./state";
+import { ActionsTypes, PostType } from "./state";
 
-export type ProfilePageReducerType = {
-   newPostText: string
-   posts: PostType[]
-   profilePage: number
-}
+const profilePageReducer = (state: any, action: ActionsTypes) => {
+   const ADD_POST = 'ADD-POST'
+   const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-type initialStateType = {
-   newPostText: string
-   posts: PostType[]
-   profilePage: number
-}
-
-let initialState = {
-
-}
-
-// ДОСМОТРЕТЬ ЛЕКЦИЮ ПО ТИПИЗАЦИИ
-
-const profilePageReducer = (state = initialState, action: ActionsTypes) => {
-   if (action.type === 'ADD-POST') {
-      const newPost: PostType = {
-         id: new Date().getTime(),
-         message: state.profilePage.newPostText,
-         likecount: '0',
-      };
-      state.profilePage.posts.push(newPost);
-      state.profilePage.newPostText = '';
-   } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-      state.profilePage.newPostText = action.newText;
+   switch (action.type) {
+      case ADD_POST:
+         const newPost: PostType = {
+            id: new Date().getTime(),
+            message: state.newPostText,
+            likecount: '0',
+         };
+         state.posts.push(newPost);
+         state.newPostText = '';
+         return state;
+      case UPDATE_NEW_POST_TEXT:
+         state.newPostText = action.newText;
+         return state
+      default:
+         return state;
    }
-   return state;
 }
+
+export const addPostActionCreator = () => ({ type: 'ADD-POST', } as const);
+export const updateNewTextActionCreator = (newText: string) => ({ type: 'UPDATE-NEW-POST-TEXT', newText: newText, } as const);
 
 export default profilePageReducer;
