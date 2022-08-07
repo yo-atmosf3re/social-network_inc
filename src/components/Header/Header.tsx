@@ -1,5 +1,4 @@
 import React from "react";
-// import s from './src/Header/Header.module.css';
 import s from './Header.module.css';
 
 type HeaderPropsType = {

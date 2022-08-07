@@ -1,4 +1,4 @@
-import { ActionsTypes, MessageType, RootStateType } from "./state";
+import { ActionsTypes, MessageType } from "./state";
 
 export const dialogsPageReducer = (state: any, action: ActionsTypes) => {
    const SEND_MASSAGE = 'SEND-MESSAGE'
