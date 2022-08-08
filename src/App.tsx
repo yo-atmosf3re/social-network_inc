@@ -5,7 +5,7 @@ import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
 import Dialogs from './components/Dialogs/Dialogs';
 import { Route, Routes } from 'react-router-dom';
-import { PropsType } from './redux/state';
+import { PropsType } from './redux/store';
 
 const App: React.FC<PropsType> = (props) => {
   const state = props.store.getState();

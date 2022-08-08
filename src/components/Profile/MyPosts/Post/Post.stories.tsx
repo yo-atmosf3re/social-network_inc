@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Post } from './Post';
-import { PostType } from '../../../../redux/state';
+import { PostType } from '../../../../redux/store';
 
 export default {
    title: 'Post',
