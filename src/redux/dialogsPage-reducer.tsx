@@ -1,6 +1,25 @@
-import { ActionsTypes, MessageType } from "./state";
+import { ActionsTypes, DialogType, MessageType } from "./store";
 
-export const dialogsPageReducer = (state: any, action: ActionsTypes) => {
+const initialState = {
+   newMessageBody: '',
+   messages: [
+      { id: 1, message: "Hi!" },
+      { id: 2, message: "How are you?" },
+      { id: 3, message: "Yo!" },
+      { id: 4, message: "Salam!" },
+      { id: 5, message: "Hello!!" },
+   ],
+   dialogData: [
+      { id: "1", name: 'Alex' },
+      { id: "2", name: 'Ivan' },
+      { id: "3", name: 'Jon' },
+      { id: "4", name: 'Andrey' },
+      { id: "5", name: 'Mark' },
+      { id: "6", name: 'Elvis' },
+   ],
+}
+
+export const dialogsPageReducer = (state = initialState, action: ActionsTypes) => {
    const SEND_MASSAGE = 'SEND-MESSAGE'
    const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 

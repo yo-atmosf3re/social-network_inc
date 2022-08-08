@@ -90,7 +90,7 @@ export type StoreType = {
 }
 
 export type PropsType = {
-   store: StoreType
+   store: any
    dispatch: (action: ActionsTypes) => void
 }
 
