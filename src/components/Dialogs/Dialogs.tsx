@@ -6,23 +6,22 @@ import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 
 export const Dialogs = (props: DialogsLocalStateType) => {
-   let dialogsElements = props.state.dialogData
+   let state = props.dialogsPage;
+   let dialogsElements = state.dialogData
       .map((d: DialogItemType) => <DialogItem name={d.name} id={d.id} />)
-
-   let messagesElements = props.state.messages.map((m: MessageType) => <Message message={m.message} id={m.id} />)
+   let messagesElements = state.messages.map((m: MessageType) => <Message message={m.message} id={m.id} />)
 
    let addNewMessage = () => {
-      props.dispatch(addNewMessageActionCreator())
+      props.addNewMessage()
    }
 
    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       let text = e.currentTarget.value;
-      let action = updateNewMessageBodyActionCreator(text)
-      props.dispatch(action)
+      props.onNewMessageChange(text)
    }
 
    let emptyField = () => {
-      return props.newMessageBody === '' ? true : false
+      return state.newMessageBody === '' ? true : false
    }
 
    return (
@@ -32,7 +31,7 @@ export const Dialogs = (props: DialogsLocalStateType) => {
          </div>
          <div className={s.messages}>
             {messagesElements}
-            {<textarea placeholder="Enter your message" value={props.newMessageBody} onChange={onNewMessageChange} className={s.textarea}></textarea>}
+            {<textarea placeholder="Enter your message" value={state.newMessageBody} onChange={onNewMessageChange} className={s.textarea}></textarea>}
             {<button disabled={emptyField()} onClick={addNewMessage}>Send</button>}
          </div>
       </div >

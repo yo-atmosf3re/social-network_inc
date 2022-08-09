@@ -5,13 +5,7 @@ import profilePageReducer from "./profilePage-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import { ActionsTypes } from "./store";
 
-type ReducerType = {
-   profilePage: (state: any, action: ActionsTypes) => any
-   dialogsPage: (state: any, action: ActionsTypes) => any
-   sidebar: (state: any, action: ActionsTypes) => any
-}
-
-let reducers: any = combineReducers({
+let reducers = combineReducers({
    profilePage: profilePageReducer,
    dialogsPage: dialogsPageReducer,
    sidebar: sidebarReducer,
