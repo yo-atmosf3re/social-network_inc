@@ -28,10 +28,20 @@ export type PostType = {
    likecount: string
 }
 
+export type MyPostsContainerPropsType = {
+   // newPostText: string
+   // posts: Array<PostType>
+   // dispatch: (action: ActionsTypes) => void
+   store: StoreType
+}
+
 export type MyPostPropsType = {
    newPostText: string
    posts: Array<PostType>
-   dispatch: (action: ActionsTypes) => void
+   // dispatch?: (action: ActionsTypes) => void
+   addPost: () => void
+   updateNewPostText: (value: string) => void
+
 }
 
 export type ProfilePageType = {
@@ -68,15 +78,24 @@ export type RootStatePropsType = {
 }
 
 export type ProfileLocalStateType = {
-   newPostText: string
-   state: ProfilePageType
-   dispatch: (action: ActionsTypes) => void
+   store: StoreType
+   // newPostText: string
+   // state: ProfilePageType
+   // dispatch: (action: ActionsTypes) => void
+}
+
+export type DialogsContainerType = {
+   store: StoreType
 }
 
 export type DialogsLocalStateType = {
-   state: DialogPageType
-   dispatch: (action: ActionsTypes) => void
-   newMessageBody: string
+   store: StoreType
+   addNewMessage: () => void
+   onNewMessageChange: (text: string) => void
+   dialogsPage: DialogPageType
+   // state: DialogPageType
+   // dispatch: (action: ActionsTypes) => void
+   // newMessageBody: string
 }
 
 export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator>
@@ -90,7 +109,7 @@ export type StoreType = {
 }
 
 export type PropsType = {
-   store: any
+   store: StoreType
    dispatch: (action: ActionsTypes) => void
 }
 

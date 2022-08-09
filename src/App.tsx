@@ -3,9 +3,9 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
-import Dialogs from './components/Dialogs/Dialogs';
 import { Route, Routes } from 'react-router-dom';
 import { PropsType } from './redux/store';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const App: React.FC<PropsType> = (props) => {
   const state = props.store.getState();
@@ -17,11 +17,9 @@ const App: React.FC<PropsType> = (props) => {
       <div className='app-wrapper-content'>
         <Routes>
           <Route path='/profile' element={<Profile
-            state={state.profilePage}
-            newPostText={state.profilePage.newPostText}
-            dispatch={props.dispatch.bind(props.store)} />} />
-          <Route path='/dialogs/*' element={<Dialogs
-            state={state.dialogsPage} newMessageBody={state.dialogsPage.newMessageBody} dispatch={props.dispatch.bind(props.store)} />} />
+            store={props.store} />} />
+          <Route path='/dialogs/*' element={<DialogsContainer
+            store={props.store} />} />
         </Routes>
       </div>
     </div>

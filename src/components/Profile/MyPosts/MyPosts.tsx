@@ -11,18 +11,21 @@ const MyPosts = (props: MyPostPropsType) => {
    let postsElements =
       props.posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} key={p.id} />)
 
-   const addNewPost = () => {
-      props.dispatch(addPostActionCreator())
+   const onAddPost = () => {
+      props.addPost()
+      // props.dispatch(addPostActionCreator())
    }
    const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
       const text = e.currentTarget.value;
-      let action = updateNewTextActionCreator(text)
-      props.dispatch(action)
+      props.updateNewPostText(text)
+      // let action = updateNewTextActionCreator(text)
+      // props.dispatch(action)
 
    }
    const clearTextarea = () => {
       const emptyLine = '';
-      props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: emptyLine })
+      props.updateNewPostText(emptyLine)
+      // props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: emptyLine })
    }
 
    let emptyField = () => {
@@ -39,7 +42,7 @@ const MyPosts = (props: MyPostPropsType) => {
                   value={props.newPostText} />
             </div>
             <div>
-               <button disabled={emptyField()} onClick={addNewPost}>Add post</button>
+               <button disabled={emptyField()} onClick={onAddPost}>Add post</button>
                <button onClick={clearTextarea}>Remove</button>
             </div>
          </div>
