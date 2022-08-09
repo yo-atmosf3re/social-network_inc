@@ -7,7 +7,7 @@ const Profile = (props: ProfileLocalStateType) => {
    return (
       <div>
          <ProfileInfo />
-         <MyPostsContainer store={props.store} />
+         <MyPostsContainer />
       </div>
    );
 }

@@ -1,6 +1,10 @@
 import { ActionsTypes, PostType } from "./store";
 
-const initialState = {
+type InitialStateType = {
+   newPostText: string
+   posts: Array<PostType>
+}
+const initialState: InitialStateType = {
    newPostText: '',
    posts: [
       { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
@@ -9,7 +13,7 @@ const initialState = {
    ],
 }
 
-const profilePageReducer = (state = initialState, action: ActionsTypes) => {
+const profilePageReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
    const ADD_POST = 'ADD-POST'
    const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 

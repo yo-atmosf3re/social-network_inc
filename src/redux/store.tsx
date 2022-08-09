@@ -32,7 +32,7 @@ export type MyPostsContainerPropsType = {
    // newPostText: string
    // posts: Array<PostType>
    // dispatch: (action: ActionsTypes) => void
-   store: StoreType
+   // store: StoreType
 }
 
 export type MyPostPropsType = {
@@ -78,14 +78,14 @@ export type RootStatePropsType = {
 }
 
 export type ProfileLocalStateType = {
-   store: StoreType
+   // store: StoreType
    // newPostText: string
    // state: ProfilePageType
    // dispatch: (action: ActionsTypes) => void
 }
 
 export type DialogsContainerType = {
-   store: StoreType
+   // store: StoreType
 }
 
 export type DialogsLocalStateType = {
@@ -110,7 +110,7 @@ export type StoreType = {
 
 export type PropsType = {
    store: StoreType
-   dispatch: (action: ActionsTypes) => void
+   // dispatch: (action: ActionsTypes) => void
 }
 
 export let store: StoreType = {
