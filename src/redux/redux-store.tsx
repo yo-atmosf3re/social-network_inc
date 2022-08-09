@@ -1,11 +1,10 @@
-import { combineReducers, configureStore, createStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import React from "react";
 import dialogsPageReducer from "./dialogsPage-reducer";
 import profilePageReducer from "./profilePage-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import { ActionsTypes } from "./store";
 
-let reducers = combineReducers({
+let reducers: any = combineReducers({
    profilePage: profilePageReducer,
    dialogsPage: dialogsPageReducer,
    sidebar: sidebarReducer,
