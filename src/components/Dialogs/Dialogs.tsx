@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from "react";
-import { addNewMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsPage-reducer";
 import { DialogItemType, DialogsLocalStateType, MessageType } from "../../redux/store";
 import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'

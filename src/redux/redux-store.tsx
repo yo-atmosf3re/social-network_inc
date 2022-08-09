@@ -3,6 +3,7 @@ import React from "react";
 import dialogsPageReducer from "./dialogsPage-reducer";
 import profilePageReducer from "./profilePage-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import { StoreType } from "./store";
 
 let reducers: any = combineReducers({
    profilePage: profilePageReducer,

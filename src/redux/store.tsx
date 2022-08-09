@@ -1,4 +1,4 @@
-
+import { ReactNode } from "react"
 import dialogsPageReducer, { addNewMessageActionCreator, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer"
 import profilePageReducer, { addPostActionCreator, updateNewTextActionCreator } from "./profilePage-reducer"
 import sidebarReducer from "./sidebar-reducer"
@@ -29,23 +29,17 @@ export type PostType = {
 }
 
 export type MyPostsContainerPropsType = {
-   // newPostText: string
-   // posts: Array<PostType>
-   // dispatch: (action: ActionsTypes) => void
-   // store: StoreType
 }
 
 export type MyPostPropsType = {
    newPostText: string
    posts: Array<PostType>
-   // dispatch?: (action: ActionsTypes) => void
    addPost: () => void
    updateNewPostText: (value: string) => void
 
 }
 
 export type ProfilePageType = {
-
    newPostText: string
    posts: Array<PostType>
 }
@@ -78,14 +72,9 @@ export type RootStatePropsType = {
 }
 
 export type ProfileLocalStateType = {
-   // store: StoreType
-   // newPostText: string
-   // state: ProfilePageType
-   // dispatch: (action: ActionsTypes) => void
 }
 
 export type DialogsContainerType = {
-   // store: StoreType
 }
 
 export type DialogsLocalStateType = {
@@ -93,9 +82,6 @@ export type DialogsLocalStateType = {
    addNewMessage: () => void
    onNewMessageChange: (text: string) => void
    dialogsPage: DialogPageType
-   // state: DialogPageType
-   // dispatch: (action: ActionsTypes) => void
-   // newMessageBody: string
 }
 
 export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator>
@@ -110,7 +96,11 @@ export type StoreType = {
 
 export type PropsType = {
    store: StoreType
-   // dispatch: (action: ActionsTypes) => void
+}
+
+export type ProviderPropsType = {
+   children: ReactNode
+   store: StoreType
 }
 
 export let store: StoreType = {
