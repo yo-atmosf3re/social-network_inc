@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import dialogsPageReducer, { addNewMessageActionCreator, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer"
+import { addNewMessageActionCreator, dialogsPageReducerTest, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer"
 import profilePageReducer, { addPostActionCreator, updateNewTextActionCreator } from "./profilePage-reducer"
 import sidebarReducer from "./sidebar-reducer"
 
@@ -149,7 +149,7 @@ export let store: StoreType = {
    },
    dispatch(action) {
       this._state.profilePage = profilePageReducer(this._state.profilePage, action)
-      this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
+      this._state.dialogsPage = dialogsPageReducerTest(this._state.dialogsPage, action)
       this._state.sidebar = sidebarReducer(this._state.sidebar, action)
       this._callSubscriber(this._state);
    },
