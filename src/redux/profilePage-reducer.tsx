@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ActionsTypes, PostType } from "./store";
+import { PostType } from "./store";
 
 type InitialStateType = {
    newPostText: string

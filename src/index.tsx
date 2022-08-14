@@ -1,11 +1,12 @@
 import * as React from "react";
 import reportWebVitals from './reportWebVitals';
-import store from './redux/redux-store';
+
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import ReactDOM from "react-dom";
 import { RootStateType } from "./redux/store";
 import StoreContext, { Provider } from "./StoreContext";
+import { store } from "./redux/redux-store";
 
 let rerenderEntireTree = (state: RootStateType) => {
    debugger

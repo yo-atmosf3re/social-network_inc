@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ActionsTypes, DialogType, MessageType } from "./store";
+import { DialogType, MessageType } from "./store";
 
 // const initialState = {
 //    newMessageBody: '',
@@ -45,26 +45,34 @@ import { ActionsTypes, DialogType, MessageType } from "./store";
 
 // export default dialogsPageReducer;
 
+interface DialogsState {
+   newMessageBody: string
+   dialogData: Array<DialogType>
+   messages: Array<MessageType>
+}
+
+const initialState: DialogsState = {
+   newMessageBody: '',
+   messages: [
+      { id: 1, message: "Hi!" },
+      { id: 2, message: "How are you?" },
+      { id: 3, message: "Yo!" },
+      { id: 4, message: "Salam!" },
+      { id: 5, message: "Hello!!" },
+   ],
+   dialogData: [
+      { id: "1", name: 'Alex' },
+      { id: "2", name: 'Ivan' },
+      { id: "3", name: 'Jon' },
+      { id: "4", name: 'Andrey' },
+      { id: "5", name: 'Mark' },
+      { id: "6", name: 'Elvis' },
+   ],
+}
+
 export let dialogsPageReducer = createSlice({
    name: 'DialogsPage',
-   initialState: {
-      newMessageBody: '',
-      messages: [
-         { id: 1, message: "Hi!" },
-         { id: 2, message: "How are you?" },
-         { id: 3, message: "Yo!" },
-         { id: 4, message: "Salam!" },
-         { id: 5, message: "Hello!!" },
-      ],
-      dialogData: [
-         { id: "1", name: 'Alex' },
-         { id: "2", name: 'Ivan' },
-         { id: "3", name: 'Jon' },
-         { id: "4", name: 'Andrey' },
-         { id: "5", name: 'Mark' },
-         { id: "6", name: 'Elvis' },
-      ],
-   },
+   initialState,
    reducers: {
       addMessage: state => {
          const newAddMessage: MessageType = {

@@ -1,6 +1,4 @@
 import { ReactNode } from "react"
-import { addNewMessageActionCreator, dialogsPageReducerTest, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer"
-import profilePageReducer, { addPostActionCreator, updateNewTextActionCreator } from "./profilePage-reducer"
 import sidebarReducer from "./sidebar-reducer"
 
 export type MessageType = {
@@ -84,14 +82,14 @@ export type DialogsLocalStateType = {
    dialogsPage: DialogPageType
 }
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator>
+// export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator>
 
 export type StoreType = {
    _state: RootStateType
    _callSubscriber: (_state: RootStateType) => void
    subscriber: (observer: (_state: RootStateType) => void) => void
    getState: () => RootStateType
-   dispatch: (action: ActionsTypes) => void
+   // dispatch: (action: ActionsTypes) => void
 }
 
 export type PropsType = {
@@ -147,12 +145,12 @@ export let store: StoreType = {
    getState() {
       return this._state
    },
-   dispatch(action) {
-      this._state.profilePage = profilePageReducer(this._state.profilePage, action)
-      this._state.dialogsPage = dialogsPageReducerTest(this._state.dialogsPage, action)
-      this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-      this._callSubscriber(this._state);
-   },
+   // dispatch(action) {
+   //    // this._state.profilePage = profilePageReducer(this._state.profilePage, action)
+   //    // this._state.dialogsPage = dialogsPageReducerTest(this._state.dialogsPage, action)
+   //    this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+   //    this._callSubscriber(this._state);
+   // },
 }
 
 export default store;
