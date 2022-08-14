@@ -1,5 +1,5 @@
 import React from "react";
-import { addNewMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsPage-reducer";
+import { addNewMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/old-redux";
 import StoreContext from "../../StoreContext";
 import Dialogs from "./Dialogs";
 
