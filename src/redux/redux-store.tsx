@@ -4,8 +4,6 @@ import { useSelector } from "react-redux";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { dialogsPageReducer } from "./dialogsPage-reducer";
 import { profilePageReducer } from "./profilePage-reducer";
-import sidebarReducer from "./sidebar-reducer";
-import { StoreType } from "./store";
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch;
@@ -18,7 +16,8 @@ export const rootReducer = combineReducers({
    dialogsPage: dialogsPageReducer,
 })
 
-export let store: StoreType = createStore(rootReducer)
+export let store = createStore(rootReducer);
+
 
 
 
