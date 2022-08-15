@@ -1,37 +1,24 @@
 import React, { ChangeEvent } from "react";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
-import { addPostActionCreator, updateNewTextActionCreator } from "../../../redux/profilePage-reducer";
+import { addPostActionCreator, initialStateType, updateNewTextActionCreator } from "../../../redux/profilePage-reducer";
 import { connect } from "react-redux";
+import { AppStateType } from "../../../redux/redux-store";
+import { Dispatch } from "redux";
 
+export type MyPostPropsType = MapDispatchToPropsType & initialStateType
 
-// const MyPostsContainer = () => {
-//    return (
-//       <StoreContext.Consumer>{
-//          (store) => {
-//             let state = store.getState();
+type MapDispatchToPropsType = {
+   addPost: () => void
+   updateNewPostText: (text: string) => void
+}
 
-//             const addNewPost = () => {
-//                store.dispatch(addPostActionCreator())
-//             }
-//             const newTextChangeHandler = (text: string) => {
-//                let action = updateNewTextActionCreator(text)
-//                store.dispatch(action)
-
-//             }
-//             return < MyPosts updateNewPostText={newTextChangeHandler} addPost={addNewPost} newPostText={state.profilePage.newPostText} posts={state.profilePage.posts} />
-//          }
-//       }
-//       </StoreContext.Consumer>);
-// }
-
-let mapStateToProps = (state: any) => ({ posts: state.profilePage.posts, newPostText: state.profilePage.newPostText, })
-let mapDispatchToProps = (dispatch: any) => {
+let mapStateToProps = (state: AppStateType): initialStateType => ({ posts: state.profilePage.posts, newPostText: state.profilePage.newPostText, })
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
    return {
-      addNewPost: () => {
+      addPost: () => {
          dispatch(addPostActionCreator())
       },
-      newTextChangeHandler: (text: string) => {
+      updateNewPostText: (text: string) => {
          let action = updateNewTextActionCreator(text)
          dispatch(action)
       }

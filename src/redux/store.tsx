@@ -77,13 +77,10 @@ export type DialogsContainerType = {
 }
 
 export type DialogsLocalStateType = {
-   // store: StoreType
    addNewMessage: () => void
    onNewMessageChange: (text: string) => void
    dialogsPage: DialogPageType
 }
-
-
 
 export type StoreType = {
    _state: RootStateType

@@ -1,5 +1,5 @@
 import { ActionsTypes } from "./old-redux";
-import { PostType } from "./store";
+import { PostType, ProfilePageType } from "./store";
 
 export type ProfileStateType = typeof initialState
 
@@ -10,6 +10,11 @@ const initialState = {
       { id: 2, message: "It's my first post", likecount: '♥ 14' },
       { id: 3, message: "It's my second post", likecount: '♥ 0' },
    ],
+}
+
+export type initialStateType = {
+   newPostText: string
+   posts: Array<PostType>
 }
 
 export const profilePageReducer = (state: ProfileStateType = initialState, action: ActionsTypes): ProfileStateType => {
