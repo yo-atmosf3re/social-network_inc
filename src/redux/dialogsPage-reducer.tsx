@@ -29,7 +29,6 @@ export type initialStateType = {
 export const dialogsPageReducer = (state: DialogsState = initialState, action: ActionsTypes): DialogsState => {
    const SEND_MASSAGE = 'SEND-MESSAGE'
    const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
-   let stateCopy = { ...state };
 
    switch (action.type) {
       case SEND_MASSAGE:
@@ -37,13 +36,16 @@ export const dialogsPageReducer = (state: DialogsState = initialState, action: A
             id: new Date().getTime(),
             message: state.newMessageBody,
          };
-         stateCopy.messages = [...state.messages]
-         stateCopy.messages.push(newAddMessage)
-         stateCopy.newMessageBody = '';
-         return stateCopy;
+         return {
+            ...state,
+            messages: [...state.messages, newAddMessage],
+            newMessageBody: ''
+         };
       case UPDATE_NEW_MESSAGE_BODY:
-         stateCopy.newMessageBody = action.body;
-         return stateCopy;
+         return {
+            ...state,
+            newMessageBody: action.body
+         };
 
       default:
          return state;

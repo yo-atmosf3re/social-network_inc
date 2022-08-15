@@ -20,7 +20,7 @@ export type initialStateType = {
 export const profilePageReducer = (state: ProfileStateType = initialState, action: ActionsTypes): ProfileStateType => {
    const ADD_POST = 'ADD-POST'
    const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-   let stateCopy = { ...state };
+
 
    switch (action.type) {
       case ADD_POST:
@@ -29,13 +29,18 @@ export const profilePageReducer = (state: ProfileStateType = initialState, actio
             message: state.newPostText,
             likecount: '0',
          };
-         stateCopy.posts = [...state.posts];
-         stateCopy.posts.push(newPost);
-         stateCopy.newPostText = '';
-         return stateCopy;
+         return {
+            ...state,
+            posts: [...state.posts, newPost],
+            newPostText: '',
+         }
+
       case UPDATE_NEW_POST_TEXT:
-         stateCopy.newPostText = action.newText;
-         return stateCopy
+         return {
+            ...state,
+            newPostText: action.newText,
+         }
+
 
       default:
          return state;
