@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { Store } from 'redux';
-import { ActionsTypes } from './redux/old-redux';
-import store from './redux/store';
-import oldStore, { ProviderPropsType } from './redux/store';
+import { store } from './redux/redux-store';
+import { ProviderPropsType } from './redux/store';
 
 
 const StoreContext = React.createContext(store);
