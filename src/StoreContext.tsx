@@ -6,7 +6,7 @@ import { ProviderPropsType } from './redux/store';
 const StoreContext = React.createContext(store);
 
 export const Provider = (props: ProviderPropsType) => {
-   return <StoreContext.Provider value={props.store}>
+   return <StoreContext.Provider value={store}>
       {props.children}
    </StoreContext.Provider>
 }

@@ -7,22 +7,17 @@ import oldStore, { StoreType } from "./redux/store";
 import { store } from "./redux/redux-store";
 import { Provider } from "react-redux";
 
-let rerenderEntireTree = (store: StoreType) => {
-   ReactDOM.render(
-      <React.StrictMode>
-         <BrowserRouter>
-            <Provider store={store}>
-               <App oldStore={oldStore} />
-            </Provider>
-         </BrowserRouter>
-      </React.StrictMode>, document.getElementById('root')
-   );
-}
+ReactDOM.render(
+   <React.StrictMode>
+      <BrowserRouter>
+         <Provider store={store}>
+            <App oldStore={oldStore} />
+         </Provider>
+      </BrowserRouter>
+   </React.StrictMode>, document.getElementById('root')
+);
 
-rerenderEntireTree(store);
-store.subscriber(() => {
-   rerenderEntireTree(store);
-})
+
 
 // rerenderEntireTree(store.getState());
 // store.subscribe(() => {
