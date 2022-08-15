@@ -1,10 +1,11 @@
 import React, { ChangeEvent } from "react";
-import { DialogItemType, DialogsLocalStateType, MessageType } from "../../redux/store";
+import { DialogItemType, MessageType } from "../../redux/store";
 import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
+import { DialogsPropsType } from "./DialogsContainer";
 import Message from "./Message/Message";
 
-export const Dialogs = (props: DialogsLocalStateType) => {
+export const Dialogs = (props: DialogsPropsType) => {
    let state = props.dialogsPage;
    let dialogsElements = state.dialogData
       .map((d: DialogItemType) => <DialogItem name={d.name} id={d.id} />)
