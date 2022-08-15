@@ -85,5 +85,3 @@ export const dialogsPageReducerOld = (state = initialStateDialogs, action: Actio
 }
 export const addNewMessageActionCreator = () => ({ type: 'SEND-MESSAGE', } as const);
 export const updateNewMessageBodyActionCreator = (body: string) => ({ type: 'UPDATE-NEW-MESSAGE-BODY', body: body, } as const);
-
-

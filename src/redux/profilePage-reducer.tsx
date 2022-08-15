@@ -1,11 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ActionsTypes } from "./old-redux";
 import { PostType } from "./store";
 
-export interface ProfileState {
-   newPostText: string
-   posts: Array<PostType>
-}
+export type ProfileStateType = typeof initialState
 
 const initialState = {
    newPostText: '',
@@ -14,9 +10,9 @@ const initialState = {
       { id: 2, message: "It's my first post", likecount: '♥ 14' },
       { id: 3, message: "It's my second post", likecount: '♥ 0' },
    ],
-} as ProfileState
+}
 
-export const profilePageReducer = (state = initialState, action: ActionsTypes) => {
+export const profilePageReducer = (state: ProfileStateType = initialState, action: ActionsTypes): ProfileStateType => {
    const ADD_POST = 'ADD-POST'
    const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 

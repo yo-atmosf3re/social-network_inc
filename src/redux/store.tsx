@@ -77,7 +77,7 @@ export type DialogsContainerType = {
 }
 
 export type DialogsLocalStateType = {
-   store: StoreType
+   // store: StoreType
    addNewMessage: () => void
    onNewMessageChange: (text: string) => void
    dialogsPage: DialogPageType
