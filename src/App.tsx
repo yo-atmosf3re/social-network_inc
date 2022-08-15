@@ -8,7 +8,7 @@ import { PropsType } from './redux/store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const App: React.FC<PropsType> = (props) => {
-  const state = props.store.getState();
+  const state = props.oldStore.getState();
 
   return (
     <div className='app-wrapper'>

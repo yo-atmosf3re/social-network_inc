@@ -1,26 +1,31 @@
 import * as React from "react";
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
+
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import ReactDOM from "react-dom";
-import { RootStateType } from "./redux/store";
-import StoreContext from "./StoreContext";
+import oldStore, { RootStateType } from "./redux/store";
+import StoreContext, { Provider } from "./StoreContext";
+import { store } from "./redux/redux-store";
 
-let rerenderEntireTree = (state: RootStateType) => {
+let rerenderEntireTree = () => {
    debugger
    ReactDOM.render(
       <React.StrictMode>
 
          <BrowserRouter>
-            <StoreContext.Provider value={store}>
-               <App store={store} />
-            </StoreContext.Provider>
+            <Provider store={store}>
+               <App oldStore={oldStore} />
+            </Provider>
          </BrowserRouter>
       </React.StrictMode>, document.getElementById('root')
    );
 }
 
+rerenderEntireTree();
+store.subscriber(() => {
+   rerenderEntireTree();
+})
 
 // rerenderEntireTree(store.getState());
 // store.subscribe(() => {
@@ -35,5 +40,5 @@ let rerenderEntireTree = (state: RootStateType) => {
 reportWebVitals();
 
 
-store.subscriber(rerenderEntireTree);
-rerenderEntireTree(store.getState());
+// store.subscriber(rerenderEntireTree);
+// rerenderEntireTree(store.getState());

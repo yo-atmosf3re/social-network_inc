@@ -1,10 +1,7 @@
-import React, { ChangeEvent } from "react";
-import { addNewMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsPage-reducer";
-import { DialogItemType, DialogsContainerType, MessageType } from "../../redux/store";
+import React from "react";
+import { addNewMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/old-redux";
 import StoreContext from "../../StoreContext";
-import DialogItem from "./DialogItem/DialogItem";
 import Dialogs from "./Dialogs";
-import Message from "./Message/Message";
 
 export const DialogsContainer = () => {
 

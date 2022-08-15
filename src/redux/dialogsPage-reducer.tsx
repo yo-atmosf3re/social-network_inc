@@ -1,4 +1,12 @@
-import { ActionsTypes, DialogType, MessageType } from "./store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ActionsTypes } from "./old-redux";
+import { DialogType, MessageType } from "./store";
+
+export interface DialogsState {
+   newMessageBody: string
+   dialogData: Array<DialogType>
+   messages: Array<MessageType>
+}
 
 const initialState = {
    newMessageBody: '',
@@ -17,7 +25,7 @@ const initialState = {
       { id: "5", name: 'Mark' },
       { id: "6", name: 'Elvis' },
    ],
-}
+} as DialogsState
 
 export const dialogsPageReducer = (state = initialState, action: ActionsTypes) => {
    const SEND_MASSAGE = 'SEND-MESSAGE'
@@ -42,6 +50,3 @@ export const dialogsPageReducer = (state = initialState, action: ActionsTypes) =
 
 export const addNewMessageActionCreator = () => ({ type: 'SEND-MESSAGE', } as const);
 export const updateNewMessageBodyActionCreator = (body: string) => ({ type: 'UPDATE-NEW-MESSAGE-BODY', body: body, } as const);
-
-
-export default dialogsPageReducer;
