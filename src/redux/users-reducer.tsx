@@ -7,9 +7,9 @@ export type UsersStateType = typeof initialState
 // Начальное значение, переменные, то, с чем работает редьюсер
 const initialState = {
    users: [
-      { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
-      { id: 2, message: "It's my first post", likecount: '♥ 14' },
-      { id: 3, message: "It's my second post", likecount: '♥ 0' },
+      { id: 1, followed: true, fullName: 'Alex', status: 'Hello, i am  cat', location: { city: 'Minsk', country: 'Belarus' } },
+      { id: 2, followed: false, fullName: 'Dima', status: 'Hello, i am  bear', location: { city: 'Moscow', country: 'Russia' } },
+      { id: 3, followed: true, fullName: 'Jon', status: 'Hello, i am  pig', location: { city: 'Kiev', country: 'Ukraine' } },
    ],
 }
 
