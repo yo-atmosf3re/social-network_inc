@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import { PropsType } from './redux/store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Users from './components/Users/Users';
 
 const App: React.FC<PropsType> = (props) => {
   const state = props.oldStore.getState();
@@ -20,6 +21,7 @@ const App: React.FC<PropsType> = (props) => {
           />} />
           <Route path='/dialogs/*' element={<DialogsContainer
           />} />
+          <Route path='/users' element={<Users />} />
         </Routes>
       </div>
     </div>
