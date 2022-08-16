@@ -1,4 +1,5 @@
-import { ActionsTypes } from "./old-redux";
+
+import { ActionsTypes } from "./redux-store";
 import { DialogPageType, MessageType } from "./store";
 
 export type DialogsState = typeof initialState;

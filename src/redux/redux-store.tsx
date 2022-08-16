@@ -2,8 +2,11 @@ import { applyMiddleware, combineReducers, createStore } from "@reduxjs/toolkit"
 import React from "react";
 import { useSelector } from "react-redux";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
-import { dialogsPageReducer } from "./dialogsPage-reducer";
-import { profilePageReducer } from "./profilePage-reducer";
+import { addNewMessageActionCreator, dialogsPageReducer, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer";
+import { addPostActionCreator, profilePageReducer, updateNewTextActionCreator } from "./profilePage-reducer";
+import { followAC, unfollowAC } from "./users-reducer";
+
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followAC> | ReturnType<typeof unfollowAC>
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch;

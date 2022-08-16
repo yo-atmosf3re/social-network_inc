@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
-import { ActionsTypes, dialogsPageReducerOld, profilePageReducerOld } from "./old-redux"
+import { dialogsPageReducerOld, profilePageReducerOld } from "./old-redux"
+import { ActionsTypes } from "./redux-store"
 import sidebarReducer from "./sidebar-reducer"
 
 export type MessageType = {

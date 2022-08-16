@@ -1,4 +1,5 @@
-import { ActionsTypes } from "./old-redux";
+
+import { ActionsTypes } from "./redux-store";
 import { SidebarItemType } from "./store";
 
 type InitialStateSidebarType = SidebarItemType[]

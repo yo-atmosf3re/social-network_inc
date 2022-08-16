@@ -1,4 +1,5 @@
-import { ActionsTypes } from "./old-redux";
+
+import { ActionsTypes } from "./redux-store";
 import { PostType, ProfilePageType } from "./store";
 
 export type ProfileStateType = typeof initialState
