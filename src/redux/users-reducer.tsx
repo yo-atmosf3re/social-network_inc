@@ -1,5 +1,5 @@
+import { element } from "prop-types";
 import { ActionsTypes } from "./redux-store";
-import { PostType, ProfilePageType } from "./store";
 
 // Константа для AC
 const FOLLOW = 'FOLLOW';
@@ -11,15 +11,12 @@ export type UsersStateType = typeof initialState
 
 // Начальное значение, переменные, то, с чем работает редьюсер
 const initialState = {
-   users: [
-      { id: 1, followed: true, fullName: 'Alex', status: 'Hello, i am  cat', location: { city: 'Minsk', country: 'Belarus' } },
-      { id: 2, followed: false, fullName: 'Dima', status: 'Hello, i am  bear', location: { city: 'Moscow', country: 'Russia' } },
-      { id: 3, followed: true, fullName: 'Jon', status: 'Hello, i am  pig', location: { city: 'Kiev', country: 'Ukraine' } },
-   ],
+   users: []
 }
 
 // Типизация массива
 export type UserType = {
+   photoUrl: string
    id: number
    followed: boolean
    fullName: string
@@ -69,3 +66,15 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
 export const followAC = (userId: number) => ({ type: FOLLOW, userId } as const)
 export const unfollowAC = (userId: number) => ({ type: UNFOLLOW, userId } as const)
 export const setUsersAC = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)
+
+
+// const arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10], [111, 12112, 5454, 6556, 2233]]]]];
+
+// function arrayUnpacking(arr) {
+//    return arr.reduce((flat, e) => {
+//       return Array.isArray(e) ?
+//          [...flat, ...arrayUnpacking(e)] :
+//          [...flat, e]
+//    }, [])
+// }
+// arrayUnpacking(arr)
