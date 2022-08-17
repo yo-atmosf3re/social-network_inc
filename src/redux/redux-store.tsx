@@ -17,16 +17,7 @@ export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector;
 export const rootReducer = combineReducers({
    profilePage: profilePageReducer,
    dialogsPage: dialogsPageReducer,
-   users: usersReducer,
+   usersPage: usersReducer,
 })
 
 export let store = createStore(rootReducer);
-
-
-
-
-
-
-
-
-// export default store;

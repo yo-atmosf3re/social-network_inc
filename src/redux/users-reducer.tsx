@@ -19,7 +19,7 @@ const initialState = {
 }
 
 // Типизация массива
-type UserType = {
+export type UserType = {
    id: number
    followed: boolean
    fullName: string
