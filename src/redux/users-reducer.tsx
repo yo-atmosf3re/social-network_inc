@@ -4,6 +4,7 @@ import { PostType, ProfilePageType } from "./store";
 // Константа для AC
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
 
 // Типизация начального стэйта, который должен возвращать сам редьюсер
 export type UsersStateType = typeof initialState
@@ -56,6 +57,9 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
                return i;
             })
          }
+      case SET_USERS:
+         return { ...state, users: [...state.users, ...action.users] }
+
       default:
          return state;
    }
@@ -64,3 +68,4 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
 // Action Creator'ы, которые принимают объект со свойством type и ключом-строкой, в которой описано специальное действие. Если нужно, то можно добавить ещё какие-нибудь ключи-значения в этот объект.
 export const followAC = (userId: number) => ({ type: FOLLOW, userId } as const)
 export const unfollowAC = (userId: number) => ({ type: UNFOLLOW, userId } as const)
+export const setUsersAC = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)

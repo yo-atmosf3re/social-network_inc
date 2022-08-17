@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import { PropsType } from './redux/store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Users from './components/Users/Users';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App: React.FC<PropsType> = (props) => {
   const state = props.oldStore.getState();
@@ -21,7 +22,7 @@ const App: React.FC<PropsType> = (props) => {
           />} />
           <Route path='/dialogs/*' element={<DialogsContainer
           />} />
-          <Route path='/users' element={<Users />} />
+          <Route path='/users' element={<UsersContainer />} />
         </Routes>
       </div>
     </div>

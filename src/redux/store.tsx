@@ -88,7 +88,7 @@ export type StoreType = {
    _callSubscriber: (_state: RootStateType) => void
    subscriber: (observer: (_state: RootStateType) => void) => void
    getState: () => RootStateType
-   dispatch: (action: ActionsTypes) => void
+   // dispatch: (action: ActionsTypes) => void
 }
 
 export type PropsType = {
@@ -144,12 +144,13 @@ export let oldStore: StoreType = {
    getState() {
       return this._state
    },
-   dispatch(action) {
-      this._state.profilePage = profilePageReducerOld(this._state.profilePage, action)
-      this._state.dialogsPage = dialogsPageReducerOld(this._state.dialogsPage, action)
-      this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-      this._callSubscriber(this._state);
-   },
+   // Для работы диспатча нужно раскомментить типизацию для стора
+   // dispatch(action) {
+   //    this._state.profilePage = profilePageReducerOld(this._state.profilePage, action)
+   //    this._state.dialogsPage = dialogsPageReducerOld(this._state.dialogsPage, action)
+   //    this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+   //    this._callSubscriber(this._state);
+   // },
 }
 
 export default oldStore;
