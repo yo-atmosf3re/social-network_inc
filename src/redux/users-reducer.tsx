@@ -10,7 +10,7 @@ const SET_USERS = 'SET_USERS';
 export type UsersStateType = typeof initialState
 
 // Начальное значение, переменные, то, с чем работает редьюсер
-const initialState = {
+const initialState: initialStateType = {
    users: []
 }
 
