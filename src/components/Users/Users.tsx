@@ -6,13 +6,16 @@ import { UsersPropsType } from './UsersContainer';
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
 
 let Users = (props: UsersPropsType) => {
-   if (props.users.length === 0) {
-      axios.get<UserType>('https://social-network.samuraijs.com/api/1.0/users').then((response: any) => {
-         props.setUsers(response.data.items)
-      })
+   let getUsers = () => {
+      if (props.users.length === 0) {
+         axios.get<UserType>('https://social-network.samuraijs.com/api/1.0/users').then((response: any) => {
+            props.setUsers(response.data.items)
+         })
+      }
 
    }
    return <div>
+      <button onClick={getUsers}>Get users</button>
       {
          props.users.map(u => <div className={s.users} key={u.id}>
             <span>
