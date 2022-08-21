@@ -66,15 +66,3 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
 export const followAC = (userId: number) => ({ type: FOLLOW, userId } as const)
 export const unfollowAC = (userId: number) => ({ type: UNFOLLOW, userId } as const)
 export const setUsersAC = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)
-
-
-// const arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10], [111, 12112, 5454, 6556, 2233]]]]];
-
-// function arrayUnpacking(arr) {
-//    return arr.reduce((flat, e) => {
-//       return Array.isArray(e) ?
-//          [...flat, ...arrayUnpacking(e)] :
-//          [...flat, e]
-//    }, [])
-// }
-// arrayUnpacking(arr)
