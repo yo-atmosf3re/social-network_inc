@@ -7,6 +7,8 @@ import { followAC, initialStateType, setUsersAC, unfollowAC, UserType } from '..
 import Users from './Users';
 
 
+
+
 // Типизация для MapDispatchToProps
 type MapDispatchToPropsType = {
    follow: (userId: number) => void
