@@ -6,7 +6,7 @@ import { UsersPropsType } from './UsersContainer';
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
 
 class Users extends React.Component<UsersPropsType, {}> {
-   componentDidMount() {
+   componentDidMount(): void {
       axios.get<UserType>('https://social-network.samuraijs.com/api/1.0/users')
          .then((response: any) => {
             this.props.setUsers(response.data.items)
