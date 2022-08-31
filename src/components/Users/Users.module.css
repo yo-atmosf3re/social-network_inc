@@ -2,3 +2,8 @@
    width: 50px;
    border-radius: 15px;
 } 
+
+.selectedPage {
+   font-weight: 700;
+   font-size: 20px;
+}

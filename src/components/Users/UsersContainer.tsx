@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
@@ -20,7 +19,12 @@ type MapDispatchToPropsType = {
 export type UsersPropsType = MapDispatchToPropsType & initialStateType;
 
 // Функция, которая берет весь стэйт приложения целиком и возвращает только нужную часть этого стэйта, который передаётся в контейнерную компоненту.
-let mapStateToProps = (state: AppStateType): initialStateType => ({ users: state.usersPage.users })
+let mapStateToProps = (state: AppStateType): initialStateType => ({
+   users: state.usersPage.users,
+   pageSize: state.usersPage.pageSize,
+   totalUsersCount: state.usersPage.totalUsersCount,
+   currentPage: state.usersPage.currentPage,
+})
 // Функция, которая передаёт callback'и в контейнерную компоненту
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
    return {

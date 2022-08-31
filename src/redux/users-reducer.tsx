@@ -1,4 +1,3 @@
-import { element } from "prop-types";
 import { ActionsTypes } from "./redux-store";
 
 // Константа для AC
@@ -11,7 +10,10 @@ export type UsersStateType = typeof initialState
 
 // Начальное значение, переменные, то, с чем работает редьюсер
 const initialState: initialStateType = {
-   users: []
+   users: [],
+   pageSize: 5,
+   totalUsersCount: 20,
+   currentPage: 1,
 }
 
 // Типизация массива
@@ -27,6 +29,9 @@ export type UserType = {
 // Типизация начального стэйта
 export type initialStateType = {
    users: Array<UserType>
+   pageSize: number
+   totalUsersCount: number
+   currentPage: number
 }
 
 // Редьюсер, в который нужно передать стэйт той части логики, с которой он работает. Так же принимает action, типизация которого в редакс-сторе, а возвращать редьюсер должен то, с чем работал и то, что принял на входе. 
