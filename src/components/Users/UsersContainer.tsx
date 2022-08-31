@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
 import { AppStateType } from '../../redux/redux-store';
-import { followAC, initialStateType, setUsersAC, unfollowAC, UserType } from '../../redux/users-reducer';
+import { followAC, initialStateType, setCurrentPageAC, setUsersAC, unfollowAC, UserType } from '../../redux/users-reducer';
 import Users from './Users';
 
 
@@ -13,6 +13,7 @@ type MapDispatchToPropsType = {
    follow: (userId: number) => void
    unfollow: (userId: number) => void
    setUsers: (users: Array<UserType>) => void
+   setUserPage: (currentPage: number) => void
 }
 
 // Типизация для props компоненты Users
@@ -36,6 +37,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
       },
       setUsers: (users: Array<UserType>) => {
          dispatch(setUsersAC(users))
+      },
+      setUserPage: (currentPage: number) => {
+         dispatch(setCurrentPageAC(currentPage))
       }
    }
 }

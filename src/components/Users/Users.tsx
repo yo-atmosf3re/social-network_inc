@@ -7,11 +7,15 @@ import defaultAvatar from '../../assets/image/defaultAvatar.png'
 
 class Users extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
-      axios.get<UserType>('https://social-network.samuraijs.com/api/1.0/users')
+      axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
          .then((response: any) => {
             this.props.setUsers(response.data.items)
          })
    }
+
+
+   // 42:00 доделать пагинацию на 55 уроке
+
 
    render() {
 
@@ -22,7 +26,7 @@ class Users extends React.Component<UsersPropsType, {}> {
       }
 
       return <div>
-         {pages.map(p => <span className={this.props.currentPage === p ? s.selectedPage : ''}>{p}</span>)
+         {pages.map(p => <span className={this.props.currentPage === p ? s.selectedPage : ''} onClick={() => { this.props.setUserPage(p) }}>{p}</span>)
          }
          {
             this.props.users.map(u => <div className={s.users} key={u.id}>
