@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { addNewMessageActionCreator, dialogsPageReducer, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer";
 import { addPostActionCreator, profilePageReducer, updateNewTextActionCreator } from "./profilePage-reducer";
-import { setCurrentPageAC, followAC, setUsersAC, unfollowAC, usersReducer } from "./users-reducer";
+import { setCurrentPageAC, followAC, setUsersAC, unfollowAC, usersReducer, setTotalUsersCountAC } from "./users-reducer";
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followAC> | ReturnType<typeof unfollowAC> | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC>
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followAC> | ReturnType<typeof unfollowAC> | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC> |
+   ReturnType<typeof setTotalUsersCountAC>;
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch;
