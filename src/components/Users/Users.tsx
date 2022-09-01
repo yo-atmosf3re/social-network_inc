@@ -29,10 +29,14 @@ class Users extends React.Component<UsersPropsType, {}> {
       for (let i = 1; i <= pagesCount; i++) {
          pages.push(i);
       }
+      let curP = this.props.currentPage;
+      let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
+      let curPL = curP + 5;
+      let slicedPages = pages.slice(curPF, curPL);
 
 
       return <div>
-         {pages.map(p => <span className={this.props.currentPage === p ? s.selectedPage : ''} onClick={(e) => { this.onPageChanged(p); }}>{p}</span>)
+         {slicedPages.map(p => <span className={this.props.currentPage === p ? s.selectedPage : ''} onClick={(e) => { this.onPageChanged(p); }}>{p}</span>)
          }
          {
             this.props.users.map(u => <div className={s.users} key={u.id}>
