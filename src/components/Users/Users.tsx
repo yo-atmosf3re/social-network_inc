@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { UsersPropsType } from './UsersContainer';
 import s from './Users.module.css'
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
 import { UserType } from '../../redux/users-reducer';
