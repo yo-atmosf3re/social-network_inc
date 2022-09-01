@@ -13,7 +13,7 @@ export type UsersStateType = typeof initialState
 // Начальное значение, переменные, то, с чем работает редьюсер
 const initialState: initialStateType = {
    users: [],
-   pageSize: 5,
+   pageSize: 10,
    totalUsersCount: 0,
    currentPage: 1,
 }
@@ -25,7 +25,6 @@ export type UserType = {
    followed: boolean
    name: string
    status: string
-   // location: { city: string, country: string }
 }
 
 // Типизация начального стэйта

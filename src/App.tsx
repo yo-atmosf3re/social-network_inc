@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import { PropsType } from './redux/store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import Users from './components/Users/Users';
+import UsersAPIComponent from './components/Users/UsersAPIComponent';
 import UsersContainer from './components/Users/UsersContainer';
 
 const App: React.FC<PropsType> = (props) => {
