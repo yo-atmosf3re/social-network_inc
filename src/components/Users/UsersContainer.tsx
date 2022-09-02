@@ -7,6 +7,7 @@ import { followAC, initialStateType, setCurrentPageAC, setIsFetchingAC, setTotal
 import Users from './Users';
 import preloader from '../../assets/image/preloader.svg';
 import s from './Users.module.css'
+import Preloader from '../common/Preloader/Preloader';
 
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
@@ -31,7 +32,7 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 
    render() {
       return <>
-         {this.props.isFetching ? <img className={s.preloaderBlock} src={preloader} /> : null}
+         {this.props.isFetching ? <Preloader /> : null}
          <Users
             users={this.props.users}
             totalUsersCount={this.props.totalUsersCount}
