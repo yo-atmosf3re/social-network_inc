@@ -1,37 +1,47 @@
 import axios from 'axios';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
-import { followAC, initialStateType, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC, UserType } from '../../redux/users-reducer';
+import { followAC, initialStateType, setCurrentPageAC, setIsFetchingAC, setTotalUsersCountAC, setUsersAC, unfollowAC, UserType } from '../../redux/users-reducer';
 import Users from './Users';
+import preloader from '../../assets/image/preloader.svg';
+import s from './Users.module.css'
 
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
+      this.props.setIsFetching(true)
       axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
          .then((response: any) => {
+            this.props.setIsFetching(false)
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
          })
    }
 
    onPageChanged = (pageNumber: number) => {
+      this.props.setIsFetching(true)
       this.props.setUserPage(pageNumber)
       axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
          .then((response: any) => {
+            this.props.setIsFetching(false)
             this.props.setUsers(response.data.items)
          })
    }
 
    render() {
-      return <Users
-         users={this.props.users}
-         totalUsersCount={this.props.totalUsersCount}
-         pageSize={this.props.pageSize}
-         currentPage={this.props.currentPage}
-         unfollow={this.props.unfollow}
-         follow={this.props.follow}
-         onPageChanged={this.onPageChanged} />
+      return <>
+         {this.props.isFetching ? <img className={s.preloaderBlock} src={preloader} /> : null}
+         <Users
+            users={this.props.users}
+            totalUsersCount={this.props.totalUsersCount}
+            pageSize={this.props.pageSize}
+            currentPage={this.props.currentPage}
+            unfollow={this.props.unfollow}
+            follow={this.props.follow}
+            onPageChanged={this.onPageChanged}
+         />
+      </>
    }
 }
 
@@ -42,6 +52,7 @@ type MapDispatchToPropsType = {
    setUsers: (users: Array<UserType>) => void
    setUserPage: (currentPage: number) => void
    setTotalUsersCount: (totalCount: number) => void
+   setIsFetching: (isFetching: boolean) => void
 }
 
 // Типизация для props компоненты Users
@@ -53,6 +64,7 @@ let mapStateToProps = (state: AppStateType): initialStateType => ({
    pageSize: state.usersPage.pageSize,
    totalUsersCount: state.usersPage.totalUsersCount,
    currentPage: state.usersPage.currentPage,
+   isFetching: state.usersPage.isFetching,
 })
 // Функция, которая передаёт callback'и в контейнерную компоненту
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -71,6 +83,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
       },
       setTotalUsersCount: (totalCount: number) => {
          dispatch(setTotalUsersCountAC(totalCount))
+      },
+      setIsFetching: (isFetching: boolean) => {
+         dispatch(setIsFetchingAC(isFetching))
       }
    }
 }
