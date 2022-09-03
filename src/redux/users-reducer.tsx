@@ -88,9 +88,9 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
 }
 
 // Action Creator'ы, которые принимают объект со свойством type и ключом-строкой, в которой описано специальное действие. Если нужно, то можно добавить ещё какие-нибудь переменные в этот объект, а в функцию аргумент.
-export const followAC = (userId: number) => ({ type: FOLLOW, userId } as const)
-export const unfollowAC = (userId: number) => ({ type: UNFOLLOW, userId } as const)
-export const setUsersAC = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)
-export const setCurrentPageAC = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const)
-export const setTotalUsersCountAC = (totalCount: number) => ({ type: SET_TOTAL_USERS_COUNT, totalCount } as const)
-export const setIsFetchingAC = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching } as const)
+export const follow = (userId: number) => ({ type: FOLLOW, userId } as const)
+export const unfollow = (userId: number) => ({ type: UNFOLLOW, userId } as const)
+export const setUsers = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)
+export const setUserPage = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const)
+export const setTotalUsersCount = (totalCount: number) => ({ type: SET_TOTAL_USERS_COUNT, totalCount } as const)
+export const setIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching } as const)
