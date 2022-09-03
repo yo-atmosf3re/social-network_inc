@@ -2,12 +2,11 @@ import React from "react";
 import { ProfileLocalStateType } from "../../redux/store";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
-import { ProfilePagePropsType } from "./ProfileContainer";
 
-const Profile = (props: ProfilePagePropsType) => {
+const Profile = (props: any) => {
    return (
       <div>
-         <ProfileInfo />
+         <ProfileInfo profile={props.profile} />
          <MyPostsContainer />
       </div>
    );

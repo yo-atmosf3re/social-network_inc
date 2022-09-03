@@ -6,7 +6,7 @@ import { AppStateType } from "../../redux/redux-store";
 import { UserType } from "../../redux/users-reducer";
 import Profile from "./Profile";
 
-class ProfileContainer extends React.Component<ProfilePagePropsType, {}> {
+class ProfileContainer extends React.Component<PropsType, {}> {
    componentDidMount(): void {
       axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/profile/2`)
          .then((response: any) => {
@@ -16,7 +16,7 @@ class ProfileContainer extends React.Component<ProfilePagePropsType, {}> {
    render() {
       return (
          <div>
-            <Profile {...this.props} />
+            <Profile {...this.props} profile={this.props.profile} />
          </div>
       );
    }
@@ -26,13 +26,39 @@ type MapDispatchToPropsType = {
    setUserProfile: (profile: null) => void
 }
 
+export type ProfilePageType = {
+   aboutMe: string
+   contacts: {
+      facebook: string
+      website: string
+      vk: string
+      twitter: string
+      instagram: string
+      youtube: string
+      github: string
+      mainLink: string
+   }
+   lookingForAJob: boolean
+   lookingForAJobDescription: string
+   fullName: string
+   userId: number
+   photos: {
+      small: string
+      large: string
+   }
+}
+
+type MapStatePropsType = {
+   profile: null | ProfilePageType
+}
+
+type PropsType = MapStatePropsType & MapDispatchToPropsType
+
 // Типизация для props компоненты Users
-export type ProfilePagePropsType = MapDispatchToPropsType & initialStateType;
+// export type ProfilePagePropsType = MapDispatchToPropsType & initialStateType;
 
 // Функция, которая берет весь стэйт приложения целиком и возвращает только нужную часть этого стэйта, который передаётся в контейнерную компоненту.
-let mapStateToProps = (state: AppStateType): initialStateType => ({
-   newPostText: state.profilePage.newPostText,
-   posts: state.profilePage.posts,
+let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
    profile: state.profilePage.profile,
 })
 
