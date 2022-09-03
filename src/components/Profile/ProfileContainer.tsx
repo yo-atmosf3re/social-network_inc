@@ -9,8 +9,10 @@ import Profile from "./Profile";
 
 class ProfileContainer extends React.Component<PropsType, {}> {
    componentDidMount(): void {
-      debugger;
-      axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+      debugger
+      let userId = this.props.match.params.userId
+      console.log(this.props.match.params.userId)
+      axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
          .then((response: any) => {
             this.props.setUserProfile(response.data)
          })
@@ -23,6 +25,7 @@ class ProfileContainer extends React.Component<PropsType, {}> {
       );
    }
 }
+
 // Типизация для MapDispatchToProps
 type MapDispatchToPropsType = {
    setUserProfile: (profile: null) => void
@@ -53,9 +56,8 @@ export type ProfilePageType = {
 
 type MapStatePropsType = {
    profile: null | ProfilePageType
-   location?: any
-   navigate?: any
    params?: any
+   match?: any
 }
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
