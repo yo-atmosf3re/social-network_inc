@@ -10,8 +10,10 @@ import Profile from "./Profile";
 class ProfileContainer extends React.Component<PropsType, {}> {
    componentDidMount(): void {
       debugger
-      let userId = this.props.match.params.userId
-      console.log(this.props.match.params.userId)
+      let userId = this.props.router.params.userId
+      if (!userId) {
+         userId = 2;
+      }
       axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
          .then((response: any) => {
             this.props.setUserProfile(response.data)
@@ -56,8 +58,7 @@ export type ProfilePageType = {
 
 type MapStatePropsType = {
    profile: null | ProfilePageType
-   params?: any
-   match?: any
+   router?: any
 }
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
@@ -88,3 +89,7 @@ function withRouter(Component: any) {
 export default connect(mapStateToProps, {
    setUserProfile,
 })(withRouter(ProfileContainer));
+
+// export default connect(mapStateToProps, {
+//    setUserProfile,
+// })(ProfileContainer)
