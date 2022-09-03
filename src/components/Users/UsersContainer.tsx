@@ -5,7 +5,6 @@ import { Dispatch } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
 import { follow, initialStateType, setUserPage, setIsFetching, setTotalUsersCount, setUsers, unfollow, UserType } from '../../redux/users-reducer';
 import Users from './Users';
-import preloader from '../../assets/image/preloader.svg';
 import s from './Users.module.css'
 import Preloader from '../common/Preloader/Preloader';
 

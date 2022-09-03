@@ -2,6 +2,7 @@ import * as React from 'react';
 import s from './Users.module.css'
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
 import { UserType } from '../../redux/users-reducer';
+import { NavLink } from 'react-router-dom';
 
 type UsersPresentationalPropsType = {
    totalUsersCount: number
@@ -32,7 +33,9 @@ function Users(props: UsersPresentationalPropsType) {
          props.users.map(u => <div className={s.users} key={u.id}>
             <span>
                <div>
-                  <img src={u.photos.large != null ? u.photos.large : defaultAvatar} alt="" />
+                  <NavLink to={'/profile/' + u.id}>
+                     <img src={u.photos.large != null ? u.photos.large : defaultAvatar} alt="" />
+                  </NavLink>
                </div>
                <div>
                   {u.followed ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button> : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
