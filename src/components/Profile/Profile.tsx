@@ -1,5 +1,4 @@
 import React from "react";
-import { ProfileLocalStateType } from "../../redux/store";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 
