@@ -65,7 +65,6 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
          }
       case SET_USERS:
          return { ...state, users: action.users }
-
       case SET_CURRENT_PAGE: {
          return { ...state, currentPage: action.currentPage }
       }
@@ -81,7 +80,6 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
             isFetching: action.isFetching
          }
       }
-
       default:
          return state;
    }

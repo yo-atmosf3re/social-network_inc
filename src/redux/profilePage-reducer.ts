@@ -36,7 +36,6 @@ export const profilePageReducer = (state: ProfileStateType = initialState, actio
             posts: [...state.posts, newPost],
             newPostText: '',
          }
-
       case UPDATE_NEW_POST_TEXT:
          return {
             ...state,
@@ -48,7 +47,6 @@ export const profilePageReducer = (state: ProfileStateType = initialState, actio
             profile: action.profile
          }
       }
-
       default:
          return state;
    }

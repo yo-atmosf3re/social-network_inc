@@ -9,15 +9,14 @@ import Profile from "./Profile";
 
 class ProfileContainer extends React.Component<PropsType, {}> {
    componentDidMount(): void {
-      debugger
-      let userId = this.props.router.params.userId
+      let userId = this.props.router.params.userId;
       if (!userId) {
-         userId = 2;
-      }
+         userId = 25421;
+      };
       axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
          .then((response: any) => {
             this.props.setUserProfile(response.data)
-         })
+         });
    }
    render() {
       return (
@@ -89,7 +88,3 @@ function withRouter(Component: any) {
 export default connect(mapStateToProps, {
    setUserProfile,
 })(withRouter(ProfileContainer));
-
-// export default connect(mapStateToProps, {
-//    setUserProfile,
-// })(ProfileContainer)

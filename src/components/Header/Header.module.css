@@ -5,9 +5,16 @@
    margin: 5px 0 0 0;
    }
    
-   .header img{
-   width: 60px;
-      /* background-color: rgb(8, 80, 173); */
-   border-radius: 15px;
-   text-align: center;
-   }
+.header img{
+width: 60px;
+   /* background-color: rgb(8, 80, 173); */
+border-radius: 15px;
+text-align: center;
+}
+
+.loginBlock{
+   float: right;
+}
+.loginBlock a{
+   color: white;
+}
