@@ -7,7 +7,7 @@ import { follow, initialStateType, setUserPage, setIsFetching, setTotalUsersCoun
 import Users from './Users';
 import s from './Users.module.css'
 import Preloader from '../common/Preloader/Preloader';
-import { getUsers } from '../../api/Api';
+import { usersAPI } from '../../api/Api';
 
 
 
@@ -15,7 +15,7 @@ import { getUsers } from '../../api/Api';
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
       this.props.setIsFetching(true)
-      getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
          // debugger
          this.props.setIsFetching(false)
          this.props.setUsers(data.items)
@@ -26,7 +26,7 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
    onPageChanged = (pageNumber: number) => {
       this.props.setIsFetching(true)
       this.props.setUserPage(pageNumber)
-      getUsers(pageNumber, this.props.pageSize)
+      usersAPI.getUsers(pageNumber, this.props.pageSize)
          .then((data) => {
             this.props.setIsFetching(false)
             this.props.setUsers(data.items)

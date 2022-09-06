@@ -1,10 +1,17 @@
 import axios from 'axios';
 
-const baseUrl = `https://social-network.samuraijs.com/api/1.0/`;
+const instance = axios.create({
+   withCredentials: true,
+   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+   headers: {
+      'API-KEY': 'd168e0b6-f2a6-4be3-a321-88800404a063'
+   }
+})
 
-export const getUsers = async (currentPage: number = 1, pageSize: number = 10) => {
-   const response = await axios.get(`${baseUrl}users?page=${currentPage}&count=${pageSize}`, {
-      withCredentials: true
-   });
-   return response.data;
+export const usersAPI = {
+   getUsers(currentPage: number = 1, pageSize: number = 10) {
+      return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => {
+         return res.data
+      })
+   }
 }
