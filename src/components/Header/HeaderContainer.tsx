@@ -5,16 +5,6 @@ import { setAuthUserData } from "../../redux/auth-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Header from "./Header";
 
-// const axios = require('axios').default;
-// const ax = axios.create({
-//    baseURL: 'https://social-network.samuraijs.com/api/1.0/auth/me',
-//    withCredentials: true
-// })
-// const loginUser = () => {
-//    ax.get('')
-// }
-
-
 class HeaderContainer extends React.Component<PropsType, {}> {
    componentDidMount(): void {
       axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {

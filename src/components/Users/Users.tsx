@@ -25,6 +25,7 @@ function Users(props: UsersPresentationalPropsType) {
    let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
    let curPL = curP + 5;
    let slicedPages = pages.slice(curPF, curPL);
+
    return (<div>
       <div className={s.pageNumbersBlock}>{
          slicedPages.map(p => <span className={props.currentPage === p ? s.selectedPage : ''} onClick={(e) => { props.onPageChanged(p); }}>{p}</span>)
@@ -41,10 +42,10 @@ function Users(props: UsersPresentationalPropsType) {
                <div>
                   {u.followed
                      ? <button onClick={() => {
-                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                            withCredentials: true,
                            headers: {
-                              'API-KEYS': '244ee0b5-fa6e-43b9-a033-4cebfece18f7'
+                              'API-KEY': 'd168e0b6-f2a6-4be3-a321-88800404a063'
                            }
                         })
                            .then((response) => {
@@ -54,18 +55,19 @@ function Users(props: UsersPresentationalPropsType) {
                            })
                      }}>Unfollow</button>
                      : <button onClick={() => {
-                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                            withCredentials: true,
                            headers: {
-                              'API-KEYS': '244ee0b5-fa6e-43b9-a033-4cebfece18f7'
+                              'API-KEY': 'd168e0b6-f2a6-4be3-a321-88800404a063'
                            }
                         })
                            .then((response) => {
                               if (response.data.resultCode === 0) {
-                                 props.unfollow(u.id);
+                                 props.follow(u.id);
                               }
                            })
                      }}>Follow</button>
+
                   }
                </div>
             </span>
