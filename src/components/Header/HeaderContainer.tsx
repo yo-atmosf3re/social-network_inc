@@ -39,9 +39,6 @@ class HeaderContainer extends React.Component<PropsType, {}> {
 type MapDispatchToProps = {
    setAuthUserData: (userId: null, email: null, login: null) => void
 }
-type GeneralDataType = {
-   data: DataType
-}
 type DataType = {
    id: number
    login: string

@@ -11,7 +11,9 @@ import Preloader from '../common/Preloader/Preloader';
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
       this.props.setIsFetching(true)
-      axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+         withCredentials: true
+      })
          .then((response: any) => {
             this.props.setIsFetching(false)
             this.props.setUsers(response.data.items)
@@ -22,7 +24,9 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
    onPageChanged = (pageNumber: number) => {
       this.props.setIsFetching(true)
       this.props.setUserPage(pageNumber)
-      axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+      axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+         withCredentials: true
+      })
          .then((response: any) => {
             this.props.setIsFetching(false)
             this.props.setUsers(response.data.items)

@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
 import { UserType } from '../../redux/users-reducer';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 type UsersPresentationalPropsType = {
    totalUsersCount: number
@@ -38,7 +39,34 @@ function Users(props: UsersPresentationalPropsType) {
                   </NavLink>
                </div>
                <div>
-                  {u.followed ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button> : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
+                  {u.followed
+                     ? <button onClick={() => {
+                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                           withCredentials: true,
+                           headers: {
+                              'API-KEYS': '244ee0b5-fa6e-43b9-a033-4cebfece18f7'
+                           }
+                        })
+                           .then((response) => {
+                              if (response.data.resultCode === 0) {
+                                 props.unfollow(u.id);
+                              }
+                           })
+                     }}>Unfollow</button>
+                     : <button onClick={() => {
+                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                           withCredentials: true,
+                           headers: {
+                              'API-KEYS': '244ee0b5-fa6e-43b9-a033-4cebfece18f7'
+                           }
+                        })
+                           .then((response) => {
+                              if (response.data.resultCode === 0) {
+                                 props.unfollow(u.id);
+                              }
+                           })
+                     }}>Follow</button>
+                  }
                </div>
             </span>
             <span>
