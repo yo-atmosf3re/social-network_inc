@@ -14,6 +14,8 @@ type UsersPresentationalPropsType = {
    unfollow: (id: number) => void
    follow: (id: number) => void
    onPageChanged: (currentPage: number) => void
+   toggleFollowingProgress: (followingInProgress: boolean) => void
+   followingInProgress: boolean
 }
 
 function Users(props: UsersPresentationalPropsType) {
@@ -42,20 +44,24 @@ function Users(props: UsersPresentationalPropsType) {
                </div>
                <div>
                   {u.followed
-                     ? <button onClick={() => {
+                     ? <button disabled={props.followingInProgress} onClick={() => {
+                        props.toggleFollowingProgress(true);
                         usersAPI.toUnfollowUsers(u.id)
                            .then((data) => {
                               if (data.resultCode === 0) {
                                  props.unfollow(u.id);
                               }
+                              props.toggleFollowingProgress(false);
                            })
                      }}>Unfollow</button>
-                     : <button onClick={() => {
+                     : <button disabled={props.followingInProgress} onClick={() => {
+                        props.toggleFollowingProgress(true);
                         usersAPI.toFollowUsers(u.id)
                            .then((data) => {
                               if (data.resultCode === 0) {
                                  props.follow(u.id);
                               }
+                              props.toggleFollowingProgress(false);
                            })
                      }}>Follow</button>
 

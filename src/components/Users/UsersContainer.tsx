@@ -1,9 +1,8 @@
 import axios from 'axios';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
-import { follow, initialStateType, setUserPage, setIsFetching, setTotalUsersCount, setUsers, unfollow, UserType } from '../../redux/users-reducer';
+import { follow, initialStateType, setUserPage, setIsFetching, setTotalUsersCount, setUsers, unfollow, UserType, toggleFollowingProgress } from '../../redux/users-reducer';
 import Users from './Users';
 import s from './Users.module.css'
 import Preloader from '../common/Preloader/Preloader';
@@ -41,6 +40,8 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
             unfollow={this.props.unfollow}
             follow={this.props.follow}
             onPageChanged={this.onPageChanged}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
+            followingInProgress={this.props.followingInProgress}
          />
       </>
    }
@@ -54,6 +55,7 @@ type MapDispatchToPropsType = {
    setUserPage: (currentPage: number) => void
    setTotalUsersCount: (totalCount: number) => void
    setIsFetching: (isFetching: boolean) => void
+   toggleFollowingProgress: (followingInProgress: boolean) => void
 }
 
 // Типизация для props компоненты Users
@@ -66,6 +68,7 @@ let mapStateToProps = (state: AppStateType): initialStateType => ({
    totalUsersCount: state.usersPage.totalUsersCount,
    currentPage: state.usersPage.currentPage,
    isFetching: state.usersPage.isFetching,
+   followingInProgress: state.usersPage.followingInProgress,
 })
 // Функция, которая передаёт callback'и в контейнерную компоненту
 // let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -98,4 +101,5 @@ export default connect(mapStateToProps, {
    setUserPage,
    setTotalUsersCount,
    setIsFetching,
+   toggleFollowingProgress
 })(UsersContainer);
