@@ -6,21 +6,33 @@ import { AppStateType } from "../../redux/redux-store";
 import Header from "./Header";
 
 type HeaderPropsType = {
-   setAuthUserData: (data: { userId: null, email: null, login: null }) => void
+   setAuthUserData: (userId: null, email: null, login: null) => void
+}
+
+type GeneralDataType = {
+   data: DataType
+}
+
+type DataType = {
+   id: number
+   login: string
+   email: string
 }
 
 class HeaderContainer extends React.Component<HeaderPropsType, {}> {
    componentDidMount(): void {
-      axios.get<any>(`https://social-network.samuraijs.com/api/1.0/auth/me/`, {
-         withCredentials: true
-      })
-         .then((response: any) => {
+      axios.defaults.withCredentials = true;
+      axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
+         .then((response) => {
             console.log(response.data.data.login)
-            console.log(response.data)
+            // debugger
             if (response.data.resultCode === 0) {
-               this.props.setAuthUserData(response.data.data.login)
+               let { id, email, login } = response.data.data;
+               this.props.setAuthUserData(id, email, login)
             }
-         });
+         }).catch((error) => {
+            console.log(error)
+         })
    }
 
    render() {

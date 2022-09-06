@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import s from './Header.module.css';
 
 type HeaderPropsType = {
-   setAuthUserData: (data: { userId: null, email: null, login: null }) => void
+   setAuthUserData: (userId: null, email: null, login: null) => void
 }
 
 const Header = (props: HeaderPropsType) => {

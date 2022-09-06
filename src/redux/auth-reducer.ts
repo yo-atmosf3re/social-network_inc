@@ -11,12 +11,14 @@ let initialState = {
    userId: null,
    email: null,
    login: null,
+   isAuth: false,
 }
 
 // * Сам редьюсер, принимает часть стэйта, с которым будет работать, принимает экшоны, типизация которых в редакс-сторе. Возвращает то с чем работал.
 export const authReducer = (state: AuthStateType = initialState, action: ActionsTypes): AuthStateType => {
    switch (action.type) {
       case SET_USER_DATA: {
+         debugger
          return {
             ...state,
             ...action.data
@@ -26,7 +28,7 @@ export const authReducer = (state: AuthStateType = initialState, action: Actions
    }
 }
 
-export const setAuthUserData = (data: { userId: null, email: null, login: null },) => ({ type: SET_USER_DATA, data } as const)
+export const setAuthUserData = (userId: null, email: null, login: null) => ({ type: SET_USER_DATA, data: { userId, email, login } } as const)
 // export const blabla2 = () => ({ type: someAction } as const)
 // export const blabla3 = () => ({ type: someAction } as const)
 

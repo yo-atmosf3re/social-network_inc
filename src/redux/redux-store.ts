@@ -23,3 +23,6 @@ export const rootReducer = combineReducers({
 })
 
 export let store = createStore(rootReducer);
+
+// @ts-ignore
+// store = window.store
