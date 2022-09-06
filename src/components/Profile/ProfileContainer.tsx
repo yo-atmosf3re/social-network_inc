@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { usersAPI } from "../../api/Api";
 import { setUserProfile } from "../../redux/profilePage-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import { UserType } from "../../redux/users-reducer";
@@ -13,9 +14,9 @@ class ProfileContainer extends React.Component<PropsType, {}> {
       if (!userId) {
          userId = 25421;
       };
-      axios.get<UserType>(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-         .then((response: any) => {
-            this.props.setUserProfile(response.data)
+      usersAPI.getCurrentUsers(userId)
+         .then((data) => {
+            this.props.setUserProfile(data)
          });
    }
    render() {

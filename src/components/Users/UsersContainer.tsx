@@ -9,9 +9,6 @@ import s from './Users.module.css'
 import Preloader from '../common/Preloader/Preloader';
 import { usersAPI } from '../../api/Api';
 
-
-
-
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
       this.props.setIsFetching(true)

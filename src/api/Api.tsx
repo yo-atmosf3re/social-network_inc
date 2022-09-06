@@ -13,5 +13,27 @@ export const usersAPI = {
       return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => {
          return res.data
       })
-   }
+   },
+   getCurrentUsers(userId: number) {
+      return instance.get(`profile/${userId}`).then(res => {
+         return res.data
+      })
+   },
+   toUnfollowUsers(id: number) {
+      return instance.delete(`follow/${id}`).then(res => {
+         return res.data
+      })
+   },
+   toFollowUsers(id: number) {
+      return instance.post(`follow/${id}`).then(res => {
+         return res.data
+      })
+   },
+   chekAuth() {
+      return instance.get(`auth/me`).then(
+         res => {
+            return res.data
+         }
+      )
+   },
 }
