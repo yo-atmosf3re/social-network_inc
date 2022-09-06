@@ -4,16 +4,19 @@ import s from './Header.module.css';
 
 type HeaderPropsType = {
    setAuthUserData: (userId: null, email: null, login: null) => void
+   isAuth: boolean
+   login: string
 }
 
-const Header = (props: HeaderPropsType) => {
+const Header = (props: any) => {
    return <header className={s.header}>
       <img src='https://svn.apache.org/repos/asf/openoffice/ooo-site/trunk/content/images/aoo-logo-100x100.png' />
 
       <div className={s.loginBlock}>
-         <NavLink to={'/login'}>
-            Login
-         </NavLink>
+         {props.isAuth ? props.login :
+            <NavLink to={'/login'}>
+               Login
+            </NavLink>}
       </div>
    </header>;
 }
