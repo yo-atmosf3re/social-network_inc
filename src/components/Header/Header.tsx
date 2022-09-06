@@ -13,7 +13,7 @@ const Header = (props: any) => {
       <img src='https://svn.apache.org/repos/asf/openoffice/ooo-site/trunk/content/images/aoo-logo-100x100.png' />
 
       <div className={s.loginBlock}>
-         {props.isAuth ? props.login :
+         {props.isAuth ? `Welcome, ${props.login}` :
             <NavLink to={'/login'}>
                Login
             </NavLink>}
