@@ -19,7 +19,7 @@ const initialState: initialStateType = {
    totalUsersCount: 0,
    currentPage: 1,
    isFetching: true,
-   followingInProgress: false,
+   followingInProgress: [],
 }
 
 // Типизация массива
@@ -38,7 +38,7 @@ export type initialStateType = {
    totalUsersCount: number
    currentPage: number
    isFetching: boolean
-   followingInProgress: boolean
+   followingInProgress: Array<number>
 }
 
 // Редьюсер, в который нужно передать стэйт той части логики, с которой он работает. Так же принимает action, типизация которого в редакс-сторе, а возвращать редьюсер должен то, с чем работал и то, что принял на входе. 
@@ -86,7 +86,9 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
       case TOGGLE_IS_FOLLOWING_PROGRESS: {
          return {
             ...state,
-            followingInProgress: action.followingInProgress
+            followingInProgress: action.isFetching
+               ? [...state.followingInProgress, action.userId]
+               : state.followingInProgress.filter(id => id != action.userId)
          }
       }
       default:
@@ -101,4 +103,4 @@ export const setUsers = (users: Array<UserType>) => ({ type: SET_USERS, users } 
 export const setUserPage = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const)
 export const setTotalUsersCount = (totalCount: number) => ({ type: SET_TOTAL_USERS_COUNT, totalCount } as const)
 export const setIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching } as const)
-export const toggleFollowingProgress = (followingInProgress: boolean) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, followingInProgress } as const)
+export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId } as const)

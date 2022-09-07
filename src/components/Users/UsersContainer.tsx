@@ -55,7 +55,7 @@ type MapDispatchToPropsType = {
    setUserPage: (currentPage: number) => void
    setTotalUsersCount: (totalCount: number) => void
    setIsFetching: (isFetching: boolean) => void
-   toggleFollowingProgress: (followingInProgress: boolean) => void
+   toggleFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
 // Типизация для props компоненты Users
