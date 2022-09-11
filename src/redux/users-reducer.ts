@@ -99,8 +99,8 @@ export const usersReducer = (state: UsersStateType = initialState, action: AppAc
 }
 
 // Action Creator'ы, которые принимают объект со свойством type и ключом-строкой, в которой описано специальное действие. Если нужно, то можно добавить ещё какие-нибудь переменные в этот объект, а в функцию аргумент.
-export const follow = (userId: number) => ({ type: FOLLOW, userId } as const)
-export const unfollow = (userId: number) => ({ type: UNFOLLOW, userId } as const)
+export const followSuccess = (userId: number) => ({ type: FOLLOW, userId } as const)
+export const unfollowSuccess = (userId: number) => ({ type: UNFOLLOW, userId } as const)
 export const setUsers = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)
 export const setUserPage = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const)
 export const setTotalUsersCount = (totalCount: number) => ({ type: SET_TOTAL_USERS_COUNT, totalCount } as const)
@@ -108,7 +108,7 @@ export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETC
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId } as const)
 
 // Thunk-function - это функция, которая внутри себя диспатчит другие(обычные) экшоны. Делает асинхронную работу.
-// Thunk creator - это функция, которая может, что-то принимать и возращает thunk'y
+// Thunk creator - это функция, которая может, что-то принимать и возращает thunk'y.
 export const getUsersTC = (currentPage: number, pageSize: number): AppThunkType => {
    return (dispatch) => {
       dispatch(toggleIsFetching(true))
@@ -117,5 +117,29 @@ export const getUsersTC = (currentPage: number, pageSize: number): AppThunkType 
          dispatch(setUsers(data.items))
          dispatch(setTotalUsersCount(data.totalCount))
       })
+   }
+}
+export const follow = (userId: number): AppThunkType => {
+   return (dispatch) => {
+      dispatch(toggleFollowingProgress(true, userId))
+      usersAPI.follow(userId)
+         .then((data) => {
+            if (data.data.resultCode === 0) {
+               dispatch(followSuccess(userId));
+            }
+            dispatch(toggleFollowingProgress(false, userId));
+         })
+   }
+}
+export const unfollow = (userId: number): AppThunkType => {
+   return (dispatch) => {
+      dispatch(toggleFollowingProgress(true, userId))
+      usersAPI.unfollow(userId)
+         .then((data) => {
+            if (data.data.resultCode === 0) {
+               dispatch(unfollowSuccess(userId));
+            }
+            dispatch(toggleFollowingProgress(false, userId));
+         })
    }
 }

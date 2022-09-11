@@ -19,15 +19,11 @@ export const usersAPI = {
          return res.data
       })
    },
-   toUnfollowUsers(id: number) {
-      return instance.delete(`follow/${id}`).then(res => {
-         return res.data
-      })
+   unfollow(id: number) {
+      return instance.delete(`follow/${id}`)
    },
-   toFollowUsers(id: number) {
-      return instance.post(`follow/${id}`).then(res => {
-         return res.data
-      })
+   follow(id: number) {
+      return instance.post(`follow/${id}`)
    },
    chekAuth() {
       return instance.get(`auth/me`).then(

@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
-import { follow, initialStateType, setUserPage, toggleIsFetching, setTotalUsersCount, setUsers, unfollow, UserType, toggleFollowingProgress, getUsersTC } from '../../redux/users-reducer';
+import { followSuccess, initialStateType, setUserPage, toggleIsFetching, setTotalUsersCount, setUsers, unfollowSuccess, UserType, toggleFollowingProgress, getUsersTC } from '../../redux/users-reducer';
 import Users from './Users';
 import s from './Users.module.css'
 import Preloader from '../common/Preloader/Preloader';
@@ -26,8 +26,8 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             currentPage={this.props.currentPage}
-            unfollow={this.props.unfollow}
-            follow={this.props.follow}
+            unfollow={this.props.unfollowSuccess}
+            follow={this.props.followSuccess}
             onPageChanged={this.onPageChanged}
             toggleFollowingProgress={this.props.toggleFollowingProgress}
             followingInProgress={this.props.followingInProgress}
@@ -38,8 +38,8 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 
 // Типизация для MapDispatchToProps
 type MapDispatchToPropsType = {
-   follow: (userId: number) => void
-   unfollow: (userId: number) => void
+   followSuccess: (userId: number) => void
+   unfollowSuccess: (userId: number) => void
    // setUsers: (users: Array<UserType>) => void
    setUserPage: (currentPage: number) => void
    // setTotalUsersCount: (totalCount: number) => void
@@ -85,8 +85,8 @@ let mapStateToProps = (state: AppStateType): initialStateType => ({
 // }
 
 export default connect(mapStateToProps, {
-   follow,
-   unfollow,
+   followSuccess,
+   unfollowSuccess,
    setUserPage,
    toggleFollowingProgress,
    getUsersTC

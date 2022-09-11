@@ -1,7 +1,7 @@
 import { DialogType, MessageType, PostType } from "./store";
-import { follow, unfollow } from "./users-reducer";
+import { followSuccess, unfollowSuccess } from "./users-reducer";
 
-type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof follow> | ReturnType<typeof unfollow>
+type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess>
 
 type InitialStateProfileType = {
    newPostText: string

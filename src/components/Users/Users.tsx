@@ -45,24 +45,10 @@ function Users(props: UsersPresentationalPropsType) {
                <div>
                   {u.followed
                      ? <button disabled={props.followingInProgress.some(i => i === u.id)} onClick={() => {
-                        props.toggleFollowingProgress(true, u.id);
-                        usersAPI.toUnfollowUsers(u.id)
-                           .then((data) => {
-                              if (data.resultCode === 0) {
-                                 props.unfollow(u.id);
-                              }
-                              props.toggleFollowingProgress(false, u.id);
-                           })
+                        props.unfollow(u.id)
                      }}>Unfollow</button>
                      : <button disabled={props.followingInProgress.some(i => i === u.id)} onClick={() => {
-                        props.toggleFollowingProgress(true, u.id);
-                        usersAPI.toFollowUsers(u.id)
-                           .then((data) => {
-                              if (data.resultCode === 0) {
-                                 props.follow(u.id);
-                              }
-                              props.toggleFollowingProgress(false, u.id);
-                           })
+                        props.follow(u.id)
                      }}>Follow</button>
 
                   }
