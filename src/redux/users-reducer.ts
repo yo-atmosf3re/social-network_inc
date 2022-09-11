@@ -107,10 +107,19 @@ export const setTotalUsersCount = (totalCount: number) => ({ type: SET_TOTAL_USE
 export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching } as const)
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId } as const)
 
+// Типизация для каждого AC
+type FollowActionType = ReturnType<typeof follow>;
+type UnfollowActionType = ReturnType<typeof unfollow>;
+type SetUsersActionType = ReturnType<typeof setUsers>;
+type SetUserPageActionType = ReturnType<typeof setUserPage>;
+type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>;
+type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>;
+type ToggleFollowingProgressActionType = ReturnType<typeof toggleFollowingProgress>;
+
 // Thunk-function - это функция, которая внутри себя диспатчит другие(обычные) экшоны. Делает асинхронную работу.
 // Thunk creator - это функция, которая может, что-то принимать и возращает thunk'y
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
-   return (dispatch: Dispatch) => {
+   return (dispatch: Dispatch<ActionsTypes>) => {
       dispatch(toggleIsFetching(true))
       usersAPI.getUsers(currentPage, pageSize).then((data) => {
          dispatch(toggleIsFetching(false))
