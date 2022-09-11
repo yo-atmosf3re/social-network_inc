@@ -1,4 +1,5 @@
-import { AppActionsTypes } from "./redux-store";
+import { usersAPI } from "../api/Api";
+import { AppActionsTypes, AppThunkType } from "./redux-store";
 import { PostType } from "./store";
 
 export type ProfileStateType = typeof initialState
@@ -55,3 +56,12 @@ export const profilePageReducer = (state: ProfileStateType = initialState, actio
 export const addPostActionCreator = () => ({ type: ADD_POST, } as const);
 export const updateNewTextActionCreator = (newText: string) => ({ type: UPDATE_NEW_POST_TEXT, newText, } as const);
 export const setUserProfile = (profile: null) => ({ type: SET_USER_PROFILE, profile } as const)
+
+export const setUserProfileTC = (userId: number): AppThunkType => {
+   return (dispatch) => {
+      usersAPI.getCurrentUsers(userId)
+         .then((data) => {
+            dispatch(setUserProfile(data))
+         });
+   }
+}

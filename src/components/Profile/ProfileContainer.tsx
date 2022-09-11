@@ -1,11 +1,9 @@
-import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { usersAPI } from "../../api/Api";
-import { setUserProfile } from "../../redux/profilePage-reducer";
+import { setUserProfile, setUserProfileTC } from "../../redux/profilePage-reducer";
 import { AppStateType } from "../../redux/redux-store";
-import { UserType } from "../../redux/users-reducer";
 import Profile from "./Profile";
 
 class ProfileContainer extends React.Component<PropsType, {}> {
@@ -14,10 +12,7 @@ class ProfileContainer extends React.Component<PropsType, {}> {
       if (!userId) {
          userId = 25421;
       };
-      usersAPI.getCurrentUsers(userId)
-         .then((data) => {
-            this.props.setUserProfile(data)
-         });
+      this.props.setUserProfileTC(userId)
    }
    render() {
       return (
@@ -31,6 +26,7 @@ class ProfileContainer extends React.Component<PropsType, {}> {
 // Типизация для MapDispatchToProps
 type MapDispatchToPropsType = {
    setUserProfile: (profile: null) => void
+   setUserProfileTC: (userId: number) => void
 }
 
 // Типизация для profile, который приходит с сервера. Эту типизацию использую в компоненте Profile.tsx и в контейнерной компоненте.
@@ -63,10 +59,6 @@ type MapStatePropsType = {
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
 
-// Типизация для props компоненты Users
-// export type ProfilePagePropsType = MapDispatchToPropsType & initialStateType;
-
-// Функция, которая берет весь стэйт приложения целиком и возвращает только нужную часть этого стэйта, который передаётся в контейнерную компоненту.
 let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
    profile: state.profilePage.profile,
 })
@@ -88,4 +80,5 @@ function withRouter(Component: any) {
 
 export default connect(mapStateToProps, {
    setUserProfile,
+   setUserProfileTC
 })(withRouter(ProfileContainer));

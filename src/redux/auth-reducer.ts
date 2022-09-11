@@ -1,4 +1,5 @@
-import { AppActionsTypes } from "./redux-store";
+import { usersAPI } from "../api/Api";
+import { AppActionsTypes, AppThunkType } from "./redux-store";
 
 // ? Типизация инишл стэйта
 export type AuthStateType = typeof initialState;
@@ -29,7 +30,17 @@ export const authReducer = (state: AuthStateType = initialState, action: AppActi
    }
 }
 
-export const setAuthUserData = (userId: null, email: null, login: null) => ({ type: SET_USER_DATA, data: { userId, email, login } } as const)
-// export const blabla2 = () => ({ type: someAction } as const)
-// export const blabla3 = () => ({ type: someAction } as const)
+export const setAuthUserDataSuccess = (userId: null, email: null, login: null) => ({ type: SET_USER_DATA, data: { userId, email, login } } as const)
+
+export const setAuthUserDataTC = (): AppThunkType => {
+   return (dispatch) => {
+      usersAPI.chekAuth()
+         .then((data) => {
+            if (data.resultCode === 0) {
+               let { id, email, login } = data.data;
+               dispatch(setAuthUserDataSuccess(id, email, login))
+            }
+         })
+   }
+}
 

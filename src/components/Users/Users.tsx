@@ -14,7 +14,6 @@ type UsersPresentationalPropsType = {
    unfollow: (id: number) => void
    follow: (id: number) => void
    onPageChanged: (currentPage: number) => void
-   toggleFollowingProgress: (isFetching: boolean, userId: number) => void
    followingInProgress: Array<number>
 }
 

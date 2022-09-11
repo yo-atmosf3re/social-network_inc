@@ -2,14 +2,14 @@ import { AnyAction, applyMiddleware, combineReducers } from "@reduxjs/toolkit";
 import React from "react";
 import { useSelector } from "react-redux";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
-import { authReducer, setAuthUserData } from "./auth-reducer";
+import { authReducer, setAuthUserDataSuccess } from "./auth-reducer";
 import { addNewMessageActionCreator, dialogsPageReducer, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer";
 import { addPostActionCreator, profilePageReducer, setUserProfile, updateNewTextActionCreator } from "./profilePage-reducer";
 import { setUserPage, followSuccess, setUsers, unfollowSuccess, usersReducer, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress } from "./users-reducer";
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { legacy_createStore as createStore } from 'redux'
 
-export type AppActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess> | ReturnType<typeof setUsers> | ReturnType<typeof setUserPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile> | ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingProgress>;
+export type AppActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess> | ReturnType<typeof setUsers> | ReturnType<typeof setUserPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile> | ReturnType<typeof setAuthUserDataSuccess> | ReturnType<typeof toggleFollowingProgress>;
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<AppStateType, unknown, AppActionsTypes>
