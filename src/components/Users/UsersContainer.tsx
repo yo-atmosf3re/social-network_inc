@@ -2,29 +2,30 @@ import axios from 'axios';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
-import { follow, initialStateType, setUserPage, setIsFetching, setTotalUsersCount, setUsers, unfollow, UserType, toggleFollowingProgress } from '../../redux/users-reducer';
+import { follow, initialStateType, setUserPage, toggleIsFetching, setTotalUsersCount, setUsers, unfollow, UserType, toggleFollowingProgress, getUsersThunkCreator } from '../../redux/users-reducer';
 import Users from './Users';
 import s from './Users.module.css'
 import Preloader from '../common/Preloader/Preloader';
 import { usersAPI } from '../../api/Api';
+import { Dispatch } from 'redux';
 
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
-      this.props.setIsFetching(true)
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-         // debugger
-         this.props.setIsFetching(false)
-         this.props.setUsers(data.items)
-         this.props.setTotalUsersCount(data.totalCount)
-      })
+      // this.props.toggleIsFetching(true)
+      // usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+      //    this.props.toggleIsFetching(false)
+      //    this.props.setUsers(data.items)
+      //    this.props.setTotalUsersCount(data.totalCount)
+      // })
+      // this.props.getUsersThunkCreator()
    }
 
    onPageChanged = (pageNumber: number) => {
-      this.props.setIsFetching(true)
+      this.props.toggleIsFetching(true)
       this.props.setUserPage(pageNumber)
       usersAPI.getUsers(pageNumber, this.props.pageSize)
          .then((data) => {
-            this.props.setIsFetching(false)
+            this.props.toggleIsFetching(false)
             this.props.setUsers(data.items)
          })
    }
@@ -54,8 +55,9 @@ type MapDispatchToPropsType = {
    setUsers: (users: Array<UserType>) => void
    setUserPage: (currentPage: number) => void
    setTotalUsersCount: (totalCount: number) => void
-   setIsFetching: (isFetching: boolean) => void
+   toggleIsFetching: (isFetching: boolean) => void
    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
+   getUsersThunkCreator: (currentPage: number, pageSize: number) => (dispatch: Dispatch) => any
 }
 
 // Типизация для props компоненты Users
@@ -100,6 +102,7 @@ export default connect(mapStateToProps, {
    setUsers,
    setUserPage,
    setTotalUsersCount,
-   setIsFetching,
-   toggleFollowingProgress
+   toggleIsFetching,
+   toggleFollowingProgress,
+   // getUsersThunkCreator
 })(UsersContainer);

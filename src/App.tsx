@@ -7,6 +7,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import { Dispatch, AnyAction } from 'redux';
 
 const App: React.FC<PropsType> = (props) => {
   const state = props.oldStore.getState();
@@ -23,7 +24,9 @@ const App: React.FC<PropsType> = (props) => {
           />} />
           <Route path='/dialogs/*' element={<DialogsContainer
           />} />
-          <Route path='/users' element={<UsersContainer />} />
+          <Route path='/users' element={<UsersContainer getUsersThunkCreator={function (currentPage: number, pageSize: number): (dispatch: Dispatch<AnyAction>) => any {
+            throw new Error('Function not implemented.');
+          }} />} />
         </Routes>
       </div>
     </div>

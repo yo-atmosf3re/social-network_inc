@@ -1,3 +1,5 @@
+import { Dispatch } from "redux";
+import { usersAPI } from "../api/Api";
 import { ActionsTypes } from "./redux-store";
 
 // Константа для AC
@@ -102,5 +104,18 @@ export const unfollow = (userId: number) => ({ type: UNFOLLOW, userId } as const
 export const setUsers = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)
 export const setUserPage = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const)
 export const setTotalUsersCount = (totalCount: number) => ({ type: SET_TOTAL_USERS_COUNT, totalCount } as const)
-export const setIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching } as const)
+export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching } as const)
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId } as const)
+
+// Thunk-function - это функция, которая внутри себя диспатчит другие(обычные) экшоны. Делает асинхронную работу.
+// Thunk creator - это функция, которая может, что-то принимать и возращает thunk'y
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+   return (dispatch: Dispatch) => {
+      dispatch(toggleIsFetching(true))
+      usersAPI.getUsers(currentPage, pageSize).then((data) => {
+         dispatch(toggleIsFetching(false))
+         dispatch(setUsers(data.items))
+         dispatch(setTotalUsersCount(data.totalCount))
+      })
+   }
+}
