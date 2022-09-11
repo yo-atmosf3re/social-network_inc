@@ -1,5 +1,5 @@
 
-import { ActionsTypes } from "./redux-store";
+import { AppActionsTypes } from "./redux-store";
 import { DialogPageType, MessageType } from "./store";
 
 export type DialogsState = typeof initialState;
@@ -27,7 +27,7 @@ export type initialStateType = {
    dialogsPage: DialogPageType
 }
 
-export const dialogsPageReducer = (state: DialogsState = initialState, action: ActionsTypes): DialogsState => {
+export const dialogsPageReducer = (state: DialogsState = initialState, action: AppActionsTypes): DialogsState => {
    const SEND_MASSAGE = 'SEND-MESSAGE'
    const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 

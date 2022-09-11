@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { usersAPI } from "../api/Api";
-import { ActionsTypes, AppThunkType } from "./redux-store";
+import { AppActionsTypes, AppThunkType } from "./redux-store";
 
 // Константа для AC
 const FOLLOW = 'FOLLOW';
@@ -44,7 +44,7 @@ export type initialStateType = {
 }
 
 // Редьюсер, в который нужно передать стэйт той части логики, с которой он работает. Так же принимает action, типизация которого в редакс-сторе, а возвращать редьюсер должен то, с чем работал и то, что принял на входе. 
-export const usersReducer = (state: UsersStateType = initialState, action: ActionsTypes): UsersStateType => {
+export const usersReducer = (state: UsersStateType = initialState, action: AppActionsTypes): UsersStateType => {
    // Здесь нужно добавить ключи для свойства type объекта action.
    // Проработать для инструкции switch каждый case, с которым будет работать редьюсер, в аргумент case нужно передать нужный type. Внутри case описать код.
    switch (action.type) {
@@ -109,7 +109,7 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
 
 // Thunk-function - это функция, которая внутри себя диспатчит другие(обычные) экшоны. Делает асинхронную работу.
 // Thunk creator - это функция, которая может, что-то принимать и возращает thunk'y
-export const getUsersThunkCreator = (currentPage: number, pageSize: number): AppThunkType => {
+export const getUsersTC = (currentPage: number, pageSize: number): AppThunkType => {
    return (dispatch) => {
       dispatch(toggleIsFetching(true))
       usersAPI.getUsers(currentPage, pageSize).then((data) => {

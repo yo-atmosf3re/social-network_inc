@@ -1,5 +1,5 @@
 
-import { ActionsTypes } from "./redux-store";
+import { AppActionsTypes } from "./redux-store";
 import { SidebarItemType } from "./store";
 
 type InitialStateSidebarType = SidebarItemType[]
@@ -11,7 +11,7 @@ const initialStateSidebar: InitialStateSidebarType = [
    { id: 4, name: 'Oleg' },
 ]
 
-const sidebarReducer = (state = initialStateSidebar, action: ActionsTypes): InitialStateSidebarType => {
+const sidebarReducer = (state = initialStateSidebar, action: AppActionsTypes): InitialStateSidebarType => {
 
    return state;
 }

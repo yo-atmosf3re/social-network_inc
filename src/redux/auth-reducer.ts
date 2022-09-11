@@ -1,4 +1,4 @@
-import { ActionsTypes } from "./redux-store";
+import { AppActionsTypes } from "./redux-store";
 
 // ? Типизация инишл стэйта
 export type AuthStateType = typeof initialState;
@@ -15,7 +15,7 @@ let initialState = {
 }
 
 // * Сам редьюсер, принимает часть стэйта, с которым будет работать, принимает экшоны, типизация которых в редакс-сторе. Возвращает то с чем работал.
-export const authReducer = (state: AuthStateType = initialState, action: ActionsTypes): AuthStateType => {
+export const authReducer = (state: AuthStateType = initialState, action: AppActionsTypes): AuthStateType => {
    switch (action.type) {
       case SET_USER_DATA: {
          // debugger

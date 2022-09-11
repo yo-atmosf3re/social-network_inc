@@ -24,10 +24,10 @@ function Users(props: UsersPresentationalPropsType) {
    for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);
    }
-   let curP = props.currentPage;
-   let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
-   let curPL = curP + 5;
-   let slicedPages = pages.slice(curPF, curPL);
+   let currentPageNumber = props.currentPage;
+   let currentPageFound = ((currentPageNumber - 5) < 0) ? 0 : currentPageNumber - 5;
+   let currentPageCarousel = currentPageNumber + 5;
+   let slicedPages = pages.slice(currentPageFound, currentPageCarousel);
 
    return (<div>
       <div className={s.pageNumbersBlock}>{

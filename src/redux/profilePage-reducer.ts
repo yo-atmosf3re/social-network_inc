@@ -1,4 +1,4 @@
-import { ActionsTypes } from "./redux-store";
+import { AppActionsTypes } from "./redux-store";
 import { PostType } from "./store";
 
 export type ProfileStateType = typeof initialState
@@ -23,7 +23,7 @@ const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 
-export const profilePageReducer = (state: ProfileStateType = initialState, action: ActionsTypes): ProfileStateType => {
+export const profilePageReducer = (state: ProfileStateType = initialState, action: AppActionsTypes): ProfileStateType => {
    switch (action.type) {
       case ADD_POST:
          const newPost: PostType = {
