@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';

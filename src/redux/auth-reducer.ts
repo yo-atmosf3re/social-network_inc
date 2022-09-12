@@ -1,3 +1,4 @@
+import { authAPI } from './../api/Api';
 import { usersAPI } from "../api/Api";
 import { AppActionsTypes, AppThunkType } from "./redux-store";
 
@@ -34,10 +35,10 @@ export const setAuthUserDataSuccess = (userId: null, email: null, login: null) =
 
 export const setAuthUserDataTC = (): AppThunkType => {
    return (dispatch) => {
-      usersAPI.chekAuth()
-         .then((data) => {
-            if (data.resultCode === 0) {
-               let { id, email, login } = data.data;
+      authAPI.me()
+         .then((response) => {
+            if (response.data.resultCode === 0) {
+               let { id, email, login } = response.data.data;
                dispatch(setAuthUserDataSuccess(id, email, login))
             }
          })

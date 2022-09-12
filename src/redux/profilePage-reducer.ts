@@ -61,7 +61,7 @@ export const setUserProfileTC = (userId: number): AppThunkType => {
    return (dispatch) => {
       usersAPI.getCurrentUsers(userId)
          .then((data) => {
-            dispatch(setUserProfile(data))
+            dispatch(setUserProfile(data.data))
          });
    }
 }
