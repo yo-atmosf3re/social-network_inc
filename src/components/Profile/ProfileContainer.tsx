@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { usersAPI } from "../../api/Api";
-import { setUserProfile, setUserProfileTC } from "../../redux/profilePage-reducer";
+import { setUserProfileTC } from "../../redux/profilePage-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Profile from "./Profile";
 
@@ -79,6 +78,5 @@ function withRouter(Component: any) {
 }
 
 export default connect(mapStateToProps, {
-   setUserProfile,
    setUserProfileTC
 })(withRouter(ProfileContainer));
