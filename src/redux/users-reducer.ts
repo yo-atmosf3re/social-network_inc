@@ -143,9 +143,3 @@ export const unfollow = (userId: number): AppThunkType => {
          })
    }
 }
-
-
-// let curP = props.currentPage;
-//    let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
-//    let curPL = curP + 5;
-//    let slicedPages = pages.slice(curPF, curPL);

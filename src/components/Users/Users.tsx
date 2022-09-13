@@ -12,7 +12,7 @@ type UsersPresentationalPropsType = {
    users: Array<UserType>
    unfollow: (id: number) => void
    follow: (id: number) => void
-   onPageChanged: (currentPage: number) => void
+   onPageChanged: (pageNumber: number, pageSize: number) => void
    followingInProgress: Array<number>
 }
 
@@ -22,16 +22,14 @@ function Users(props: UsersPresentationalPropsType) {
    for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);
    }
-   debugger
    let curP = props.currentPage;
    let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
    let curPL = curP + 5;
    let slicedPages = pages.slice(curPF, curPL);
-   debugger
 
    return (<div>
       <div className={s.pageNumbersBlock}>{
-         slicedPages.map(p => <span className={props.currentPage === p ? s.selectedPage : ''} onClick={(e) => { props.onPageChanged(p); }}>{p}</span>)
+         slicedPages.map(p => <span className={props.currentPage === p ? s.selectedPage : ''} onClick={(e) => { debugger; props.onPageChanged(p, 10); debugger }}>{p}</span>)
       }</div>
 
       {

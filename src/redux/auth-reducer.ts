@@ -33,7 +33,7 @@ export const authReducer = (state: AuthStateType = initialState, action: AppActi
 
 export const setAuthUserDataSuccess = (userId: null, email: null, login: null) => ({ type: SET_USER_DATA, data: { userId, email, login } } as const)
 
-export const setAuthUserDataTC = (): AppThunkType => {
+export const getAuthUserData = (): AppThunkType => {
    return (dispatch) => {
       authAPI.me()
          .then((response) => {

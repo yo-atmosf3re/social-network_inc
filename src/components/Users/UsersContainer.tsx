@@ -12,13 +12,13 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
    }
 
    onPageChanged = (pageNumber: number) => {
-      this.props.getUsersTC(pageNumber, this.props.pageSize)
+      this.props.getUsersTC(pageNumber, this.props.pageSize,)
    }
 
    render() {
       return <>
          {this.props.isFetching ? <Preloader /> : null}
-         <Users
+         < Users
             users={this.props.users}
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
