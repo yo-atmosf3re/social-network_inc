@@ -1,3 +1,17 @@
 .descriptionBlock {
 padding: 10px;
+margin: 10px 0 0 10px;
+border: 1px solid;
+max-width: 120px;
+text-align: center;
+border-radius: 5px;
+background-color: #3dfbeb75;
+font-size: 18px;
+}
+.descriptionBlock:hover{
+   background-color: #3dfbeb;
+}
+.descriptionBlock img {
+   width: 100px;
+   height: 100px;
 }
