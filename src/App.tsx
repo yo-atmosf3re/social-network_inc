@@ -24,6 +24,7 @@ const App: React.FC<PropsType> = (props) => {
           <Route path='/dialogs/*' element={<DialogsContainer
           />} />
           <Route path='/users' element={<UsersContainer />} />
+          <Route path='/login' element={<UsersContainer />} />
         </Routes>
       </div>
     </div>
