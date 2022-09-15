@@ -12,7 +12,7 @@ type MapDispatchToPropsType = {
 
 export type DialogsPropsType = MapDispatchToPropsType & initialStateType
 
-let mapStateToProps = (state: AppStateType): initialStateType => ({ dialogsPage: state.dialogsPage })
+let mapStateToProps = (state: AppStateType): initialStateType => ({ dialogsPage: state.dialogsPage, isAuth: state.auth.isAuth })
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
    return {
       addNewMessage: () => {

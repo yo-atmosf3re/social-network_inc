@@ -4,6 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
 import { DialogsPropsType } from "./DialogsContainer";
 import Message from "./Message/Message";
+import { Navigate } from "react-router-dom";
 
 export const Dialogs = (props: DialogsPropsType) => {
    let state = props.dialogsPage;
@@ -23,6 +24,8 @@ export const Dialogs = (props: DialogsPropsType) => {
    let emptyField = () => {
       return state.newMessageBody === '' ? true : false
    }
+
+   if (!props.isAuth) return <Navigate to={'/login'} />
 
    return (
       <div className={s.dialogs}>

@@ -25,6 +25,7 @@ const initialState = {
 
 export type initialStateType = {
    dialogsPage: DialogPageType
+   isAuth: boolean
 }
 
 export const dialogsPageReducer = (state: DialogsState = initialState, action: AppActionsTypes): DialogsState => {
