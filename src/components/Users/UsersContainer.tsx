@@ -5,6 +5,7 @@ import { followSuccess, initialStateType, setUserPage, unfollowSuccess, toggleFo
 import Users from './Users';
 import s from './Users.module.css'
 import Preloader from '../common/Preloader/Preloader';
+import { WithAuthRedirect } from '../../hoc/WithAuthRedirect';
 
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
@@ -77,7 +78,9 @@ let mapStateToProps = (state: AppStateType): initialStateType => ({
 //    }
 // }
 
-export default connect(mapStateToProps, {
+
+
+export default WithAuthRedirect(connect(mapStateToProps, {
    followSuccess,
    unfollowSuccess,
    setUserPage,
@@ -85,4 +88,4 @@ export default connect(mapStateToProps, {
    getUsersTC,
    follow,
    unfollow,
-})(UsersContainer);
+})(UsersContainer));
