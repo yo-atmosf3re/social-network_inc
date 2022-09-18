@@ -6,7 +6,9 @@ import defaultAvatar from '../../../../assets/image/defaultAvatar.png'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 type ProfileInfoPropsType = {
-   profile: ProfilePageType
+   profile: ProfilePageType | null
+   status: string
+   updateStatus: (status: string) => void
 }
 
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -21,7 +23,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
          <div className={s.descriptionBlock}>
             <img src={props.profile.photos.small !== null ? props.profile.photos.small : defaultAvatar} />
             <br />
-            <ProfileStatus status={'Hello, my friends!'} />
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
             <br />
             {props.profile.aboutMe}
             <br />
