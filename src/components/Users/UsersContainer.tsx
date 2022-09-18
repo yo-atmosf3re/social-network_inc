@@ -6,6 +6,7 @@ import Users from './Users';
 import s from './Users.module.css'
 import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
+import { compose } from 'redux';
 
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
@@ -54,6 +55,20 @@ let mapStateToProps = (state: AppStateType): initialStateType => ({
    isFetching: state.usersPage.isFetching,
    followingInProgress: state.usersPage.followingInProgress,
 })
+
+export default compose<React.ComponentType>(
+   withAuthRedirect,
+   connect(mapStateToProps, {
+      followSuccess,
+      unfollowSuccess,
+      setUserPage,
+      toggleFollowingProgress,
+      getUsersTC,
+      follow,
+      unfollow,
+   }),
+)(UsersContainer);
+
 // Функция, которая передаёт callback'и в контейнерную компоненту
 // let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 //    return {
@@ -77,15 +92,3 @@ let mapStateToProps = (state: AppStateType): initialStateType => ({
 //       }
 //    }
 // }
-
-
-
-export default withAuthRedirect(connect(mapStateToProps, {
-   followSuccess,
-   unfollowSuccess,
-   setUserPage,
-   toggleFollowingProgress,
-   getUsersTC,
-   follow,
-   unfollow,
-})(UsersContainer));

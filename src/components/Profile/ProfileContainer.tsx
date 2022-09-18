@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
 import { setUserProfileTC } from "../../redux/profilePage-reducer";
 import { AppStateType } from "../../redux/redux-store";
@@ -61,7 +62,7 @@ type PropsType = MapStatePropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => ({ profile: state.profilePage.profile, })
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+
 
 function withRouter(Component: any) {
    function ComponentWithRouterProp(props: any) {
@@ -78,6 +79,8 @@ function withRouter(Component: any) {
    return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, {
-   setUserProfileTC
-})(withRouter(AuthRedirectComponent));
+export default compose<React.ComponentType>(
+   connect(mapStateToProps, { setUserProfileTC }),
+   withRouter,
+   withAuthRedirect,
+)(ProfileContainer);
