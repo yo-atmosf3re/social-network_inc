@@ -3,6 +3,7 @@ import Preloader from "../../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../ProfileContainer";
 import s from './ProfileInfo.module.css'
 import defaultAvatar from '../../../../assets/image/defaultAvatar.png'
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 type ProfileInfoPropsType = {
    profile: ProfilePageType
@@ -19,6 +20,8 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
          </div>
          <div className={s.descriptionBlock}>
             <img src={props.profile.photos.small !== null ? props.profile.photos.small : defaultAvatar} />
+            <br />
+            <ProfileStatus status={'Hello, my friends!'} />
             <br />
             {props.profile.aboutMe}
             <br />

@@ -7,9 +7,11 @@ text-align: center;
 border-radius: 5px;
 background-color: #3dfbeb75;
 font-size: 18px;
+transition: 0.35s;
 }
 .descriptionBlock:hover{
    background-color: #3dfbeb;
+   transition: 0.7s;
 }
 .descriptionBlock img {
    width: 100px;

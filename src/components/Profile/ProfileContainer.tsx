@@ -82,5 +82,5 @@ function withRouter(Component: any) {
 export default compose<React.ComponentType>(
    connect(mapStateToProps, { setUserProfileTC }),
    withRouter,
-   withAuthRedirect,
+   // withAuthRedirect,
 )(ProfileContainer);

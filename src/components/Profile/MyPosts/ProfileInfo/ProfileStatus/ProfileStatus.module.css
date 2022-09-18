@@ -1,0 +1,8 @@
+.inputBlock input {
+   position: relative;
+   right: 3px;
+   margin: 5px 0px 0 0;
+   /* padding: 0 0 0 5px; */
+   width: 120px;
+   text-align: center;
+}
