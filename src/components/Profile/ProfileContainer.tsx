@@ -14,13 +14,17 @@ class ProfileContainer extends React.Component<PropsType, {}> {
       this.props.setUserProfileTC(userId)
    }
    render() {
-      if (!this.props.isAuth) return <Navigate to={'/login'} />
       return (
          <div>
             <Profile {...this.props} profile={this.props.profile} />
          </div>
       );
    }
+}
+
+let AuthRedirectComponent = (props: PropsType) => {
+   if (!props.isAuth) return <Navigate to={'/login'} />
+   return <ProfileContainer {...props} />
 }
 
 // Типизация для MapDispatchToProps
@@ -82,4 +86,4 @@ function withRouter(Component: any) {
 
 export default connect(mapStateToProps, {
    setUserProfileTC
-})(withRouter(ProfileContainer));
+})(withRouter(AuthRedirectComponent));
