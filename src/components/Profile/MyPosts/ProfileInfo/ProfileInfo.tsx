@@ -1,9 +1,9 @@
 import React from "react";
-import Preloader from "../../../common/Preloader/Preloader";
 import { ProfilePageType } from "../../ProfileContainer";
 import s from './ProfileInfo.module.css'
 import defaultAvatar from '../../../../assets/image/defaultAvatar.png'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import Preloader from "../../../common/Preloader/Preloader";
 
 type ProfileInfoPropsType = {
    profile: ProfilePageType | null

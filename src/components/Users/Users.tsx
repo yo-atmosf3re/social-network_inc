@@ -4,6 +4,7 @@ import defaultAvatar from '../../assets/image/defaultAvatar.png'
 import { UserType } from '../../redux/users-reducer';
 import { NavLink } from 'react-router-dom';
 import { usersAPI } from '../../api/Api';
+import { Paginator } from '../common/Paginator/Paginator';
 
 type UsersPresentationalPropsType = {
    totalUsersCount: number
@@ -68,3 +69,7 @@ function Users(props: UsersPresentationalPropsType) {
 }
 
 export default Users;
+
+function dispatch(arg0: any) {
+   throw new Error('Function not implemented.');
+}

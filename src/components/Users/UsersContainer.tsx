@@ -4,9 +4,9 @@ import { AppStateType } from '../../redux/redux-store';
 import { followSuccess, initialStateType, setUserPage, unfollowSuccess, toggleFollowingProgress, getUsersTC, follow, unfollow } from '../../redux/users-reducer';
 import Users from './Users';
 import s from './Users.module.css'
-import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
+import Preloader from '../common/Preloader/Preloader';
 
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
