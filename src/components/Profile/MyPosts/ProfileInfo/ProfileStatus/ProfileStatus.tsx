@@ -33,7 +33,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, {}> {
       return (<>
          {!this.state.editMode &&
             <div>
-               <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
+               <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status || 'No status'}</span>
             </div>
          }
          {this.state.editMode &&
