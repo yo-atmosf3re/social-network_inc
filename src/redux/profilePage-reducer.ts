@@ -18,7 +18,7 @@ const initialState = {
       { id: 3, message: "It's my second post", likecount: '♥ 0' },
    ],
    profile: null,
-   status: 'Double click here to change status',
+   status: '',
 }
 
 export const profilePageReducer = (state: ProfileStateType = initialState, action: AppActionsTypes): ProfileStateType => {
