@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import styles from './ProfileStatus.module.css'
 
 type ProfileStatusPropsType = {
@@ -23,8 +23,10 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, {}> {
       })
       this.props.updateStatus(this.state.status)
    }
-   onStatusChange = (e) => {
-      e.currenttarget
+   onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+      this.setState({
+         status: e.currentTarget.value,
+      })
    }
 
    render() {

@@ -18,13 +18,7 @@ const initialState = {
       { id: 3, message: "It's my second post", likecount: '♥ 0' },
    ],
    profile: null,
-   status: '',
-}
-
-export type initialStateType = {
-   newPostText: string
-   posts: Array<PostType>
-   profile?: any
+   status: 'Double click here to change status',
 }
 
 export const profilePageReducer = (state: ProfileStateType = initialState, action: AppActionsTypes): ProfileStateType => {
@@ -68,20 +62,20 @@ export const setStatus = (status: string) => ({ type: SET_STATUS, status } as co
 
 export const setUserProfileTC = (userId: number): AppThunkType => {
    return (dispatch) => {
-      usersAPI.getCurrentUsers(userId)
+      usersAPI.getProfile(userId)
          .then((data) => {
             dispatch(setUserProfile(data.data))
          });
    }
 }
-export const getStatus = (userId: number): AppThunkType => {
-   return (dispatch) => {
+export const getStatus = (userId: number): AppThunkType =>
+   (dispatch) => {
       profileAPI.getStatus(userId)
          .then((data) => {
             dispatch(setStatus(data.data))
          });
    }
-}
+
 export const updateStatus = (status: string): AppThunkType => {
    return (dispatch) => {
       profileAPI.updateStatus(status)

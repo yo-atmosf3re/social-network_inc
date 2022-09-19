@@ -14,8 +14,8 @@ export const usersAPI = {
          return res.data
       })
    },
-   getCurrentUsers(userId: number) {
-      return profileAPI.getCurrentUsers(userId)
+   getProfile(userId: number) {
+      return profileAPI.getProfile(userId)
    },
    unfollow(id: number) {
       return instance.delete(`follow/${id}`)
@@ -25,7 +25,7 @@ export const usersAPI = {
    },
 }
 export const profileAPI = {
-   getCurrentUsers(userId: number) {
+   getProfile(userId: number) {
       return instance.get(`profile/${userId}`)
    },
    getStatus(userId: number) {
