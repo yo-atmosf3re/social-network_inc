@@ -1,0 +1,16 @@
+.textarea {
+   max-width: 1000px;
+   width: 99%;
+   max-height: 100px;
+   margin: 5px 0 0 0;
+   border-radius: 3px;
+   background-color: rgba(5, 38, 128, 0.452);
+   color: rgb(253, 249, 253);
+   text-decoration: dashed;
+   font-size: 20px;
+   resize: none;
+}
+
+.messages .message {
+   color: rgb(255, 255, 255);
+}

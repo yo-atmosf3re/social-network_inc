@@ -1,9 +1,9 @@
 import { Form, Formik } from 'formik'
 import React, { ChangeEvent } from 'react'
-import { Field, reduxForm } from 'redux-form'
 import s from './AddMessageForm.module.css'
+import TextareaField from './TextareaField/TextareaField'
 
-type AddMessageFormPropsType = {
+export type AddMessageTextareaPropsType = {
    messagesElements: JSX.Element[]
    emptyField: () => boolean
    newMessageBody: string
@@ -11,23 +11,7 @@ type AddMessageFormPropsType = {
    onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-const TextareaField: React.FC<AddMessageFormPropsType> = ({
-   messagesElements, newMessageBody, onNewMessageChange, emptyField, addNewMessage
-}) => {
-   return (
-      <div className={s.messages}>
-         {messagesElements}
-         <textarea
-            placeholder="Enter your message"
-            value={newMessageBody}
-            onChange={onNewMessageChange}
-            className={s.textarea} >
-         </textarea >
-      </div>
-   )
-}
-
-const AddMessageForm: React.FC<AddMessageFormPropsType> = ({
+const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
    messagesElements, newMessageBody, onNewMessageChange, emptyField, addNewMessage
 }) => {
    return (
@@ -44,16 +28,14 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = ({
             }}
          >
             <Form>
-               <>
-                  <TextareaField
-                     messagesElements={messagesElements}
-                     newMessageBody={newMessageBody}
-                     onNewMessageChange={onNewMessageChange}
-                     emptyField={emptyField}
-                     addNewMessage={addNewMessage}
-                  />
-                  <button onClick={addNewMessage} disabled={emptyField()}>Send</button>
-               </>
+               <TextareaField
+                  messagesElements={messagesElements}
+                  newMessageBody={newMessageBody}
+                  onNewMessageChange={onNewMessageChange}
+                  emptyField={emptyField}
+                  addNewMessage={addNewMessage}
+               />
+               <button onClick={addNewMessage} disabled={emptyField()}>Send</button>
             </Form>
          </Formik>
       </>
