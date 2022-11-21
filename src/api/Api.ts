@@ -9,10 +9,9 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-   getUsers(currentPage: number = 1, pageSize: number = 10) {
-      return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => {
-         return res.data
-      })
+   async getUsers(currentPage: number = 1, pageSize: number = 10) {
+      const res = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
+      return res.data;
    },
    getProfile(userId: number) {
       return profileAPI.getProfile(userId)

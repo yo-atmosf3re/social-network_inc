@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import { usersAPI } from "../api/Api";
 import { AppActionsTypes, AppThunkType } from "./redux-store";
 
-// Константа для AC
+// Константы для AC
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';

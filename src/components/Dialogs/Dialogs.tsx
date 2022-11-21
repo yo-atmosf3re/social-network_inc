@@ -4,37 +4,33 @@ import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
 import { DialogsPropsType } from "./DialogsContainer";
 import Message from "./Message/Message";
-import { Navigate } from "react-router-dom";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
 export const Dialogs = (props: DialogsPropsType) => {
-   let state = props.dialogsPage;
-   let dialogsElements = state.dialogData
+   const { dialogData, messages, newMessageBody } = props.dialogsPage;
+
+   const dialogsElements = dialogData
       .map((d: DialogItemType) => <DialogItem key={d.id} name={d.name} id={d.id} />)
-   let messagesElements = state.messages.map((m: MessageType) => <Message message={m.message} id={m.id} key={m.id} />)
 
-   let addNewMessage = () => {
-      props.addNewMessage()
-   }
+   const messagesElements = messages.map((m: MessageType) => <Message message={m.message} id={m.id} key={m.id} />)
 
-   let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      let text = e.currentTarget.value;
-      props.onNewMessageChange(text)
-   }
+   const addNewMessage = () => props.addNewMessage()
 
-   let emptyField = () => {
-      return state.newMessageBody === '' ? true : false
-   }
+   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => props.onNewMessageChange(e.currentTarget.value)
+
+   const emptyField = () => newMessageBody === '' ? true : false
 
    return (
       <div className={s.dialogs}>
          <div className={s.dialogsItems}>
             {dialogsElements}
          </div>
-         <div className={s.messages}>
-            {messagesElements}
-            {<textarea placeholder="Enter your message" value={state.newMessageBody} onChange={onNewMessageChange} className={s.textarea}></textarea>}
-            {<button disabled={emptyField()} onClick={addNewMessage}>Send</button>}
-         </div>
+         <AddMessageForm
+            addNewMessage={addNewMessage}
+            messagesElements={messagesElements}
+            onNewMessageChange={onNewMessageChange}
+            emptyField={emptyField}
+            newMessageBody={props.dialogsPage.newMessageBody} />
       </div >
    )
 }
