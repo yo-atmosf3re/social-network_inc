@@ -14,7 +14,7 @@ export const Dialogs = (props: DialogsPropsType) => {
 
    const messagesElements = messages.map((m: MessageType) => <Message message={m.message} id={m.id} key={m.id} />)
 
-   const addNewMessage = () => props.addNewMessage()
+   const addNewMessage = (value: string) => props.addNewMessage(value.newMessageBody)
 
    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => props.onNewMessageChange(e.currentTarget.value)
 

@@ -5,7 +5,6 @@ import { DialogPageType, MessageType } from "./store";
 export type DialogsState = typeof initialState;
 
 const initialState = {
-   newMessageBody: '',
    messages: [
       { id: 1, message: "Hi!" },
       { id: 2, message: "How are you?" },
@@ -36,12 +35,11 @@ export const dialogsPageReducer = (state: DialogsState = initialState, action: A
       case SEND_MASSAGE:
          const newAddMessage: MessageType = {
             id: new Date().getTime(),
-            message: state.newMessageBody,
+            message: action.text,
          };
          return {
             ...state,
             messages: [...state.messages, newAddMessage],
-            newMessageBody: ''
          };
       case UPDATE_NEW_MESSAGE_BODY:
          return {
@@ -54,5 +52,5 @@ export const dialogsPageReducer = (state: DialogsState = initialState, action: A
    }
 }
 
-export const addNewMessageActionCreator = () => ({ type: 'SEND-MESSAGE', } as const);
+export const addNewMessageActionCreator = (text: string) => ({ type: 'SEND-MESSAGE', text } as const);
 export const updateNewMessageBodyActionCreator = (body: string) => ({ type: 'UPDATE-NEW-MESSAGE-BODY', body: body, } as const);

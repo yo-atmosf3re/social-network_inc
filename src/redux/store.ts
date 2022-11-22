@@ -47,7 +47,6 @@ export type ProfilePageType = {
 export type DialogPageType = {
    dialogData: Array<DialogType>
    messages: Array<MessageType>
-   newMessageBody: string
 }
 
 export type SidebarItemType = {
@@ -111,7 +110,6 @@ export let oldStore: StoreType = {
          ],
       },
       dialogsPage: {
-         newMessageBody: '',
          messages: [
             { id: 1, message: "Hi!" },
             { id: 2, message: "How are you?" },
