@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 import { DialogItemType, MessageType } from "../../redux/store";
 import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
@@ -14,11 +14,14 @@ export const Dialogs = (props: DialogsPropsType) => {
 
    const messagesElements = messages.map((m: MessageType) => <Message message={m.message} id={m.id} key={m.id} />)
 
-   const addNewMessage = (value: string) => props.addNewMessage(value.newMessageBody)
+   const addNewMessage = useCallback(() => {
+      props.addNewMessage()
+      props.onNewMessageChange('')
+   }, [props.addNewMessage, props.onNewMessageChange])
 
-   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => props.onNewMessageChange(e.currentTarget.value)
+   const onNewMessageChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => props.onNewMessageChange(e.currentTarget.value), [props.onNewMessageChange])
 
-   const emptyField = () => newMessageBody === '' ? true : false
+   const emptyField = useCallback(() => newMessageBody === '' ? true : false, [newMessageBody])
 
    return (
       <div className={s.dialogs}>

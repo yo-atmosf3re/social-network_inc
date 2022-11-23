@@ -20,11 +20,13 @@ const initialState = {
       { id: "5", name: 'Mark' },
       { id: "6", name: 'Elvis' },
    ],
+   newMessageBody: '',
 }
 
 export type initialStateType = {
    dialogsPage: DialogPageType
    isAuth: boolean
+   newMessageBody: string
 }
 
 export const dialogsPageReducer = (state: DialogsState = initialState, action: AppActionsTypes): DialogsState => {
@@ -35,7 +37,7 @@ export const dialogsPageReducer = (state: DialogsState = initialState, action: A
       case SEND_MASSAGE:
          const newAddMessage: MessageType = {
             id: new Date().getTime(),
-            message: action.text,
+            message: state.newMessageBody,
          };
          return {
             ...state,
@@ -52,5 +54,5 @@ export const dialogsPageReducer = (state: DialogsState = initialState, action: A
    }
 }
 
-export const addNewMessageActionCreator = (text: string) => ({ type: 'SEND-MESSAGE', text } as const);
-export const updateNewMessageBodyActionCreator = (body: string) => ({ type: 'UPDATE-NEW-MESSAGE-BODY', body: body, } as const);
+export const addNewMessageActionCreator = () => ({ type: 'SEND-MESSAGE' } as const);
+export const updateNewMessageBodyActionCreator = (body: string) => ({ type: 'UPDATE-NEW-MESSAGE-BODY', body, } as const);
