@@ -7,7 +7,7 @@ export type AddMessageTextareaPropsType = {
    messagesElements: JSX.Element[]
    emptyField: () => boolean
    newMessageBody: string
-   addNewMessage: (text: string) => void
+   addNewMessage: () => void
    onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
@@ -22,7 +22,7 @@ const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
             }}
             onSubmit={(values, { setSubmitting }) => {
                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
+                  console.log(JSON.stringify(values, null, 2));
                   setSubmitting(false);
                }, 400);
             }}
@@ -35,7 +35,7 @@ const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
                   emptyField={emptyField}
                   addNewMessage={addNewMessage}
                />
-               <button onClick={() => { addNewMessage() }} disabled={!newMessageBody}>Send</button>
+               <button onClick={addNewMessage} disabled={emptyField()}>Send</button>
             </Form>
          </Formik>
       </>

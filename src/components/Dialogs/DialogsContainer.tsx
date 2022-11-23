@@ -9,7 +9,7 @@ import { DialogPageType } from "../../redux/store";
 import Dialogs from "./Dialogs";
 
 type MapDispatchToPropsType = {
-   addNewMessage: (newMessageBody: string) => void
+   addNewMessage: () => void
    onNewMessageChange: (text: string) => void
 }
 type MapStateToPropsType = { dialogsPage: DialogPageType }
@@ -18,7 +18,7 @@ export type DialogsPropsType = MapDispatchToPropsType & initialStateType
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({ dialogsPage: state.dialogsPage })
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
    return {
-      addNewMessage: (newMessageBody: string) => dispatch(addNewMessageActionCreator(newMessageBody)),
+      addNewMessage: () => dispatch(addNewMessageActionCreator()),
       onNewMessageChange: (text: string) => dispatch(updateNewMessageBodyActionCreator(text)),
    }
 }
