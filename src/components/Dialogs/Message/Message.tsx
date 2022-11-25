@@ -1,10 +1,16 @@
 import React from "react";
 import { MessageType } from "../../../redux/store";
 import s from './../Dialogs.module.css'
+import defaultAvatar from '../../../assets/image/defaultAvatar.png'
 
-export const Message = (props: MessageType) => {
+export const Message: React.FC<MessageType> = ({
+   message
+}) => {
    return (
-      <div className={s.message}>{props.message}{<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIZYSxc3XHXqhhaUedCBWKj9VX8s1K0_4hhrL_xaSJ06iaKEvyUWdQIK6BaIaTZjIxm-c&usqp=CAU" alt="" />}</div>
+      <div className={s.message}>
+         {message}
+         {<img src={defaultAvatar} alt="" />}
+      </div>
    )
 }
 

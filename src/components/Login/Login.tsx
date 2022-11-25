@@ -7,7 +7,7 @@ type FormDataType = {
    rememberMe: boolean
 }
 
-function Login() {
+const Login = () => {
    const onSubmit = (formData: FormDataType) => {
       console.log(formData)
    }

@@ -1,7 +1,5 @@
-import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
-import { authAPI, usersAPI } from "../../api/Api";
 import { setAuthUserDataSuccess, getAuthUserData } from "../../redux/auth-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import Header from "./Header";
@@ -32,8 +30,6 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
    isAuth: state.auth.isAuth,
    login: state.auth.login,
 })
-
-// export default HeaderContainer;
 
 export default connect(mapStateToProps, {
    setAuthUserDataSuccess,

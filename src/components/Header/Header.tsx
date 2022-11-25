@@ -1,21 +1,31 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Header.module.css';
+import logo from '../../assets/image/logo.png'
 
 type HeaderPropsType = {
    isAuth: boolean
-   login: string
+   login: string | null
+   // setAuthUserDataSuccess: (userId: null, email: null, login: null) => void
+   // getAuthUserData: () => void
 }
 
-const Header = (props: any) => {
-   return <header className={s.header}>
-      <img src='https://svn.apache.org/repos/asf/openoffice/ooo-site/trunk/content/images/aoo-logo-100x100.png' />
-
+const Header: React.FC<HeaderPropsType> = ({
+   isAuth, login
+}) => {
+   return <header
+      className={s.header}>
+      <img src={logo} />
       <div className={s.loginBlock}>
-         {props.isAuth ? `Welcome, ${props.login}` :
-            <NavLink to={'/login'}>
-               Login
-            </NavLink>}
+         {
+            isAuth
+               ?
+               `Welcome, ${login}`
+               :
+               <NavLink to={'/login'}>
+                  Login
+               </NavLink>
+         }
       </div>
    </header>;
 }
