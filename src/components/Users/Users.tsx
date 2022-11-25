@@ -30,7 +30,7 @@ function Users(props: UsersPresentationalPropsType) {
 
    return (<div>
       <div className={s.pageNumbersBlock}>{
-         slicedPages.map(p => <span className={props.currentPage === p ? s.selectedPage : ''} onClick={(e) => { debugger; props.onPageChanged(p, 10); debugger }}>{p}</span>)
+         slicedPages.map((p, i) => <span key={i} className={props.currentPage === p ? s.selectedPage : ''} onClick={(e) => { debugger; props.onPageChanged(p, 10); debugger }}>{p}</span>)
       }</div>
 
       {
