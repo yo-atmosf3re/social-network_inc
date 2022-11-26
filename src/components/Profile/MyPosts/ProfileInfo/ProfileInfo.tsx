@@ -4,6 +4,7 @@ import s from './ProfileInfo.module.css'
 import defaultAvatar from '../../../../assets/image/defaultAvatar.png'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import Preloader from "../../../common/Preloader/Preloader";
+import profileInfoBG from '../../../../assets/image/profileInfoBG.jpg'
 
 type ProfileInfoPropsType = {
    profile: ProfilePageType | null
@@ -11,29 +12,39 @@ type ProfileInfoPropsType = {
    updateStatus: (status: string) => void
 }
 
-export const ProfileInfo = (props: ProfileInfoPropsType) => {
-   if (!props.profile) {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
+   profile, status, updateStatus
+}) => {
+
+   if (!profile) {
       return <Preloader />
    }
+
+   const {
+      aboutMe, contacts, fullName, lookingForAJobDescription, photos, userId
+   } = profile;
+
+   const imageCondition = photos.small !== null ? photos.small : defaultAvatar;
+
    return (
       <div>
          <div className="profileinfo">
-            <img src='https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg' />
+            <img src={profileInfoBG} />
          </div>
          <div className={s.descriptionBlock}>
-            <img src={props.profile.photos.small !== null ? props.profile.photos.small : defaultAvatar} />
+            <img src={imageCondition} />
             <br />
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+            <ProfileStatus status={status} updateStatus={updateStatus} />
             <br />
-            {props.profile.aboutMe}
+            {aboutMe}
             <br />
-            {props.profile.contacts.facebook}
+            {contacts.facebook}
             <br />
-            {props.profile.fullName}
+            {fullName}
             <br />
-            {props.profile.lookingForAJobDescription}
+            {lookingForAJobDescription}
             <br />
-            {props.profile.userId}
+            {userId}
          </div>
       </div>
    )

@@ -1,12 +1,9 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 import Post from "./Post/Post";
 import s from './MyPost.module.css';
 import { PostType } from "../../../redux/store";
 import { MyPostPropsType } from "./MyPostsContainer";
 import PostTextareaField from "./PostTextareField/PostTextareaField";
-
-
-
 
 const MyPosts: React.FC<MyPostPropsType> = ({
    addPost, newPostText, posts, updateNewPostText
@@ -14,13 +11,13 @@ const MyPosts: React.FC<MyPostPropsType> = ({
 
    const postsElements = posts.map((p: PostType) => <Post id={p.id} message={p.message} likecount={p.likecount} key={p.id} />)
 
-   const onAddPost = () => addPost()
+   const onAddPost = useCallback(() => addPost(), [addPost])
 
-   const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => updateNewPostText(e.currentTarget.value)
+   const newTextChangeHandler = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => updateNewPostText(e.currentTarget.value), [updateNewPostText])
 
-   const clearTextarea = () => updateNewPostText('')
+   const clearTextarea = useCallback(() => updateNewPostText(''), [updateNewPostText])
 
-   const emptyField = () => newPostText === '' ? true : false
+   const emptyField = useCallback(() => newPostText === '' ? true : false, [newPostText])
 
    return (
       <div className={s.postsBlock}>
@@ -40,4 +37,5 @@ const MyPosts: React.FC<MyPostPropsType> = ({
       </div>
    );
 }
+
 export default MyPosts;

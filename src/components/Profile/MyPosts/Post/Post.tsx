@@ -1,14 +1,20 @@
 import React from "react";
 import { PostType } from "../../../../redux/store";
 import s from './Post.module.css';
+import defaultAvatar from '../../../../assets/image/defaultAvatar.png'
 
-export const Post: React.FC<PostType> = (props) => {
+export const Post: React.FC<PostType> = ({
+   message, likecount
+}) => {
    return (
       <div className={s.item}>
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIZYSxc3XHXqhhaUedCBWKj9VX8s1K0_4hhrL_xaSJ06iaKEvyUWdQIK6BaIaTZjIxm-c&usqp=CAU" alt="" />
-         {props.message}
+         <img
+            src={defaultAvatar}
+            alt=""
+         />
+         {message}
          <br />
-         <span>Like {props.likecount}</span>
+         <span>Like {likecount}</span>
       </div>
    );
 }

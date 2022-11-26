@@ -19,14 +19,14 @@ export type initialStateType = {
    profile?: any
 }
 
-let mapStateToProps = (state: AppStateType): initialStateType => ({ posts: state.profilePage.posts, newPostText: state.profilePage.newPostText, })
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+const mapStateToProps = (state: AppStateType): initialStateType => ({ posts: state.profilePage.posts, newPostText: state.profilePage.newPostText, })
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
    return {
       addPost: () => {
          dispatch(addPostActionCreator())
       },
       updateNewPostText: (text: string) => {
-         let action = updateNewTextActionCreator(text)
+         const action = updateNewTextActionCreator(text)
          dispatch(action)
       }
    }

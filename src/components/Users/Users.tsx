@@ -3,8 +3,6 @@ import s from './Users.module.css'
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
 import { UserType } from '../../redux/users-reducer';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/Api';
-import { Paginator } from '../common/Paginator/Paginator';
 
 type UsersPresentationalPropsType = {
    totalUsersCount: number
@@ -17,37 +15,56 @@ type UsersPresentationalPropsType = {
    followingInProgress: Array<number>
 }
 
-function Users(props: UsersPresentationalPropsType) {
-   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-   let pages = [];
+const Users: React.FC<UsersPresentationalPropsType> = ({
+   currentPage, follow, followingInProgress, onPageChanged, pageSize, totalUsersCount, unfollow, users
+}) => {
+
+   const pagesCount = Math.ceil(totalUsersCount / pageSize);
+   const pages = [];
+
    for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);
    }
-   let curP = props.currentPage;
-   let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
-   let curPL = curP + 5;
-   let slicedPages = pages.slice(curPF, curPL);
+
+   const curP = currentPage;
+   const curPF = ((curP - 5) < 0) ? 0 : curP - 5;
+   const curPL = curP + 5;
+   const slicedPages = pages.slice(curPF, curPL);
 
    return (<div>
-      <div className={s.pageNumbersBlock}>{
-         slicedPages.map((p, i) => <span key={i} className={props.currentPage === p ? s.selectedPage : ''} onClick={(e) => { debugger; props.onPageChanged(p, 10); debugger }}>{p}</span>)
-      }</div>
+      <div
+         className={s.pageNumbersBlock}>
+         {
+            slicedPages.map((p, i) =>
+               <span
+                  key={i}
+                  className={currentPage === p ? s.selectedPage : ''}
+                  onClick={(e) => { onPageChanged(p, 10) }}>
+                  {p}
+               </span>)
+         }
+      </div>
 
       {
-         props.users.map(u => <div className={s.users} key={u.id}>
+         users.map(u => <div
+            className={s.users}
+            key={u.id}>
             <span>
                <div>
                   <NavLink to={'/profile/' + u.id}>
-                     <img src={u.photos.large != null ? u.photos.large : defaultAvatar} alt="" />
+                     <img
+                        src={u.photos.large != null ? u.photos.large : defaultAvatar}
+                        alt=""
+                     />
                   </NavLink>
                </div>
                <div>
                   {u.followed
-                     ? <button disabled={props.followingInProgress.some(i => i === u.id)} onClick={() => {
-                        props.unfollow(u.id)
+                     ? <button disabled={followingInProgress.some(i => i === u.id)} onClick={() => {
+                        unfollow(u.id)
                      }}>Unfollow</button>
-                     : <button disabled={props.followingInProgress.some(i => i === u.id)} onClick={() => {
-                        props.follow(u.id)
+                     : <button disabled={followingInProgress.some(i => i === u.id)} onClick={() => {
+                        follow(u.id)
                      }}>Follow</button>
 
                   }
@@ -58,10 +75,6 @@ function Users(props: UsersPresentationalPropsType) {
                   <div>{u.name}</div>
                   <div>{u.status}</div>
                </span>
-               <span>
-                  <div>{"u.location.country"}</div>
-                  <div>{"u.location.city"}</div>
-               </span>
             </span>
          </div>)
       }
@@ -69,7 +82,3 @@ function Users(props: UsersPresentationalPropsType) {
 }
 
 export default Users;
-
-function dispatch(arg0: any) {
-   throw new Error('Function not implemented.');
-}

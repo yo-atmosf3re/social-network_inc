@@ -6,8 +6,10 @@ import { DialogsPropsType } from "./DialogsContainer";
 import Message from "./Message/Message";
 import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
-export const Dialogs = (props: DialogsPropsType) => {
-   const { dialogData, messages, newMessageBody } = props.dialogsPage;
+export const Dialogs: React.FC<DialogsPropsType> = ({
+   dialogsPage, ...props
+}) => {
+   const { dialogData, messages, newMessageBody } = dialogsPage;
 
    const dialogsElements = dialogData
       .map((d: DialogItemType) => <DialogItem key={d.id} name={d.name} id={d.id} />)
@@ -33,7 +35,7 @@ export const Dialogs = (props: DialogsPropsType) => {
             messagesElements={messagesElements}
             onNewMessageChange={onNewMessageChange}
             emptyField={emptyField}
-            newMessageBody={props.dialogsPage.newMessageBody} />
+            newMessageBody={dialogsPage.newMessageBody} />
       </div >
    )
 }
