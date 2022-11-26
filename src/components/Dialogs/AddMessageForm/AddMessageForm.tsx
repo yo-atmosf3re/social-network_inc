@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import React, { ChangeEvent } from 'react'
 import s from './AddMessageForm.module.css'
 import TextareaField from './TextareaField/TextareaField'
@@ -25,7 +25,33 @@ const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
                addNewMessage()
             }}
          >
-            <Form>
+            {({
+               handleSubmit,
+               handleChange,
+               values,
+               handleReset
+            }) => {
+               return (
+                  <Form className={s.messages}>
+                     {messagesElements}
+                     <Field
+                        className={s.textarea}
+                        as='textarea'
+                        placeholder="Enter your message"
+                        value={newMessageBody}
+                        onChange={onNewMessageChange}
+                     >
+                     </Field >
+                     <button
+                        onClick={addNewMessage}
+                        disabled={emptyField()}
+                     >
+                        Send
+                     </button>
+                  </Form>
+               )
+            }}
+            {/* <Form>
                <TextareaField
                   messagesElements={messagesElements}
                   newMessageBody={newMessageBody}
@@ -34,37 +60,10 @@ const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
                   addNewMessage={addNewMessage}
                />
                <button onClick={addNewMessage} disabled={emptyField()}>Send</button>
-            </Form>
+            </Form> */}
          </Formik>
       </>
    )
 }
-
-{/* <form
-   onSubmit={ }
-   className={s.messages}>
-
-   {props.messagesElements}
-
-   {
-      <Field
-         placeholder="Enter your message"
-         component='textarea'
-         name='Message body' />
-   }
-
-   {<textarea
-      placeholder="Enter your message"
-      value={newMessageBody}
-      onChange={onNewMessageChange}
-      className={s.textarea}></textarea>}
-
-   {<button
-      disabled={emptyField()}
-      onClick={addNewMessage}
-   >
-      Send
-   </button>}
-</form> */}
 
 export default AddMessageForm

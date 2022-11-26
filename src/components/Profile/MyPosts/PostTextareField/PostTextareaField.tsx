@@ -24,15 +24,14 @@ const PostTextareaField: React.FC<PostTextFieldPropsType> = ({
             }, 400);
          }}>
          <Form>
-            <div>
-               <textarea
-                  onChange={newTextChangeHandler}
-                  value={newPostText} />
-            </div>
-            <div>
-               <button disabled={emptyField()} onClick={onAddPost}>Add post</button>
-               <button type='submit' onClick={clearTextarea}>Remove</button>
-            </div>
+            <textarea
+               // onSubmit={}
+               onChange={newTextChangeHandler}
+               value={newPostText}
+            />
+            <br />
+            <button disabled={emptyField()} onClick={onAddPost}>Add post</button>
+            <button type='submit' onClick={clearTextarea}>Remove</button>
          </Form>
       </Formik>
    )
