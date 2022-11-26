@@ -18,27 +18,31 @@ const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
       <>
          <Formik
             initialValues={{
-               newMessageBody: '',
+               newMessageBody: 'Test',
             }}
-            onSubmit={(values) => {
-               console.log(values)
-               addNewMessage()
+            onSubmit={(values, { setSubmitting }) => {
+               setTimeout(() => {
+                  alert(JSON.stringify(values, null, 2));
+                  setSubmitting(false);
+               }, 400);
             }}
          >
             {({
                handleSubmit,
                handleChange,
                values,
-               handleReset
+               handleReset,
+               handleBlur
             }) => {
                return (
                   <Form className={s.messages}>
                      {messagesElements}
                      <Field
+                        onBlur={handleBlur('textField')}
                         className={s.textarea}
                         as='textarea'
                         placeholder="Enter your message"
-                        value={newMessageBody}
+                        value={values.newMessageBody}
                         onChange={onNewMessageChange}
                      >
                      </Field >
