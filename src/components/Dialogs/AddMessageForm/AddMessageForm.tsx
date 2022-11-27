@@ -1,7 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import React, { ChangeEvent } from 'react'
 import s from './AddMessageForm.module.css'
-import TextareaField from './TextareaField/TextareaField'
 
 export type AddMessageTextareaPropsType = {
    messagesElements: JSX.Element[]
@@ -18,7 +17,7 @@ const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
       <>
          <Formik
             initialValues={{
-               newMessageBody: 'Test',
+               newMessageBody: '',
             }}
             onSubmit={(values, { setSubmitting }) => {
                setTimeout(() => {
@@ -31,19 +30,18 @@ const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
                handleSubmit,
                handleChange,
                values,
-               handleReset,
                handleBlur
             }) => {
                return (
                   <Form className={s.messages}>
                      {messagesElements}
                      <Field
-                        onBlur={handleBlur('textField')}
+                        // onSubmit={handleSubmit}
                         className={s.textarea}
                         as='textarea'
                         placeholder="Enter your message"
                         value={values.newMessageBody}
-                        onChange={onNewMessageChange}
+                     // onChange={onNewMessageChange}
                      >
                      </Field >
                      <button
