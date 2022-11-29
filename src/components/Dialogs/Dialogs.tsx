@@ -35,7 +35,8 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
             messagesElements={messagesElements}
             onNewMessageChange={onNewMessageChange}
             emptyField={emptyField}
-            newMessageBody={dialogsPage.newMessageBody} />
+            newMessageBody={dialogsPage.newMessageBody}
+         />
       </div >
    )
 }
