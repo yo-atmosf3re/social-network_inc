@@ -9,10 +9,9 @@ export const Message: React.FC<MessageType> = ({
    return (
       <div className={s.message}>
          {message}
-         {<img src={defaultAvatar} alt="" />}
+         {<img
+            src={defaultAvatar}
+            alt="" />}
       </div>
    )
 }
-
-
-export default Message;

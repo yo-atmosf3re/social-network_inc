@@ -18,5 +18,3 @@ export const Post: React.FC<PostType> = ({
       </div>
    );
 }
-
-export default Post;

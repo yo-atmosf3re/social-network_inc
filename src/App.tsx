@@ -1,13 +1,13 @@
 import * as React from 'react';
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import { PropsType } from './redux/store';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
+import { DialogsContainer } from './components/Dialogs';
+import { Login } from './components/Login';
+import { Navbar } from './components/Navbar';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App: React.FC<PropsType> = (props) => {
   const state = props.oldStore.getState();

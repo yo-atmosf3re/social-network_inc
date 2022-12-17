@@ -3,19 +3,10 @@ import s from './Users.module.css'
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
 import { UserType } from '../../redux/users-reducer';
 import { NavLink } from 'react-router-dom';
+import { UsersPresentationalPropsType } from './Users.types';
 
-type UsersPresentationalPropsType = {
-   totalUsersCount: number
-   pageSize: number
-   currentPage: number
-   users: Array<UserType>
-   unfollow: (id: number) => void
-   follow: (id: number) => void
-   onPageChanged: (pageNumber: number, pageSize: number) => void
-   followingInProgress: Array<number>
-}
 
-const Users: React.FC<UsersPresentationalPropsType> = ({
+export const Users: React.FC<UsersPresentationalPropsType> = ({
    currentPage, follow, followingInProgress, onPageChanged, pageSize, totalUsersCount, unfollow, users
 }) => {
 
@@ -81,4 +72,3 @@ const Users: React.FC<UsersPresentationalPropsType> = ({
    </div>);
 }
 
-export default Users;

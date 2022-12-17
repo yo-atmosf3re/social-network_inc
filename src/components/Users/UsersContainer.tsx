@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
-import { followSuccess, initialStateType, setUserPage, unfollowSuccess, toggleFollowingProgress, getUsersTC, follow, unfollow } from '../../redux/users-reducer';
-import Users from './Users';
-import s from './Users.module.css'
+import {
+   followSuccess, initialStateType, setUserPage,
+   unfollowSuccess, toggleFollowingProgress, getUsersTC,
+   follow, unfollow
+} from '../../redux/users-reducer';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
-import Preloader from '../common/Preloader/Preloader';
+import { Preloader } from '../common/Preloader';
+import { Users } from '.';
+import { UsersPropsType } from './Users.types';
 
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
@@ -19,7 +23,11 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 
    render() {
       return <>
-         {this.props.isFetching ? <Preloader /> : null}
+         {
+            this.props.isFetching
+               ? <Preloader />
+               : null
+         }
          < Users
             users={this.props.users}
             totalUsersCount={this.props.totalUsersCount}
@@ -34,20 +42,8 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
    }
 }
 
-// Типизация для MapDispatchToProps
-type MapDispatchToPropsType = {
-   followSuccess: (userId: number) => void
-   unfollowSuccess: (userId: number) => void
-   setUserPage: (currentPage: number) => void
-   toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-   getUsersTC: (currentPage: number, pageSize: number) => void
-}
-
-// Типизация для props компоненты Users
-export type UsersPropsType = MapDispatchToPropsType & initialStateType;
-
 // Функция, которая берет весь стэйт приложения целиком и возвращает только нужную часть этого стэйта, который передаётся в контейнерную компоненту.
-let mapStateToProps = (state: AppStateType): initialStateType => ({
+const mapStateToProps = (state: AppStateType): initialStateType => ({
    users: state.usersPage.users,
    pageSize: state.usersPage.pageSize,
    totalUsersCount: state.usersPage.totalUsersCount,

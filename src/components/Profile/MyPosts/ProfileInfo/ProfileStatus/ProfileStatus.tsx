@@ -1,12 +1,8 @@
 import React, { ChangeEvent } from 'react'
 import styles from './ProfileStatus.module.css'
+import { ProfileStatusPropsType } from './ProfileStatus.types'
 
-type ProfileStatusPropsType = {
-   status: string
-   updateStatus: (status: string) => void
-}
-
-class ProfileStatus extends React.Component<ProfileStatusPropsType, {}> {
+export class ProfileStatus extends React.Component<ProfileStatusPropsType, {}> {
    state = {
       editMode: false,
       status: this.props.status
@@ -38,18 +34,28 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, {}> {
 
    render() {
       return (<>
-         {!this.state.editMode &&
+         {
+            !this.state.editMode
+            &&
             <div>
-               <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status || 'No status'}</span>
+               <span
+                  onDoubleClick={this.activateEditMode.bind(this)}>
+                  {this.props.status || 'No status'}
+               </span>
             </div>
          }
-         {this.state.editMode &&
-            <div className={styles.inputBlock}>
-               <input autoFocus onChange={this.onStatusChange} onBlur={this.deactivateEditMode.bind(this)} value={this.state.status} />
+         {
+            this.state.editMode
+            &&
+            <div
+               className={styles.inputBlock}>
+               <input
+                  autoFocus
+                  onChange={this.onStatusChange}
+                  onBlur={this.deactivateEditMode.bind(this)}
+                  value={this.state.status} />
             </div>
          }
       </>);
    }
 }
-
-export default ProfileStatus;

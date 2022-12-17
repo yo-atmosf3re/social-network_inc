@@ -6,7 +6,6 @@ import defaultAvatar from '../../../assets/image/defaultAvatar.png'
 
 const StyleCondition = s.dialog + ' ' + s.active;
 
-
 export const DialogItem: React.FC<DialogItemType> = ({
    id, name
 }) => {
@@ -15,13 +14,12 @@ export const DialogItem: React.FC<DialogItemType> = ({
          <NavLink
             to={'/dialogs/' + id}>
             {
-               <img src={defaultAvatar} alt="" />
+               <img
+                  src={defaultAvatar}
+                  alt="" />
             }
             {name}
          </NavLink>
       </div>
    )
 }
-
-
-export default DialogItem;

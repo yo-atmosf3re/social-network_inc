@@ -2,15 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Header.module.css';
 import logo from '../../assets/image/logo.png'
+import { HeaderPropsType } from "./Header.types";
 
-type HeaderPropsType = {
-   isAuth: boolean
-   login: string | null
-   // setAuthUserDataSuccess: (userId: null, email: null, login: null) => void
-   // getAuthUserData: () => void
-}
 
-const Header: React.FC<HeaderPropsType> = ({
+
+export const Header: React.FC<HeaderPropsType> = ({
    isAuth, login
 }) => {
    return <header

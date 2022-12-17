@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { compose } from "redux";
+import { Profile } from ".";
 import { getStatus, setUserProfileTC, updateStatus } from "../../redux/profilePage-reducer";
 import { AppStateType } from "../../redux/redux-store";
-import Profile from "./Profile";
+import { ProfileFromContainerPropsType, MapStatePropsType } from "./Profile.types";
 
-class ProfileContainer extends React.Component<PropsType, {}> {
+class ProfileContainer extends React.Component<ProfileFromContainerPropsType, {}> {
    componentDidMount(): void {
       let userId = this.props.router.params.userId;
       if (!userId) {
@@ -18,52 +19,17 @@ class ProfileContainer extends React.Component<PropsType, {}> {
    render() {
       return (
          <div>
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
+            <Profile
+               {...this.props}
+               profile={this.props.profile}
+               status={this.props.status}
+               updateStatus={this.props.updateStatus} />
          </div>
       );
    }
 }
 
-// Типизация для MapDispatchToProps
-type MapDispatchToPropsType = {
-   setUserProfile: (profile: null) => void
-   setUserProfileTC: (userId: number) => void
-   getStatus: (userId: number) => void
-   updateStatus: (status: string) => void;
-}
-
-// Типизация для profile, который приходит с сервера. Эту типизацию использую в компоненте Profile.tsx и в контейнерной компоненте.
-export type ProfilePageType = {
-   aboutMe: string
-   contacts: {
-      facebook: string
-      website: string
-      vk: string
-      twitter: string
-      instagram: string
-      youtube: string
-      github: string
-      mainLink: string
-   }
-   lookingForAJob: boolean
-   lookingForAJobDescription: string
-   fullName: string
-   userId: number
-   photos: {
-      small: string
-      large: string
-   }
-}
-
-type MapStatePropsType = {
-   profile: null | ProfilePageType
-   router?: any
-   status: string
-}
-
-type PropsType = MapStatePropsType & MapDispatchToPropsType
-
-let mapStateToProps = (state: AppStateType): MapStatePropsType => ({ profile: state.profilePage.profile, status: state.profilePage.status })
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({ profile: state.profilePage.profile, status: state.profilePage.status })
 
 
 
@@ -85,5 +51,4 @@ function withRouter(Component: any) {
 export default compose<React.ComponentType>(
    connect(mapStateToProps, { setUserProfileTC, getStatus, updateStatus }),
    withRouter,
-   // withAuthRedirect,
 )(ProfileContainer);

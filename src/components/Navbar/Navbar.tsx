@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { NavbarPropsType } from "../../redux/store";
 import s from "./Navbar.module.css";
-import Sidebar from "./Sidebar";
+import { Sidebar } from "./Sidebar";
 
-const NavbarCategories = [
+const NAVBAR_CATEGORIES = [
    { title: 'Profile', url: '/profile', id: 0 },
    { title: 'Messages', url: '/dialogs', id: 1 },
    { title: 'Users', url: '/users', id: 2 },
@@ -13,10 +13,10 @@ const NavbarCategories = [
    { title: 'Settings', url: '/settings', id: 5 },
 ]
 
-const Navbar: React.FC<NavbarPropsType> = ({
+export const Navbar: React.FC<NavbarPropsType> = ({
    state
 }) => {
-   const navbarItems = NavbarCategories.map((n) => <div
+   const navbarItems = NAVBAR_CATEGORIES.map((n) => <div
       key={n.id}
       className={s.item}>
       <NavLink
@@ -35,12 +35,8 @@ const Navbar: React.FC<NavbarPropsType> = ({
          }
          <div className={s.item_friends}>
             Friends
-            <Sidebar
-               sidebar={state}
-            />
+            <Sidebar sidebar={state} />
          </div>
       </nav>
    );
 }
-
-export default Navbar;

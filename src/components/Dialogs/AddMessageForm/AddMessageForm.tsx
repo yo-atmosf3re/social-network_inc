@@ -1,15 +1,9 @@
 import { useFormik } from 'formik'
 import React from 'react'
 import s from './AddMessageForm.module.css'
+import { AddMessageTextareaPropsType } from './AddMessageForm.types'
 
-export type AddMessageTextareaPropsType = {
-   messagesElements: JSX.Element[]
-   newMessageBody: string
-   addNewMessage: () => void
-   onNewMessageChange: (text: string) => void
-}
-
-const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
+export const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
    addNewMessage, messagesElements, newMessageBody, onNewMessageChange
 }) => {
 
@@ -45,5 +39,3 @@ const AddMessageForm: React.FC<AddMessageTextareaPropsType> = ({
       </form>
    )
 }
-
-export default AddMessageForm

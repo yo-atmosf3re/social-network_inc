@@ -1,44 +1,9 @@
-import { Form, Formik, useFormik } from 'formik'
-import React, { ChangeEvent } from 'react'
+import { useFormik } from 'formik'
+import React from 'react'
+import { PostTextFieldPropsType } from './PostTextareaField.types'
 
-type PostTextFieldPropsType = {
-   newTextChangeHandler: (text: string) => void
-   newPostText: string
-   emptyField: () => boolean
-   clearTextarea: () => void
-   onAddPost: () => void
-}
-
-// const PostTextareaField: React.FC<PostTextFieldPropsType> = ({
-//    newTextChangeHandler, newPostText, emptyField, clearTextarea, onAddPost
-// }) => {
-//    return (
-//       <Formik
-//          initialValues={{
-//             newPostText: ''
-//          }}
-//          onSubmit={(values, { setSubmitting }) => {
-//             setTimeout(() => {
-//                console.log(JSON.stringify(values, null, 2));
-//                setSubmitting(false);
-//             }, 400);
-//          }}>
-//          <Form>
-//             <textarea
-//                // onSubmit={}
-//                onChange={newTextChangeHandler}
-//                value={newPostText}
-//             />
-//             <br />
-//             <button disabled={emptyField()} onClick={onAddPost}>Add post</button>
-//             <button type='submit' onClick={clearTextarea}>Remove</button>
-//          </Form>
-//       </Formik>
-//    )
-// }
-
-const PostTextareaField: React.FC<PostTextFieldPropsType> = ({
-   newTextChangeHandler, newPostText, emptyField, clearTextarea, onAddPost
+export const PostTextareaField: React.FC<PostTextFieldPropsType> = ({
+   newTextChangeHandler, newPostText, clearTextarea, onAddPost
 }) => {
    const { handleSubmit, handleChange, values, handleReset } = useFormik({
       initialValues: {
@@ -53,9 +18,7 @@ const PostTextareaField: React.FC<PostTextFieldPropsType> = ({
          clearTextarea()
          values.message = ''
       },
-
    })
-   console.log(values.message)
    return (
       <form onSubmit={handleSubmit}>
          <textarea
@@ -80,5 +43,3 @@ const PostTextareaField: React.FC<PostTextFieldPropsType> = ({
       </form>
    )
 }
-
-export default PostTextareaField

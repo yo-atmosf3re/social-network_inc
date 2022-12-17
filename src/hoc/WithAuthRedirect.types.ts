@@ -1,0 +1,1 @@
+export type MapStateForRedirectType = { isAuth: boolean }

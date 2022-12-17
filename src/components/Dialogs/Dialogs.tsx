@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useCallback } from "react";
+import React, { useCallback } from "react";
 import { DialogItemType, MessageType } from "../../redux/store";
-import DialogItem from "./DialogItem/DialogItem";
+import { AddMessageForm } from "./AddMessageForm";
+import { DialogItem } from "./DialogItem";
 import s from './Dialogs.module.css'
-import { DialogsPropsType } from "./DialogsContainer";
-import Message from "./Message/Message";
-import AddMessageForm from "./AddMessageForm/AddMessageForm";
+import { DialogsPropsType } from "./Dialogs.types";
+import { Message } from "./Message";
 
 export const Dialogs: React.FC<DialogsPropsType> = ({
    dialogsPage, ...props
@@ -36,10 +36,8 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
             addNewMessage={addNewMessage}
             messagesElements={messagesElements}
             onNewMessageChange={onNewMessageChange}
-            newMessageBody={dialogsPage.newMessageBody}
+            newMessageBody={newMessageBody}
          />
       </div >
    )
 }
-
-export default Dialogs;

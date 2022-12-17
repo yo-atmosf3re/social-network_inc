@@ -6,24 +6,18 @@ import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
 import { addNewMessageActionCreator, initialStateType, updateNewMessageBodyActionCreator } from "../../redux/dialogsPage-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import { DialogPageType } from "../../redux/store";
-import Dialogs from "./Dialogs";
+import { Dialogs } from "./Dialogs";
+import { MapDispatchToPropsType, MapStateToPropsType } from "./Dialogs.types";
 
-type MapDispatchToPropsType = {
-   addNewMessage: () => void
-   onNewMessageChange: (text: string) => void
-}
-type MapStateToPropsType = { dialogsPage: DialogPageType }
-export type DialogsPropsType = MapDispatchToPropsType & initialStateType
-
-let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({ dialogsPage: state.dialogsPage })
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({ dialogsPage: state.dialogsPage })
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
    return {
       addNewMessage: () => dispatch(addNewMessageActionCreator()),
       onNewMessageChange: (text: string) => dispatch(updateNewMessageBodyActionCreator(text)),
    }
 }
 
-export default compose(
+export const DialogsContainer = compose(
    connect(mapStateToProps, mapDispatchToProps),
    withAuthRedirect
 )

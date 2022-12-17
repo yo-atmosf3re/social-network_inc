@@ -1,16 +1,10 @@
 import React from "react";
-import { ProfilePageType } from "../../ProfileContainer";
 import s from './ProfileInfo.module.css'
 import defaultAvatar from '../../../../assets/image/defaultAvatar.png'
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import Preloader from "../../../common/Preloader/Preloader";
 import profileInfoBG from '../../../../assets/image/profileInfoBG.jpg'
-
-type ProfileInfoPropsType = {
-   profile: ProfilePageType | null
-   status: string
-   updateStatus: (status: string) => void
-}
+import { ProfileInfoPropsType } from "./ProfileInfo.types";
+import { Preloader } from "../../../common/Preloader";
+import { ProfileStatus } from "./ProfileStatus";
 
 export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
    profile, status, updateStatus
@@ -34,7 +28,9 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
          <div className={s.descriptionBlock}>
             <img src={imageCondition} />
             <br />
-            <ProfileStatus status={status} updateStatus={updateStatus} />
+            <ProfileStatus
+               status={status}
+               updateStatus={updateStatus} />
             <br />
             {aboutMe}
             <br />
@@ -49,5 +45,3 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
       </div>
    )
 }
-
-export default ProfileInfo;
