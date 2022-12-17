@@ -14,16 +14,18 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
    const dialogsElements = dialogData
       .map((d: DialogItemType) => <DialogItem key={d.id} name={d.name} id={d.id} />)
 
-   const messagesElements = messages.map((m: MessageType) => <Message message={m.message} id={m.id} key={m.id} />)
+   const messagesElements = messages.map((m: MessageType) =>
+      <Message
+         message={m.message}
+         id={m.id}
+         key={m.id} />)
 
    const addNewMessage = useCallback(() => {
       props.addNewMessage()
       props.onNewMessageChange('')
    }, [props.addNewMessage, props.onNewMessageChange])
 
-   const onNewMessageChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => props.onNewMessageChange(e.currentTarget.value), [props.onNewMessageChange])
-
-   const emptyField = useCallback(() => newMessageBody === '' ? true : false, [newMessageBody])
+   const onNewMessageChange = useCallback((text: string) => props.onNewMessageChange(text), [props.onNewMessageChange])
 
    return (
       <div className={s.dialogs}>
@@ -34,7 +36,6 @@ export const Dialogs: React.FC<DialogsPropsType> = ({
             addNewMessage={addNewMessage}
             messagesElements={messagesElements}
             onNewMessageChange={onNewMessageChange}
-            emptyField={emptyField}
             newMessageBody={dialogsPage.newMessageBody}
          />
       </div >
