@@ -13,7 +13,7 @@ const MyPosts: React.FC<MyPostPropsType> = ({
 
    const onAddPost = useCallback(() => addPost(), [addPost])
 
-   const newTextChangeHandler = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => updateNewPostText(e.currentTarget.value), [updateNewPostText])
+   const newTextChangeHandler = useCallback((text: string) => updateNewPostText(text), [updateNewPostText])
 
    const clearTextarea = useCallback(() => updateNewPostText(''), [updateNewPostText])
 
