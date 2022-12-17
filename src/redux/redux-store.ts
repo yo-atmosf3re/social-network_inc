@@ -33,7 +33,7 @@ export type AppThunkType<ReturnType = void> = ThunkAction<
    AppActionsTypes
 >
 
-export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 // @ts-ignore
 window.store = store;

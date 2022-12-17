@@ -1,6 +1,9 @@
 import { DialogType, MessageType, PostType } from "./store";
 import { followSuccess, unfollowSuccess } from "./users-reducer";
 
+const SEND_MASSAGE = 'SEND-MESSAGE'
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
+
 type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess>
 
 type InitialStateProfileType = {
@@ -65,9 +68,6 @@ const initialStateDialogs: initialStateDialogsType = {
    ],
 }
 export const dialogsPageReducerOld = (state = initialStateDialogs, action: ActionsTypes): initialStateDialogsType => {
-   const SEND_MASSAGE = 'SEND-MESSAGE'
-   const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
-
    switch (action.type) {
       case SEND_MASSAGE:
          const newAddMessage: MessageType = {

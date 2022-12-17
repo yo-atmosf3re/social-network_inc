@@ -3,11 +3,16 @@ import { SidebarItemType, SidebarType } from "../../../redux/store";
 import s from "./../Navbar.module.css";
 import defaultAvatar from '../../../assets/image/defaultAvatar.png'
 
-export const Sidebar: React.FC<SidebarType> = ({
-   sidebar
-}) => {
+const SIDEBAR_ITEMS = [
+   { id: 1, name: 'Alex' },
+   { id: 2, name: 'Steve' },
+   { id: 3, name: 'Jon' },
+   { id: 4, name: 'Oleg' },
+]
 
-   const sidebarItems = sidebar.map((f: SidebarItemType) =>
+export const Sidebar = () => {
+
+   const sidebarItems = SIDEBAR_ITEMS.map((f: SidebarItemType) =>
       <div
          key={f.id}
          className={s.sidebar}>

@@ -66,7 +66,7 @@ export default compose<React.ComponentType>(
 )(UsersContainer);
 
 // Функция, которая передаёт callback'и в контейнерную компоненту
-// let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 //    return {
 //       follow: (userId: number) => {
 //          dispatch(follow(userId))

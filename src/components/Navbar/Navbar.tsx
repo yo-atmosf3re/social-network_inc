@@ -13,9 +13,7 @@ const NAVBAR_CATEGORIES = [
    { title: 'Settings', url: '/settings', id: 5 },
 ]
 
-export const Navbar: React.FC<NavbarPropsType> = ({
-   state
-}) => {
+export const Navbar = () => {
    const navbarItems = NAVBAR_CATEGORIES.map((n) => <div
       key={n.id}
       className={s.item}>
@@ -35,7 +33,7 @@ export const Navbar: React.FC<NavbarPropsType> = ({
          }
          <div className={s.item_friends}>
             Friends
-            <Sidebar sidebar={state} />
+            <Sidebar />
          </div>
       </nav>
    );

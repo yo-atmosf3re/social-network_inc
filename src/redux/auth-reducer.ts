@@ -9,7 +9,7 @@ export type AuthStateType = typeof initialState;
 const SET_USER_DATA = 'SET_USER_DATA';
 
 // ? Инициализационный стэйт
-let initialState = {
+const initialState = {
    userId: null,
    email: null,
    login: null,
@@ -38,7 +38,7 @@ export const getAuthUserData = (): AppThunkType => {
       authAPI.me()
          .then((response) => {
             if (response.data.resultCode === 0) {
-               let { id, email, login } = response.data.data;
+               const { id, email, login } = response.data.data;
                dispatch(setAuthUserDataSuccess(id, email, login))
             }
          })

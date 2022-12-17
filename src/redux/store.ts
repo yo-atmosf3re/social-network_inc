@@ -1,7 +1,4 @@
 import { ReactNode } from "react"
-import { dialogsPageReducerOld, profilePageReducerOld } from "./old-redux"
-import { AppActionsTypes } from "./redux-store"
-import sidebarReducer from "./sidebar-reducer"
 
 export type MessageType = {
    id: number
@@ -88,7 +85,6 @@ export type StoreType = {
    _callSubscriber: (_state: RootStateType) => void
    subscriber: (observer: (_state: RootStateType) => void) => void
    getState: () => RootStateType
-   // dispatch: (action: ActionsTypes) => void
 }
 
 export type PropsType = {
@@ -100,59 +96,5 @@ export type ProviderPropsType = {
    store: StoreType
 }
 
-export let oldStore: StoreType = {
-   _state: {
-      profilePage: {
-         newPostText: '',
-         posts: [
-            { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
-            { id: 2, message: "It's my first post", likecount: '♥ 14' },
-            { id: 3, message: "It's my second post", likecount: '♥ 0' },
-         ],
-      },
-      dialogsPage: {
-         messages: [
-            { id: 1, message: "Hi!" },
-            { id: 2, message: "How are you?" },
-            { id: 3, message: "Yo!" },
-            { id: 4, message: "Salam!" },
-            { id: 5, message: "Hello!!" },
-         ],
-         dialogData: [
-            { id: "1", name: 'Alex' },
-            { id: "2", name: 'Ivan' },
-            { id: "3", name: 'Jon' },
-            { id: "4", name: 'Andrey' },
-            { id: "5", name: 'Mark' },
-            { id: "6", name: 'Elvis' },
-         ],
-         newMessageBody: '',
-      },
-      sidebar: [
-         { id: 1, name: 'Alex' },
-         { id: 2, name: 'Steve' },
-         { id: 3, name: 'Jon' },
-         { id: 4, name: 'Oleg' },
-      ],
-   },
-   _callSubscriber(_state: RootStateType) {
-      console.log('State changed');
-   },
-   subscriber(observer) {
-      this._callSubscriber = observer;
-   },
-   getState() {
-      return this._state
-   },
-   // Для работы диспатча нужно раскомментить типизацию для стора
-   // dispatch(action) {
-   //    this._state.profilePage = profilePageReducerOld(this._state.profilePage, action)
-   //    this._state.dialogsPage = dialogsPageReducerOld(this._state.dialogsPage, action)
-   //    this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-   //    this._callSubscriber(this._state);
-   // },
-}
-
-export default oldStore;
 
 
