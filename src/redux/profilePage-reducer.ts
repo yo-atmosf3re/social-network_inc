@@ -13,9 +13,9 @@ export type ProfileStateType = typeof initialState
 const initialState = {
    newPostText: '',
    posts: [
-      { id: 1, message: 'Hi, how are you?', likecount: '♥ 20' },
-      { id: 2, message: "It's my first post", likecount: '♥ 14' },
-      { id: 3, message: "It's my second post", likecount: '♥ 0' },
+      { id: 1, message: 'Hi, how are you?', likecount: `♥ ${Math.floor(Math.random() * 98).toString()}` },
+      { id: 2, message: "It's my first post", likecount: `♥ ${Math.floor(Math.random() * 98).toString()}` },
+      { id: 3, message: "It's my second post", likecount: `♥ ${Math.floor(Math.random() * 98).toString()}` },
    ],
    profile: null,
    status: '',
@@ -27,7 +27,7 @@ export const profilePageReducer = (state: ProfileStateType = initialState, actio
          const newPost: PostType = {
             id: new Date().getTime(),
             message: state.newPostText,
-            likecount: '0',
+            likecount: `♥ ${Math.floor(Math.random() * 98).toString()}`,
          };
          return {
             ...state,

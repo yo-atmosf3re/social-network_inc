@@ -5,6 +5,21 @@
    background-color: rgba(5, 37, 128, 0.342);
 }
 
+.formWrapper {
+   height: 90px;
+}
+
+.messages textarea {
+   outline: 0;
+   outline-offset: 0;
+   resize: none;
+}
+
+.titleError {
+   color: crimson;
+   font-size: 18px;
+}
+
 .messages .message {
    color: rgb(255, 255, 255);
 }
@@ -20,4 +35,9 @@
    text-decoration: dashed;
    font-size: 20px;
    resize: none;
+   padding-bottom: 31px;
+}
+
+.clearButton {
+   margin-right: 7px;
 }

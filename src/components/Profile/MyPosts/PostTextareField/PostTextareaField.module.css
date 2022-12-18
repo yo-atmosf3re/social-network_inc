@@ -1,0 +1,14 @@
+.formWrapper {
+   height: 80px;
+}
+
+.formWrapper textarea {
+   outline: 0;
+   outline-offset: 0;
+   resize: none;
+}
+
+.textarea {
+   padding-bottom: 20px;
+   margin-top: 5px;
+}

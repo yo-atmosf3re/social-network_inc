@@ -4,13 +4,18 @@ import { useSelector } from "react-redux";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { authReducer, setAuthUserDataSuccess } from "./auth-reducer";
 import { addNewMessageActionCreator, dialogsPageReducer, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer";
-import { addPostActionCreator, profilePageReducer, setStatus, setUserProfile, updateNewTextActionCreator } from "./profilePage-reducer";
+import {
+   addPostActionCreator, profilePageReducer, setStatus, setUserProfile,
+   updateNewTextActionCreator
+} from "./profilePage-reducer";
 import { setUserPage, followSuccess, setUsers, unfollowSuccess, usersReducer, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress } from "./users-reducer";
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { legacy_createStore as createStore } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-export type AppActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewTextActionCreator> | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess> | ReturnType<typeof setUsers> | ReturnType<typeof setUserPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile> | ReturnType<typeof setAuthUserDataSuccess> | ReturnType<typeof toggleFollowingProgress> | ReturnType<typeof setStatus>;
+export type AppActionsTypes = ReturnType<typeof addPostActionCreator>
+   | ReturnType<typeof updateNewTextActionCreator>
+   | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess> | ReturnType<typeof setUsers> | ReturnType<typeof setUserPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile> | ReturnType<typeof setAuthUserDataSuccess> | ReturnType<typeof toggleFollowingProgress> | ReturnType<typeof setStatus>;
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<AppStateType, unknown, AppActionsTypes>
