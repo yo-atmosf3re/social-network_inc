@@ -7,8 +7,10 @@ import { HeaderPropsType } from "./Header.types";
 
 
 export const Header: React.FC<HeaderPropsType> = ({
-   isAuth, login
+   // isAuth,
+   login
 }) => {
+   const isAuth = false
    return <header
       className={s.header}>
       <img src={logo} />

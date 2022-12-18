@@ -1,29 +1,55 @@
-import React from 'react'
-import { InjectedFormProps, Field } from 'redux-form';
-import { FormDataType } from './LoginForm.types';
+import { useFormik } from 'formik';
+import * as Yup from 'yup'
+import s from './LoginForm.module.css'
 
-const LOGIN_ITEMS_FORM = [
-   { id: 1, name: 'login', placeholder: 'Login', type: '', component: 'input' },
-   { id: 2, name: 'password', placeholder: 'Password', type: '', component: 'input' },
-   { id: 3, name: 'rememberMe', placeholder: '', type: 'checkbox', component: 'input' },
-]
+export const LoginForm = () => {
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+   const validationSchema = Yup.object({
+      login: Yup.string().max(12, 'Must be 11 characters or less').required('Login is required'),
+      password: Yup.string().max(16, 'Must be 16 characters or less').required('Password is required')
+   })
+
+   const { handleSubmit, values, errors, handleChange } = useFormik({
+      initialValues: {
+         login: '',
+         password: '',
+         rememberMe: false,
+      },
+      onSubmit: (values) => {
+         console.log(values)
+      },
+      validationSchema
+   })
+
+   const loginItemsForm = [
+      { id: 1, name: 'login', placeholder: 'Login', type: 'text', errors: errors.login },
+      { id: 2, name: 'password', placeholder: 'Password', type: 'password', errors: errors.password },
+      { id: 3, name: 'rememberMe', placeholder: '', type: 'checkbox', errors: 'Remember you?' },
+   ]
+
    return (
-      <form onSubmit={props.handleSubmit}>
+      <form
+         className={s.formWrapper}
+         onSubmit={handleSubmit}>
          {
-            LOGIN_ITEMS_FORM.map(g =>
+            loginItemsForm.map(g =>
                <div key={g.id}>
-                  <Field
+                  <input
+                     onChange={handleChange}
+                     id={g.name}
                      name={g.name}
                      placeholder={g.placeholder}
                      type={g.type}
-                     component={g.component}
                   />
+                  <span >
+                     {
+                        g.errors ? g.errors : null
+                     }
+                  </span>
                </div>)
          }
          <div>
-            <button>
+            <button type='submit'>
                Login
             </button>
          </div>

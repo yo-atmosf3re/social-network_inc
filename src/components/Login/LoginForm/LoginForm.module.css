@@ -1,0 +1,18 @@
+.formWrapper input  {
+   outline: 0;
+   outline-offset: 0;
+   resize: none;
+   margin-right: 5px;
+}
+
+.formWrapper input:nth-child(1) {
+   margin-bottom: 5px;
+}
+
+.formWrapper span {
+   color: red;
+}
+
+.formWrapper span:last-child {
+   color: black;
+}
