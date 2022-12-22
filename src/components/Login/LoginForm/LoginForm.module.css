@@ -9,10 +9,18 @@
    margin-bottom: 5px;
 }
 
-.formWrapper span {
+.errorsText {
    color: red;
 }
 
-.formWrapper span:last-child {
-   color: black;
+.checkboxForm {
+   margin-top: 3px;
+}
+
+.formInputs {
+   display: flex;
+   flex-direction: column;
+}
+
+.dataAuthForm {
 }

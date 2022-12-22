@@ -1,1 +1,3 @@
-export { }
+export type LoginPropsType = {
+   isAuth: boolean
+}
