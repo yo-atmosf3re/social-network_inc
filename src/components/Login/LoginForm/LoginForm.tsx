@@ -11,12 +11,10 @@ const validationSchema = Yup.object({
    password: Yup.string().max(16, 'Must be 16 characters or less').required('Password is required')
 })
 
-
 export const LoginForm = () => {
-
    const dispatch = useDispatch<AppDispatch>()
 
-   const { handleSubmit, values, touched, errors, handleChange, handleBlur } = useFormik({
+   const { handleSubmit, touched, errors, handleChange, handleBlur } = useFormik({
       initialValues: {
          login: '',
          password: '',

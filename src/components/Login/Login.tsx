@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../redux/redux-store';
-import { LoginPropsType } from './Login.types';
 import { LoginForm } from './LoginForm';
 
 export const Login = () => {
-   const { isAuth } = useAppSelector(state => state.auth)
-   console.log(isAuth)
+   const navigate = useNavigate()
+   const { login } = useAppSelector(state => state.auth)
 
-   if (isAuth) return <Navigate to={'/profile'} />
+   useEffect(() => {
+      login && navigate('/profile')
+   }, [login])
 
    return (<div>
       <h1>LOGIN</h1>

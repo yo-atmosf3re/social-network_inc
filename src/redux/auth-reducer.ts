@@ -27,7 +27,6 @@ export const authReducer = (state: AuthStateType = initialState, action: AppActi
          return {
             ...state,
             ...action.data,
-            isAuth: true,
          }
       }
       default: return state
@@ -47,20 +46,25 @@ export const getAuthUserData = (): AppThunkType =>
          })
    }
 
-
 export const login = (email: string, password: string, rememberMe: boolean): AppThunkType =>
    (dispatch) => {
       authAPI.login(email, password, rememberMe)
-         .then(res =>
-            dispatch(getAuthUserData())
+         .then(res => {
+            if (res.data.resultCode === 0) {
+               dispatch(getAuthUserData())
+            }
+         }
          )
    }
 
 export const logout = (): AppThunkType =>
    (dispatch) => {
       authAPI.logout()
-         .then(res =>
-            dispatch(setAuthUserDataSuccess(null, null, null, false))
+         .then(res => {
+            if (res.data.resultCode === 0) {
+               dispatch(setAuthUserDataSuccess(null, null, null, false))
+            }
+         }
          )
    }
 

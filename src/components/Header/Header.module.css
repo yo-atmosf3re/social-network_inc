@@ -18,6 +18,25 @@ text-align: center;
    padding: 10px 10px 0 0;
    color: blue;
 }
-.loginBlock a{
-   
+
+.button {
+background-color: #0464f3;
+border: none;
+width: 75px;
+border-radius: 5px;
+height: 33px;
+margin-left: 5px;
+color: white;
+font-size: 20px;
+}
+
+.button:disabled {
+   opacity: 0;
+}
+
+.titleLogin {
+   color: rgb(180, 10, 10);
+   position: relative;
+   top: 2px;
+   right: 5px;
 }

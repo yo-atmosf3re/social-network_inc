@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import s from './Header.module.css';
 import logo from '../../assets/image/logo.png'
 import { HeaderPropsType } from "./Header.types";
@@ -7,23 +7,22 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/redux-store";
 import { logout } from "../../redux/auth-reducer";
 
-
-
 export const Header: React.FC<HeaderPropsType> = ({
-   isAuth,
    login
 }) => {
 
    const dispatch = useDispatch<AppDispatch>()
    const navigate = useNavigate()
-   const [auth, setAuth] = useState(false)
+   const location = useLocation()
 
    const logoutHandler = () => {
       dispatch(logout())
-      navigate('/login', { state: 'login' })
-      console.log(auth, 'after')
-      // setAuth(!!auth)
-      console.log(auth, 'before')
+      login &&
+         navigate('/profile')
+   }
+
+   const loginHandler = () => {
+      navigate('/login')
    }
 
    return <header
@@ -31,32 +30,32 @@ export const Header: React.FC<HeaderPropsType> = ({
       <img src={logo} />
       <div className={s.loginBlock}>
          {
-            isAuth
-               ?
-               <>
-                  {
+            <>
+               {
+                  login
+                     ?
                      <>
+                        <span className={s.titleLogin}>
+                           Welcome, {login}
+                        </span>
                         <button
+                           className={s.button}
                            onClick={logoutHandler}
                         >
                            Logout
                         </button>
-                        <span>
-                           Welcome, {login}
-                        </span>
                      </>
-                  }
-               </>
-               :
-               <NavLink
-                  // onClick={() => setAuth(false)}
-                  to={'/login'}
-               >
-                  Login
-               </NavLink>
+                     :
+                     <button
+                        disabled={location.pathname === '/login'}
+                        className={s.button}
+                        onClick={loginHandler}
+                     >
+                        Login
+                     </button>
+               }
+            </>
          }
       </div>
    </header>;
 }
-
-export default Header;

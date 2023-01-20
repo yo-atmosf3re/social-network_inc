@@ -20,6 +20,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "sourceMap": true,
+    "typeRoots": [
+      "node_modules/yup"
+    ]
   },
   "include": [
     "src"
