@@ -14,22 +14,26 @@ const validationSchema = Yup.object({
 export const LoginForm = () => {
    const dispatch = useDispatch<AppDispatch>()
 
-   const { handleSubmit, touched, errors, handleChange, handleBlur } = useFormik({
-      initialValues: {
-         login: '',
-         password: '',
-         rememberMe: false,
-      },
-      onSubmit: (values) => {
-         dispatch(login(values.login, values.password, values.rememberMe))
-      },
-      validationSchema
-   })
+   const { handleSubmit, touched, errors,
+      handleChange, handleBlur, isValid,
+      dirty, setFieldValue, values } = useFormik({
+         initialValues: {
+            login: '',
+            password: '',
+            rememberMe: false,
+            errorMessage: ''
+         },
+         onSubmit: (values, { setFieldValue }) => {
+            dispatch(login(values.login, values.password, values.rememberMe, setFieldValue))
+         },
+         validationSchema,
+      })
 
    const loginItemsForm = [
       { id: 1, name: 'login', placeholder: 'Login', type: 'text', errors: errors.login, touched: touched.login },
       { id: 2, name: 'password', placeholder: 'Password', type: 'password', errors: errors.password, touched: touched.password },
    ]
+
    return (
       <form
          className={s.formWrapper}
@@ -70,9 +74,21 @@ export const LoginForm = () => {
             </div>
          </div>
          <div>
-            <button type='submit'>
+            <button
+               className={s.button}
+               disabled={!(dirty && isValid)}
+               type='submit'>
                Login
             </button>
          </div>
+         {
+            values.errorMessage
+            &&
+            <div className={s.someError}>
+               {
+                  values.errorMessage
+               }
+            </div>
+         }
       </form >);
 }

@@ -33,6 +33,8 @@ export type MapStatePropsType = {
    profile: null | ProfilePageType
    router?: any
    status: string
+   authUserId: string | null
+   isAuth: boolean
 }
 
 export type ProfileFromContainerPropsType = MapStatePropsType & MapDispatchToPropsType

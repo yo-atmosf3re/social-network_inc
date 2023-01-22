@@ -33,7 +33,7 @@ export const authReducer = (state: AuthStateType = initialState, action: AppActi
    }
 }
 
-export const setAuthUserDataSuccess = (userId: null | string, email: null | string, login: null | string, isAuth: boolean) => ({ type: SET_USER_DATA, data: { userId, email, login, isAuth } } as const)
+export const setAuthUserDataSuccess = (userId: null | string, email: null | string, login: null | string, isAuth: boolean,) => ({ type: SET_USER_DATA, data: { userId, email, login, isAuth } } as const)
 
 export const getAuthUserData = (): AppThunkType =>
    (dispatch) => {
@@ -46,12 +46,14 @@ export const getAuthUserData = (): AppThunkType =>
          })
    }
 
-export const login = (email: string, password: string, rememberMe: boolean): AppThunkType =>
+export const login = (email: string, password: string, rememberMe: boolean, setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void): AppThunkType =>
    (dispatch) => {
       authAPI.login(email, password, rememberMe)
          .then(res => {
             if (res.data.resultCode === 0) {
                dispatch(getAuthUserData())
+            } else {
+               setFieldValue('errorMessage', res.data.messages.join(''))
             }
          }
          )
