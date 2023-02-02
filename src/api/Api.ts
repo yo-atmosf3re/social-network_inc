@@ -24,35 +24,7 @@ export const profileAPI = {
 }
 
 export const authAPI = {
-   me: () => instance.get<ResponseGetAuthI>(`auth/me`),
-   login: (email: string, password: string, rememberMe: boolean = false) => instance.post<ResponsePostAuthI>(`/auth/login`, { email, password, rememberMe }),
-   logout: () => instance.delete<ResponseDeleteAuthI>(`/auth/login`),
-}
-
-type ResponsePostDataType = {
-   userId: number
-}
-
-type ResponseGetDataType = {
-   id: string
-   email: string
-   login: string
-}
-
-export interface ResponsePostAuthI {
-   resultCode: number
-   messages: string[]
-   data: ResponsePostDataType
-}
-
-export interface ResponseDeleteAuthI {
-   resultCode: number
-   messages: string[]
-   data: {}
-}
-
-export interface ResponseGetAuthI {
-   data: ResponseGetDataType
-   resultCode: number
-   messages: string[]
+   me: () => instance.get(`auth/me`),
+   login: (email: string, password: string, rememberMe: boolean = false) => instance.post(`/auth/login`, { email, password, rememberMe }),
+   logout: () => instance.delete(`/auth/login`),
 }
