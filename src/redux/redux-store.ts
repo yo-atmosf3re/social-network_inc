@@ -1,5 +1,4 @@
-import { AnyAction, applyMiddleware, combineReducers } from "@reduxjs/toolkit";
-import React from "react";
+import { applyMiddleware, combineReducers } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { authReducer, setAuthUserDataSuccess } from "./auth-reducer";

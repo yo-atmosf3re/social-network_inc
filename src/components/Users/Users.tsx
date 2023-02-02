@@ -1,7 +1,6 @@
 import * as React from 'react';
 import s from './Users.module.css'
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
-import { UserType } from '../../redux/users-reducer';
 import { NavLink } from 'react-router-dom';
 import { UsersPresentationalPropsType } from './Users.types';
 

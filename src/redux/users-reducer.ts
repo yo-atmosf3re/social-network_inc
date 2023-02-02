@@ -1,4 +1,3 @@
-import { Dispatch } from "redux";
 import { usersAPI } from "../api/Api";
 import { AppActionsTypes, AppThunkType } from "./redux-store";
 
@@ -90,7 +89,7 @@ export const usersReducer = (state: UsersStateType = initialState, action: AppAc
             ...state,
             followingInProgress: action.isFetching
                ? [...state.followingInProgress, action.userId]
-               : state.followingInProgress.filter(id => id != action.userId)
+               : state.followingInProgress.filter(id => id !== action.userId)
          }
       }
       default:

@@ -1,17 +1,17 @@
 import React from "react";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { compose } from "redux";
 import { Profile } from ".";
 import { getStatus, setUserProfileTC, updateStatus } from "../../redux/profilePage-reducer";
-import { AppStateType, useAppSelector } from "../../redux/redux-store";
+import { AppStateType } from "../../redux/redux-store";
 import { ProfileFromContainerPropsType, MapStatePropsType } from "./Profile.types";
 
 class ProfileContainer extends React.Component<ProfileFromContainerPropsType, {}> {
    componentDidMount(): void {
       let userId = this.props.router.params.userId;
       if (!userId) {
-         userId = this.props.authUserId
+         userId = 16664
       };
       this.props.setUserProfileTC(userId)
       this.props.getStatus(userId)
@@ -30,8 +30,6 @@ class ProfileContainer extends React.Component<ProfileFromContainerPropsType, {}
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({ profile: state.profilePage.profile, status: state.profilePage.status, authUserId: state.auth.userId, isAuth: state.auth.isAuth })
-
-
 
 function withRouter(Component: any) {
    function ComponentWithRouterProp(props: any) {

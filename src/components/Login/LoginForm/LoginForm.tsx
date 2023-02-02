@@ -16,7 +16,7 @@ export const LoginForm = () => {
 
    const { handleSubmit, touched, errors,
       handleChange, handleBlur, isValid,
-      dirty, setFieldValue, values } = useFormik({
+      dirty, values } = useFormik({
          initialValues: {
             login: '',
             password: '',

@@ -23,10 +23,14 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
    return (
       <div>
          <div className="profileinfo">
-            <img src={profileInfoBG} />
+            <img
+               alt={'Background'}
+               src={profileInfoBG} />
          </div>
          <div className={s.descriptionBlock}>
-            <img src={imageCondition} />
+            <img
+               alt={'Condition'}
+               src={imageCondition} />
             <br />
             <ProfileStatus
                status={status}
