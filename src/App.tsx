@@ -17,17 +17,17 @@ import { Preloader } from './components/common/Preloader';
 const App = () => {
 
   const dispatch = useDispatch<AppDispatch>()
-  const { isAuth } = useAppSelector(state => state.auth)
+  const { login } = useAppSelector(state => state.auth)
   const { initialized } = useAppSelector(state => state.app)
   const navigate = useNavigate()
 
   useEffect(() => {
-    !isAuth && navigate('/login')
-  }, [isAuth])
+    !login && navigate('/login')
+  }, [login])
 
   useEffect(() => {
     dispatch(initilizeAppTC())
-  }, [isAuth])
+  }, [login])
 
   return (
     <div className='app-wrapper'>

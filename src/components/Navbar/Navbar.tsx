@@ -15,13 +15,13 @@ const NAVBAR_CATEGORIES = [
 ]
 
 export const Navbar = () => {
-   const { isAuth } = useAppSelector(state => state.auth)
-   console.log(isAuth)
+   const { login } = useAppSelector(state => state.auth)
+
    const navbarItems = NAVBAR_CATEGORIES.map((n) => <div
       key={n.id}
       className={s.item}>
       <NavLink
-         to={n.url}
+         to={login ? n.url : '#'}
          className={d => d.isActive ? s.active : s.item}
       >
          {
@@ -29,6 +29,7 @@ export const Navbar = () => {
          }
       </NavLink>
    </div>)
+   
    return (
       <nav className={s.nav}>
          {
@@ -37,7 +38,7 @@ export const Navbar = () => {
          <div className={s.item_friends}>
             Friends
             {
-               isAuth &&
+               login &&
                <Sidebar />
             }
          </div>
