@@ -12,6 +12,12 @@ border-radius: 15px;
 text-align: center;
 }
 
+.logoImg {
+   position: relative;
+   top: 3.5px;
+   left: 5px;
+}
+
 .loginBlock{
    float: right;
    font-size: 25px;
@@ -35,7 +41,7 @@ font-size: 20px;
 }
 
 .titleLogin {
-   color: rgb(180, 10, 10);
+   color: blue;
    position: relative;
    top: 2px;
    right: 5px;

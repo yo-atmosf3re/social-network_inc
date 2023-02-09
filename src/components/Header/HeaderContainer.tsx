@@ -6,9 +6,6 @@ import { Header } from "./Header";
 import { HeaderFromContainerPropsType, MapStatePropsType } from "./Header.types";
 
 class HeaderContainer extends React.Component<HeaderFromContainerPropsType, {}> {
-   componentDidMount(): void {
-      this.props.getAuthUserData()
-   }
    render() {
       return (
          <Header {...this.props} />
@@ -23,7 +20,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 export default connect(mapStateToProps, {
    setAuthUserDataSuccess,
-   getAuthUserData
 })(HeaderContainer)
 
 

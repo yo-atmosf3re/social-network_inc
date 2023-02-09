@@ -10,9 +10,7 @@ import { ProfileFromContainerPropsType, MapStatePropsType } from "./Profile.type
 class ProfileContainer extends React.Component<ProfileFromContainerPropsType, {}> {
    componentDidMount(): void {
       let userId = this.props.router.params.userId;
-      if (!userId) {
-         userId = 16664
-      };
+      if (!userId) userId = 16664
       this.props.setUserProfileTC(userId)
       this.props.getStatus(userId)
    }

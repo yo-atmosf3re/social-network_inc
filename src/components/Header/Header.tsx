@@ -27,7 +27,9 @@ export const Header: React.FC<HeaderPropsType> = ({
 
    return <header
       className={s.header}>
-      <img src={logo} />
+      <img
+         className={s.logoImg}
+         src={logo} />
       <div className={s.loginBlock}>
          {
             <>

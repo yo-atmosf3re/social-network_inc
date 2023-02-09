@@ -11,7 +11,6 @@ const SIDEBAR_ITEMS = [
 ]
 
 export const Sidebar = () => {
-
    const sidebarItems = SIDEBAR_ITEMS.map((f: SidebarItemType) =>
       <div
          key={f.id}
@@ -28,5 +27,6 @@ export const Sidebar = () => {
          <div className={s.sidebar_item}>
             {sidebarItems}
          </div>
-      </div>);
+      </div>
+   );
 }

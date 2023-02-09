@@ -5,7 +5,6 @@ export type HeaderPropsType = {
 
 export type MapDispatchToProps = {
    setAuthUserDataSuccess: (userId: string | null, email: null | string, login: null | string, isAuth: boolean) => void
-   getAuthUserData: () => void
 }
 export type MapStatePropsType = {
    isAuth: boolean

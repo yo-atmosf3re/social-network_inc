@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../redux/redux-store";
 import { NavbarPropsType } from "../../redux/store";
 import s from "./Navbar.module.css";
 import { Sidebar } from "./Sidebar";
@@ -14,6 +15,8 @@ const NAVBAR_CATEGORIES = [
 ]
 
 export const Navbar = () => {
+   const { isAuth } = useAppSelector(state => state.auth)
+   console.log(isAuth)
    const navbarItems = NAVBAR_CATEGORIES.map((n) => <div
       key={n.id}
       className={s.item}>
@@ -33,7 +36,10 @@ export const Navbar = () => {
          }
          <div className={s.item_friends}>
             Friends
-            <Sidebar />
+            {
+               isAuth &&
+               <Sidebar />
+            }
          </div>
       </nav>
    );
