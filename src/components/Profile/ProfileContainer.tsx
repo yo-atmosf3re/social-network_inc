@@ -5,6 +5,7 @@ import { compose } from "redux";
 import { Profile } from ".";
 import { getStatus, setUserProfileTC, updateStatus } from "../../redux/profilePage-reducer";
 import { AppStateType } from "../../redux/redux-store";
+import { selectProfileAuthorized, selectAuthUserId, selectProfile, selectStatus } from "../../redux/selectors/profile-selectors";
 import { ProfileFromContainerPropsType, MapStatePropsType } from "./Profile.types";
 
 class ProfileContainer extends React.Component<ProfileFromContainerPropsType, {}> {
@@ -27,7 +28,12 @@ class ProfileContainer extends React.Component<ProfileFromContainerPropsType, {}
    }
 }
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => ({ profile: state.profilePage.profile, status: state.profilePage.status, authUserId: state.auth.userId, isAuth: state.auth.isAuth })
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+   profile: selectProfile(state),
+   status: selectStatus(state),
+   authUserId: selectAuthUserId(state),
+   isAuth: selectProfileAuthorized(state)
+})
 
 function withRouter(Component: any) {
    function ComponentWithRouterProp(props: any) {

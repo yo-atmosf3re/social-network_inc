@@ -12,7 +12,7 @@ export const Users: React.FC<UsersPresentationalPropsType> = ({
    unfollow, users
 }) => {
 
-   const pagesCount = Math.ceil(totalUsersCount / pageSize);
+   const pagesCount: number = Math.ceil(totalUsersCount / pageSize);
    const pages: number[] = [];
 
    for (let i = 1; i <= pagesCount; i++) {

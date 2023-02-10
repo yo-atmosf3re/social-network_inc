@@ -11,6 +11,10 @@ import { compose } from 'redux';
 import { Preloader } from '../common/Preloader';
 import { Users } from '.';
 import { UsersPropsType } from './Users.types';
+import {
+   selectCurrentPage, selectFetched, selectFollowedInProgress,
+   selectPageSize, selectTotalUserCount, selectUsers
+} from '../../redux/selectors/user-selectors';
 
 class UsersContainer extends React.Component<UsersPropsType, {}> {
    componentDidMount(): void {
@@ -44,12 +48,12 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 
 // Функция, которая берет весь стэйт приложения целиком и возвращает только нужную часть этого стэйта, который передаётся в контейнерную компоненту.
 const mapStateToProps = (state: AppStateType): initialStateType => ({
-   users: state.usersPage.users,
-   pageSize: state.usersPage.pageSize,
-   totalUsersCount: state.usersPage.totalUsersCount,
-   currentPage: state.usersPage.currentPage,
-   isFetching: state.usersPage.isFetching,
-   followingInProgress: state.usersPage.followingInProgress,
+   users: selectUsers(state),
+   pageSize: selectPageSize(state),
+   totalUsersCount: selectTotalUserCount(state),
+   currentPage: selectCurrentPage(state),
+   isFetching: selectFetched(state),
+   followingInProgress: selectFollowedInProgress(state),
 })
 
 export default compose<React.ComponentType>(

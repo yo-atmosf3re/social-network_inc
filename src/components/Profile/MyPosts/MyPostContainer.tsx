@@ -8,10 +8,11 @@ import { AppStateType } from "../../../redux/redux-store";
 import { Dispatch } from "redux";
 import { MyPosts } from "./MyPosts";
 import { initialStateType, MapDispatchToPropsType } from "./MyPost.types";
+import { selectNewPostText, selectPosts } from "../../../redux/selectors/my-post-selectors";
 
 const mapStateToProps = (state: AppStateType): initialStateType => ({
-   posts: state.profilePage.posts,
-   newPostText: state.profilePage.newPostText,
+   posts: selectPosts(state),
+   newPostText: selectNewPostText(state),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
