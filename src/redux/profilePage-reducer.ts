@@ -55,34 +55,34 @@ export const profilePageReducer = (state: ProfileStateType = initialState, actio
    }
 }
 
-export const addPostActionCreator = () => ({ type: ADD_POST, } as const);
-export const updateNewTextActionCreator = (newText: string) => ({ type: UPDATE_NEW_POST_TEXT, newText, } as const);
-export const setUserProfile = (profile: null) => ({ type: SET_USER_PROFILE, profile } as const)
-export const setStatus = (status: string) => ({ type: SET_STATUS, status } as const)
+export const addPostAC = () => ({ type: ADD_POST, } as const);
+export const updateNewTextAC = (newText: string) => ({ type: UPDATE_NEW_POST_TEXT, newText, } as const);
+export const setUserProfileAC = (profile: null) => ({ type: SET_USER_PROFILE, profile } as const)
+export const setStatusAC = (status: string) => ({ type: SET_STATUS, status } as const)
 
-export const setUserProfileTC = (userId: number): AppThunkType => {
-   return (dispatch) => {
-      usersAPI.getProfile(userId)
-         .then((data) => {
-            dispatch(setUserProfile(data.data))
-         });
+export const setUserProfileTC = (userId: number): AppThunkType => async (dispatch) => {
+   const { data } = await usersAPI.getProfile(userId)
+   try {
+      dispatch(setUserProfileAC(data))
+   } catch (error) {
+      console.log(error)
    }
 }
-export const getStatus = (userId: number): AppThunkType =>
-   (dispatch) => {
-      profileAPI.getStatus(userId)
-         .then((data) => {
-            dispatch(setStatus(data.data))
-         });
-   }
 
-export const updateStatus = (status: string): AppThunkType => {
-   return (dispatch) => {
-      profileAPI.updateStatus(status)
-         .then((response) => {
-            if (response.data.resultCode === 0) {
-               dispatch(setStatus(status))
-            }
-         });
+export const getStatus = (userId: number): AppThunkType => async (dispatch) => {
+   const { data } = await profileAPI.getStatus(userId)
+   try {
+      dispatch(setStatusAC(data))
+   } catch (error) {
+      console.log(error)
+   }
+}
+
+export const updateStatus = (status: string): AppThunkType => async (dispatch) => {
+   const { data } = await profileAPI.updateStatus(status)
+   try {
+      if (data.resultCode === 0) dispatch(setStatusAC(status))
+   } catch (error) {
+      console.log(error)
    }
 }

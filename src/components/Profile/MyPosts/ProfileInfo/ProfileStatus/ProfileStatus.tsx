@@ -1,61 +1,46 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import styles from './ProfileStatus.module.css'
 import { ProfileStatusPropsType } from './ProfileStatus.types'
 
-export class ProfileStatus extends React.Component<ProfileStatusPropsType, {}> {
-   state = {
-      editMode: false,
-      status: this.props.status
+export const ProfileStatus: React.FC<ProfileStatusPropsType> = ({
+   status, updateStatus
+}) => {
+
+   const [editMode, setEditMode] = useState<boolean>(false)
+   const [value, setValue] = useState<string>(status)
+
+   const activateEditModeHandler = (): void => setEditMode(true)
+
+   const deactivatedEditModeHandler = (): void => {
+      setEditMode(false)
+      updateStatus(value)
    }
 
-   activateEditMode = () => {
-      this.setState({
-         editMode: true
-      })
-   }
-   deactivateEditMode = () => {
-      this.setState({
-         editMode: false
-      })
-      this.props.updateStatus(this.state.status)
-   }
-   onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-      this.setState({
-         status: e.currentTarget.value,
-      })
-   }
-   componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>): void {
-      if (prevProps.status !== this.props.status) {
-         this.setState({
-            status: this.props.status
-         })
-      }
-   }
+   const onStatusChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => setValue(e.currentTarget.value)
 
-   render() {
-      return (<>
+   useEffect(() => {
+      if (value !== status) setValue(status)
+   }, [status])
+
+   return (
+      <>
          {
-            !this.state.editMode
-            &&
-            <div>
-               <span
-                  onDoubleClick={this.activateEditMode.bind(this)}>
-                  {this.props.status || 'No status'}
-               </span>
-            </div>
+            editMode
+               ? <div
+                  className={styles.inputBlock}>
+                  <input
+                     autoFocus
+                     onChange={onStatusChangeHandler}
+                     onBlur={deactivatedEditModeHandler}
+                     value={value} />
+               </div>
+               : <div>
+                  <span
+                     onDoubleClick={activateEditModeHandler}>
+                     {status || 'No status'}
+                  </span>
+               </div>
          }
-         {
-            this.state.editMode
-            &&
-            <div
-               className={styles.inputBlock}>
-               <input
-                  autoFocus
-                  onChange={this.onStatusChange}
-                  onBlur={this.deactivateEditMode.bind(this)}
-                  value={this.state.status} />
-            </div>
-         }
-      </>);
-   }
+      </>
+   )
 }
