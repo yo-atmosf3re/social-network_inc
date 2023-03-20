@@ -2,9 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
 import {
-   followSuccess, initialStateType, setUserPage,
+   followSuccess, UserReducerInitialStateType, setUserPage,
    unfollowSuccess, toggleFollowingProgress, getUsersTC,
-   follow, unfollow
+   followTC, unfollowTC
 } from '../../redux/users-reducer';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
@@ -47,7 +47,7 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 }
 
 // Функция, которая берет весь стэйт приложения целиком и возвращает только нужную часть этого стэйта, который передаётся в контейнерную компоненту.
-const mapStateToProps = (state: AppStateType): initialStateType => ({
+const mapStateToProps = (state: AppStateType): UserReducerInitialStateType => ({
    users: selectUsers(state),
    pageSize: selectPageSize(state),
    totalUsersCount: selectTotalUserCount(state),
@@ -64,8 +64,8 @@ export default compose<React.ComponentType>(
       setUserPage,
       toggleFollowingProgress,
       getUsersTC,
-      follow,
-      unfollow,
+      follow: followTC,
+      unfollow: unfollowTC,
    }),
 )(UsersContainer);
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setAuthUserDataSuccess, getAuthUserData } from "../../redux/auth-reducer";
+import { setAuthUserDataSuccess, getAuthUserDataTC } from "../../redux/auth-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import { Header } from "./Header";
 import { HeaderFromContainerPropsType, MapStatePropsType } from "./Header.types";

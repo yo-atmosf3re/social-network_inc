@@ -36,8 +36,7 @@ export const authReducer = (state: AuthStateType = initialState, action: AppActi
 
 export const setAuthUserDataSuccess = (userId: null | string, email: null | string, login: null | string, isAuth: boolean,) => ({ type: SET_USER_DATA, data: { userId, email, login, isAuth } } as const)
 
-// ** try...catch
-export const getAuthUserData = (): AppThunkType =>
+export const getAuthUserDataTC = (): AppThunkType =>
    async (dispatch) => {
       try {
          const { data } = await authAPI.me()
@@ -48,11 +47,11 @@ export const getAuthUserData = (): AppThunkType =>
       }
    }
 
-export const login = (email: string, password: string, rememberMe: boolean, setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void): AppThunkType => async (dispatch) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean, setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void): AppThunkType => async (dispatch) => {
+   const { data } = await authAPI.login(email, password, rememberMe)
    try {
-      const { data } = await authAPI.login(email, password, rememberMe)
       if (data.resultCode === 0) {
-         dispatch(getAuthUserData())
+         dispatch(getAuthUserDataTC())
       } else {
          setFieldValue('errorMessage', data.messages.join(''))
       }
@@ -61,7 +60,7 @@ export const login = (email: string, password: string, rememberMe: boolean, setF
    }
 }
 
-export const logout = (): AppThunkType =>
+export const logoutTC = (): AppThunkType =>
    async (dispatch) => {
       try {
          const { data } = await authAPI.logout()
@@ -72,4 +71,3 @@ export const logout = (): AppThunkType =>
          console.log(error)
       }
    }
-

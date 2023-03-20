@@ -5,7 +5,7 @@ import logo from '../../assets/image/logo.png'
 import { HeaderPropsType } from "./Header.types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/redux-store";
-import { logout } from "../../redux/auth-reducer";
+import { logoutTC } from "../../redux/auth-reducer";
 
 export const Header: React.FC<HeaderPropsType> = ({
    login
@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderPropsType> = ({
    const location = useLocation()
 
    const logoutHandler = () => {
-      dispatch(logout())
+      dispatch(logoutTC())
       login &&
          navigate('/profile')
    }

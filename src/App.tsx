@@ -10,7 +10,6 @@ import UsersContainer from './components/Users/UsersContainer';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, useAppSelector } from './redux/redux-store';
 import { useEffect } from 'react';
-import { getAuthUserData } from './redux/auth-reducer';
 import { initilizeAppTC } from './redux/app-reducer';
 import { Preloader } from './components/common/Preloader';
 
@@ -19,7 +18,7 @@ const App = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { login } = useAppSelector(state => state.auth)
   const { initialized } = useAppSelector(state => state.app)
-  const navigate = useNavigate()
+  const navigate = useNavigate()  
 
   useEffect(() => {
     !login && navigate('/login')

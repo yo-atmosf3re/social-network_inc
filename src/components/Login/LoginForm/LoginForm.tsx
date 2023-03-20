@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup'
-import { login } from '../../../redux/auth-reducer';
+import { loginTC } from '../../../redux/auth-reducer';
 import { AppDispatch } from '../../../redux/redux-store';
 import s from './LoginForm.module.css'
 
@@ -14,15 +14,15 @@ const validationSchema = Yup.object({
 
 // ** Нужно добавить и протестировать валидацию, которую я закомментировал ниже для имейла.
 // if (!values.email) {
-      //          errors.email = 'Поле обязательно для заполнения';
-       //     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        //        errors.email = 'Email указан некорректно';
-         // }
-         //   if (!values.password) {
-       //         errors.password = 'Поле обязательно для заполнения';
-     //       } else if (values.password.length < 5) {
-   //             errors.password = 'Пароль должен содержать не меньше 8 символов'
- //          }
+//          errors.email = 'Поле обязательно для заполнения';
+//     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+//        errors.email = 'Email указан некорректно';
+// }
+//   if (!values.password) {
+//         errors.password = 'Поле обязательно для заполнения';
+//       } else if (values.password.length < 5) {
+//             errors.password = 'Пароль должен содержать не меньше 8 символов'
+//          }
 //            return errors;
 
 export const LoginForm = () => {
@@ -35,10 +35,10 @@ export const LoginForm = () => {
             login: '',
             password: '',
             rememberMe: false,
-            errorMessage: ''
+            errorMessage: '',
          },
          onSubmit: (values, { setFieldValue }) => {
-            dispatch(login(values.login, values.password, values.rememberMe, setFieldValue))
+            dispatch(loginTC(values.login, values.password, values.rememberMe, setFieldValue))
          },
          validationSchema,
       })

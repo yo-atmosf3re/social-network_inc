@@ -1,4 +1,4 @@
-import { initialStateType, UserType } from "../../redux/users-reducer"
+import { UserReducerInitialStateType, UserType } from "../../redux/users-reducer"
 
 export type UsersPresentationalPropsType = {
    totalUsersCount: number
@@ -21,4 +21,4 @@ export type MapDispatchToPropsType = {
 }
 
 // Типизация для props компоненты Users
-export type UsersPropsType = MapDispatchToPropsType & initialStateType;
+export type UsersPropsType = MapDispatchToPropsType & UserReducerInitialStateType;
