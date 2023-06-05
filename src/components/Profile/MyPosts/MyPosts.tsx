@@ -5,7 +5,7 @@ import { Post } from "./Post";
 import { PostTextareaField } from "./PostTextareField";
 import { MyPostPropsType } from "./MyPost.types";
 
-export const MyPosts: React.FC<MyPostPropsType> = ({
+export const MyPosts: React.FC<MyPostPropsType> = React.memo(({
    addPost, newPostText, posts,
    updateNewPostText
 }) => {
@@ -38,4 +38,4 @@ export const MyPosts: React.FC<MyPostPropsType> = ({
          </div>
       </div>
    );
-}
+})

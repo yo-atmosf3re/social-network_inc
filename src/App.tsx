@@ -18,7 +18,7 @@ const App = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { login } = useAppSelector(state => state.auth)
   const { initialized } = useAppSelector(state => state.app)
-  const navigate = useNavigate()  
+  const navigate = useNavigate()
 
   useEffect(() => {
     !login && navigate('/login')

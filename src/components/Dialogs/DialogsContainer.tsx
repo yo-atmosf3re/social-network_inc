@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { compose, Dispatch } from "redux";
 import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
-import { addNewMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogsPage-reducer";
+import { addNewMessageAC, updateNewMessageBodyAC } from "../../redux/dialogsPage-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import { selectDialogsPage } from "../../redux/selectors/dialogs-selectors";
 import { Dialogs } from "./Dialogs";
@@ -14,8 +14,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 })
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
    return {
-      addNewMessage: () => dispatch(addNewMessageActionCreator()),
-      onNewMessageChange: (text: string) => dispatch(updateNewMessageBodyActionCreator(text)),
+      addNewMessage: () => dispatch(addNewMessageAC()),
+      onNewMessageChange: (text: string) => dispatch(updateNewMessageBodyAC(text)),
    }
 }
 

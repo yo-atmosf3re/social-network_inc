@@ -2,12 +2,12 @@ import { applyMiddleware, combineReducers } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { authReducer, setAuthUserDataSuccess } from "./auth-reducer";
-import { addNewMessageActionCreator, dialogsPageReducer, updateNewMessageBodyActionCreator } from "./dialogsPage-reducer";
+import { addNewMessageAC, dialogsPageReducer, updateNewMessageBodyAC } from "./dialogsPage-reducer";
 import {
-   addPostAC, profilePageReducer, setStatusAC, setUserProfileAC,
+   addPostAC, deletePostAC, profilePageReducer, setStatusAC, setUserProfileAC,
    updateNewTextAC
 } from "./profilePage-reducer";
-import { setUserPage, followSuccess, setUsers, unfollowSuccess, usersReducer, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress } from "./users-reducer";
+import { setUserPageAC, followSuccessAC, setUsersAC, unfollowSuccessAC, usersReducer, setTotalUsersCountAC, toggleIsFetchingAC, toggleFollowingProgressAC } from "./users-reducer";
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { legacy_createStore as createStore } from 'redux'
 import { reducer as formReducer } from 'redux-form'
@@ -15,13 +15,13 @@ import { appReducer, initilizedSuccessAC } from "./app-reducer";
 
 export type AppActionsTypes = ReturnType<typeof addPostAC>
    | ReturnType<typeof updateNewTextAC>
-   | ReturnType<typeof addNewMessageActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator>
-   | ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess>
-   | ReturnType<typeof setUsers> | ReturnType<typeof setUserPage>
-   | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching>
+   | ReturnType<typeof addNewMessageAC> | ReturnType<typeof updateNewMessageBodyAC>
+   | ReturnType<typeof followSuccessAC> | ReturnType<typeof unfollowSuccessAC>
+   | ReturnType<typeof setUsersAC> | ReturnType<typeof setUserPageAC>
+   | ReturnType<typeof setTotalUsersCountAC> | ReturnType<typeof toggleIsFetchingAC>
    | ReturnType<typeof setUserProfileAC> | ReturnType<typeof setAuthUserDataSuccess>
-   | ReturnType<typeof toggleFollowingProgress> | ReturnType<typeof setStatusAC>
-   | ReturnType<typeof initilizedSuccessAC>;
+   | ReturnType<typeof toggleFollowingProgressAC> | ReturnType<typeof setStatusAC>
+   | ReturnType<typeof initilizedSuccessAC> | ReturnType<typeof deletePostAC>;
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<AppStateType, unknown, AppActionsTypes>

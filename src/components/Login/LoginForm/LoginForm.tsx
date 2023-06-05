@@ -11,20 +11,6 @@ const validationSchema = Yup.object({
    password: Yup.string().max(16, 'Must be 16 characters or less').required('Password is required')
 })
 
-
-// ** Нужно добавить и протестировать валидацию, которую я закомментировал ниже для имейла.
-// if (!values.email) {
-//          errors.email = 'Поле обязательно для заполнения';
-//     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//        errors.email = 'Email указан некорректно';
-// }
-//   if (!values.password) {
-//         errors.password = 'Поле обязательно для заполнения';
-//       } else if (values.password.length < 5) {
-//             errors.password = 'Пароль должен содержать не меньше 8 символов'
-//          }
-//            return errors;
-
 export const LoginForm = () => {
    const dispatch = useDispatch<AppDispatch>()
 
@@ -97,12 +83,25 @@ export const LoginForm = () => {
          </div>
          {
             values.errorMessage
-            &&
-            <div className={s.someError}>
-               {
-                  values.errorMessage
-               }
-            </div>
+               ? <div className={s.someError}>
+                  {
+                     values.errorMessage
+                  }
+               </div>
+               : null
          }
       </form >);
 }
+
+// ** Нужно добавить и протестировать валидацию, которую я закомментировал ниже для имейла.
+// if (!values.email) {
+//          errors.email = 'Поле обязательно для заполнения';
+//     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+//        errors.email = 'Email указан некорректно';
+// }
+//   if (!values.password) {
+//         errors.password = 'Поле обязательно для заполнения';
+//       } else if (values.password.length < 5) {
+//             errors.password = 'Пароль должен содержать не меньше 8 символов'
+//          }
+//            return errors;

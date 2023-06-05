@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { compose } from "redux";
 import { Profile } from ".";
-import { getStatus, setUserProfileTC, updateStatus } from "../../redux/profilePage-reducer";
+import { getStatusTC, setUserProfileTC, updateStatusTC } from "../../redux/profilePage-reducer";
 import { AppStateType } from "../../redux/redux-store";
 import { selectProfileAuthorized, selectAuthUserId, selectProfile, selectStatus } from "../../redux/selectors/profile-selectors";
 import { ProfileFromContainerPropsType, MapStatePropsType } from "./Profile.types";
@@ -51,6 +51,6 @@ function withRouter(Component: any) {
 }
 
 export default compose<React.ComponentType>(
-   connect(mapStateToProps, { setUserProfileTC, getStatus, updateStatus }),
+   connect(mapStateToProps, { setUserProfileTC, getStatus: getStatusTC, updateStatus: updateStatusTC }),
    withRouter,
 )(ProfileContainer);

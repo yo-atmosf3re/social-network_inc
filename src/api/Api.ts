@@ -21,6 +21,7 @@ export const usersAPI = {
    unfollow: (id: number) => instance.delete(`follow/${id}`),
    follow: (id: number) => instance.post(`follow/${id}`),
 }
+
 export const profileAPI = {
    getProfile: (userId: number) => instance.get(`profile/${userId}`),
    getStatus: (userId: number) => instance.get(`profile/status/${userId}`),

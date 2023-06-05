@@ -7,6 +7,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_POST = 'DELETE-POST';
 
 export type ProfileStateType = typeof initialState
 
@@ -34,6 +35,12 @@ export const profilePageReducer = (state: ProfileStateType = initialState, actio
             posts: [...state.posts, newPost],
             newPostText: '',
          }
+      case DELETE_POST: {
+         return {
+            ...state,
+            posts: [...state.posts.filter(f => f.id !== action.id)]
+         }
+      }
       case UPDATE_NEW_POST_TEXT:
          return {
             ...state,
@@ -55,32 +62,37 @@ export const profilePageReducer = (state: ProfileStateType = initialState, actio
    }
 }
 
-export const addPostAC = () => ({ type: ADD_POST, } as const);
-export const updateNewTextAC = (newText: string) => ({ type: UPDATE_NEW_POST_TEXT, newText, } as const);
+export const addPostAC = () => ({ type: ADD_POST } as const);
+
+export const deletePostAC = (id: number) => ({ type: DELETE_POST, id } as const)
+
+export const updateNewTextAC = (newText: string) => ({ type: UPDATE_NEW_POST_TEXT, newText } as const);
+
 export const setUserProfileAC = (profile: null) => ({ type: SET_USER_PROFILE, profile } as const)
+
 export const setStatusAC = (status: string) => ({ type: SET_STATUS, status } as const)
 
 export const setUserProfileTC = (userId: number): AppThunkType => async (dispatch) => {
-   const { data } = await usersAPI.getProfile(userId)
    try {
+      const { data } = await usersAPI.getProfile(userId)
       dispatch(setUserProfileAC(data))
    } catch (error) {
       console.log(error)
    }
 }
 
-export const getStatus = (userId: number): AppThunkType => async (dispatch) => {
-   const { data } = await profileAPI.getStatus(userId)
+export const getStatusTC = (userId: number): AppThunkType => async (dispatch) => {
    try {
+      const { data } = await profileAPI.getStatus(userId)
       dispatch(setStatusAC(data))
    } catch (error) {
       console.log(error)
    }
 }
 
-export const updateStatus = (status: string): AppThunkType => async (dispatch) => {
-   const { data } = await profileAPI.updateStatus(status)
+export const updateStatusTC = (status: string): AppThunkType => async (dispatch) => {
    try {
+      const { data } = await profileAPI.updateStatus(status)
       if (data.resultCode === 0) dispatch(setStatusAC(status))
    } catch (error) {
       console.log(error)

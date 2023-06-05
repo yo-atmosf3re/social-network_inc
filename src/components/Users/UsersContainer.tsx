@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
 import {
-   followSuccess, UserReducerInitialStateType, setUserPage,
-   unfollowSuccess, toggleFollowingProgress, getUsersTC,
+   followSuccessAC, UserReducerInitialStateType, setUserPageAC,
+   unfollowSuccessAC, toggleFollowingProgressAC, getUsersTC,
    followTC, unfollowTC
 } from '../../redux/users-reducer';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
@@ -59,10 +59,10 @@ const mapStateToProps = (state: AppStateType): UserReducerInitialStateType => ({
 export default compose<React.ComponentType>(
    withAuthRedirect,
    connect(mapStateToProps, {
-      followSuccess,
-      unfollowSuccess,
-      setUserPage,
-      toggleFollowingProgress,
+      followSuccess: followSuccessAC,
+      unfollowSuccess: unfollowSuccessAC,
+      setUserPage: setUserPageAC,
+      toggleFollowingProgress: toggleFollowingProgressAC,
       getUsersTC,
       follow: followTC,
       unfollow: unfollowTC,

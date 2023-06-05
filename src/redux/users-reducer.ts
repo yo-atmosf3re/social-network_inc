@@ -1,3 +1,5 @@
+import { updateObjectInArray } from './../utils/objectHelpers';
+import { subscriptionFlow } from './../utils/subsriptionFlow';
 import { usersAPI } from "../api/Api";
 import { AppActionsTypes, AppThunkType } from "./redux-store";
 
@@ -12,7 +14,6 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 // ** Типизация начального стэйта, который должен возвращать сам редьюсер
 export type UsersStateType = typeof initialState
-
 
 // ** Типизация массива
 export type UserType = {
@@ -51,25 +52,17 @@ export const usersReducer = (state: UsersStateType = initialState, action: AppAc
       case FOLLOW:
          return {
             ...state,
-            users: state.users.map(i => {
-               if (i.id === action.userId) {
-                  return { ...i, followed: true }
-               }
-               return i;
-            })
+            users: updateObjectInArray<{ followed: boolean }, UserType>(state.users, action.userId, "id", { followed: true })
          }
       case UNFOLLOW:
          return {
             ...state,
-            users: state.users.map(i => {
-               if (i.id === action.userId) {
-                  return { ...i, followed: false }
-               }
-               return i;
-            })
+            users: updateObjectInArray<{ followed: boolean }, UserType>(state.users, action.userId, "id", { followed: false })
          }
       case SET_USERS:
-         return { ...state, users: action.users }
+         return {
+            ...state, users: action.users
+         }
       case SET_CURRENT_PAGE: {
          return { ...state, currentPage: action.currentPage }
       }
@@ -99,49 +92,35 @@ export const usersReducer = (state: UsersStateType = initialState, action: AppAc
 }
 
 // ** Action Creator'ы, которые принимают объект со свойством type и ключом-строкой, в которой описано специальное действие. Если нужно, то можно добавить ещё какие-нибудь переменные в этот объект, а в функцию аргумент.
-export const followSuccess = (userId: number) => ({ type: FOLLOW, userId } as const)
-export const unfollowSuccess = (userId: number) => ({ type: UNFOLLOW, userId } as const)
-export const setUsers = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)
-export const setUserPage = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const)
-export const setTotalUsersCount = (totalCount: number) => ({ type: SET_TOTAL_USERS_COUNT, totalCount } as const)
-export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching } as const)
-export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId } as const)
+export const followSuccessAC = (userId: number) => ({ type: FOLLOW, userId } as const)
+
+export const unfollowSuccessAC = (userId: number) => ({ type: UNFOLLOW, userId } as const)
+
+export const setUsersAC = (users: Array<UserType>) => ({ type: SET_USERS, users } as const)
+
+export const setUserPageAC = (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const)
+
+export const setTotalUsersCountAC = (totalCount: number) => ({ type: SET_TOTAL_USERS_COUNT, totalCount } as const)
+
+export const toggleIsFetchingAC = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching } as const)
+
+export const toggleFollowingProgressAC = (isFetching: boolean, userId: number) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId } as const)
 
 // ** Thunk-function - это функция, которая внутри себя диспатчит другие(обычные) экшоны. Делает асинхронную работу.
 // ** Thunk creator - это функция, которая может, что-то принимать и возращает thunk'y.
-export const getUsersTC = (currentPage: number, pageSize: number): AppThunkType => {
-   return (dispatch) => {
-      dispatch(toggleIsFetching(true))
-      usersAPI.getUsers(currentPage, pageSize).then((data) => {
-         dispatch(toggleIsFetching(false))
-         dispatch(setUsers(data.items))
-         dispatch(setTotalUsersCount(data.totalCount))
-      })
+export const getUsersTC = (currentPage: number, pageSize: number): AppThunkType => async (dispatch) => {
+   dispatch(toggleIsFetchingAC(true))
+   try {
+      const data = await usersAPI.getUsers(currentPage, pageSize);
+      dispatch(setUsersAC(data.items))
+      dispatch(setTotalUsersCountAC(data.totalCount))
+   } catch (error) {
+      console.log(error)
+   } finally {
+      dispatch(toggleIsFetchingAC(false))
    }
 }
 
-export const followTC = (userId: number): AppThunkType => {
-   return (dispatch) => {
-      dispatch(toggleFollowingProgress(true, userId))
-      usersAPI.follow(userId)
-         .then((data) => {
-            if (data.data.resultCode === 0) {
-               dispatch(followSuccess(userId));
-            }
-            dispatch(toggleFollowingProgress(false, userId));
-         })
-   }
-}
+export const followTC = (userId: number): AppThunkType => async (dispatch) => subscriptionFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccessAC)
 
-export const unfollowTC = (userId: number): AppThunkType => {
-   return (dispatch) => {
-      dispatch(toggleFollowingProgress(true, userId))
-      usersAPI.unfollow(userId)
-         .then((data) => {
-            if (data.data.resultCode === 0) {
-               dispatch(unfollowSuccess(userId));
-            }
-            dispatch(toggleFollowingProgress(false, userId));
-         })
-   }
-}
+export const unfollowTC = (userId: number): AppThunkType => async (dispatch) => subscriptionFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccessAC);

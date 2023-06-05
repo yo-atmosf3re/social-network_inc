@@ -3,7 +3,7 @@ import s from './Users.module.css'
 import defaultAvatar from '../../assets/image/defaultAvatar.png'
 import { NavLink } from 'react-router-dom';
 import { UsersPresentationalPropsType } from './Users.types';
-import { useState } from 'react';
+import { Paginator } from '../../utils/Paginator';
 
 
 export const Users: React.FC<UsersPresentationalPropsType> = ({
@@ -11,37 +11,14 @@ export const Users: React.FC<UsersPresentationalPropsType> = ({
    onPageChanged, pageSize, totalUsersCount,
    unfollow, users
 }) => {
-
-   const pagesCount: number = Math.ceil(totalUsersCount / pageSize);
-   const pages: number[] = [];
-
-   for (let i = 1; i <= pagesCount; i++) {
-      pages.push(i);
-   }
-
-   const [int, setInt] = useState<number>(currentPage)
-
-   const paginationCompute = (): number[] => pages.slice(((int - 5) < 0) ? 0 : int - 5, int + 5);
-   const handlerPagination = (value: number): void => {
-      setInt(value)
-      onPageChanged(value, 10)
-   }
-   const classNamePaginatorCondition = (p: number): string => int === p ? s.selectedPage : ''
-
    return (
       <div>
-         <div
-            className={s.pageNumbersBlock}>
-            {
-               paginationCompute().map((p, i) =>
-                  <span
-                     key={i}
-                     className={classNamePaginatorCondition(p)}
-                     onClick={() => { handlerPagination(p) }}>
-                     {p}
-                  </span>)
-            }
-         </div>
+         <Paginator
+            currentPage={currentPage}
+            onPageChanged={onPageChanged}
+            pageSize={pageSize}
+            totalUsersCount={totalUsersCount}
+         />
          {
             users.map(u =>
                <div
